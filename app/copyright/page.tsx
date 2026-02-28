@@ -2,8 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 
 export default function CopyrightPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
@@ -39,7 +37,6 @@ export default function CopyrightPage() {
 
   return (
     <main>
-      <Navbar />
 
       {/* Section 1: Hero */}
       <section className="relative pt-28 pb-16 px-6 bg-bg-base overflow-hidden">
@@ -522,7 +519,6 @@ export default function CopyrightPage() {
         </p>
       </div>
 
-      <Footer />
 
       {/* SEO & Schema */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({

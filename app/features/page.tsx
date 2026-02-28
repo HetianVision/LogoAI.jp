@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import BottomCTA from '@/components/BottomCTA'
 
 // Page Hero Section
@@ -597,7 +595,6 @@ function ComparisonTable() {
 export default function FeaturesPage() {
   return (
     <main>
-      <Navbar />
       <PageHero />
       <FeaturesNav />
       <JapaneseFonts />
@@ -612,7 +609,6 @@ export default function FeaturesPage() {
         title="すべての機能が、<br />無料でお試しいただけます"
         description="クレジットカード不要。3つのLogoが無料プランで生成できます。"
       />
-      <Footer />
     </main>
   )
 }

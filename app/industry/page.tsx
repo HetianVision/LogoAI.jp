@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import { Metadata } from 'next'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import { INDUSTRY_LIST, INDUSTRY_CATEGORIES, getIndustryBySlug } from '@/lib/industry'
 
 export const metadata: Metadata = {
@@ -12,8 +10,6 @@ export const metadata: Metadata = {
 export default function IndustryPage() {
   return (
     <main>
-      <Navbar />
-
       {/* Hero Section */}
       <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-bg-base">
         <div className="max-w-[1200px] mx-auto px-6">
@@ -100,8 +96,6 @@ export default function IndustryPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </main>
   )
 }

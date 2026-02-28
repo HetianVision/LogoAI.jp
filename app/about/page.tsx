@@ -1,14 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import BottomCTA from '@/components/BottomCTA'
 
 export default function AboutPage() {
   return (
     <main>
-      <Navbar />
 
       {/* Section 1: Page Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-bg-base">
@@ -516,7 +513,6 @@ export default function AboutPage() {
         description="デザイナーに頼む予算がない、それでもブランドを妥協したくない方的のために。"
       />
 
-      <Footer />
 
       {/* SEO Structured Data */}
       <script

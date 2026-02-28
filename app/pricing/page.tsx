@@ -2,8 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import BottomCTA from '@/components/BottomCTA'
 
 // Section 1: Page Hero
@@ -302,7 +300,7 @@ function CopyrightInfo() {
             </div>
 
             <div className="flex items-center gap-2 text-xs text-text-muted p-3.5 bg-bg-section rounded-lg flex-wrap">
-              <span>ℹ️ 参考：</span>
+              <span>20%</span>
               <a href="https://www.bunka.go.jp/seisaku/chosakuken/pdf/93903601_01.pdf" target="_blank" rel="noopener noreferrer" className="text-primary underline">文化庁「AIと著作権に関する考え方について」</a>
               <span>・</span>
               <Link href="/copyright" className="text-primary underline">当サービスの著作権詳細ページ →</Link>
@@ -563,7 +561,6 @@ function UserReviews() {
 export default function PricingPage() {
   return (
     <main>
-      <Navbar />
       <PageHero />
       <PricingToggle />
       <PricingCards />
@@ -577,7 +574,6 @@ export default function PricingPage() {
         title="まずは無料で試してみてください。"
         description="気に入ったロゴが見つかれば、その時点で有料プランへの移行ができます。クレジットカード不要・登録は30秒・7日間全额返金保証付き。"
       />
-      <Footer />
     </main>
   )
 }

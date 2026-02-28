@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import { Metadata } from 'next'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import { SCENE_LIST, SCENE_CATEGORIES, getSceneBySlug } from '@/lib/scene'
 
 // Generate metadata
@@ -48,8 +46,6 @@ const sceneIcons: Record<string, string> = {
 export default function ForPage() {
   return (
     <main>
-      <Navbar />
-
       {/* Hero Section */}
       <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden bg-bg-base">
         <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl pointer-events-none" />
@@ -165,8 +161,6 @@ export default function ForPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </main>
   )
 }

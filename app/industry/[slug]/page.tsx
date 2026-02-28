@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import { INDUSTRY_LIST, getIndustryBySlug, IndustryData } from '@/lib/industry'
 
 // Generate static params for all 47 industries
@@ -47,8 +45,6 @@ export default async function IndustrySlugPage({ params }: { params: Promise<{ s
 
   return (
     <main>
-      <Navbar />
-
       {/* ============================================
           Section 1: Hero
       ============================================ */}
@@ -564,8 +560,6 @@ export default async function IndustrySlugPage({ params }: { params: Promise<{ s
           </div>
         </div>
       </section>
-
-      <Footer />
     </main>
   )
 }

@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import BottomCTA from '@/components/BottomCTA'
 
 // Hero 组件
@@ -586,7 +584,6 @@ function FAQ() {
 export default function HomePage() {
   return (
     <main>
-      <Navbar />
       <Hero />
       <TrustBar />
       <Features />
@@ -599,7 +596,6 @@ export default function HomePage() {
         title="5分で、あなただけの<br />ロゴができあがる"
         description="デザインや技術がなくても大丈夫。ブランド名を入力するだけで、AIがプロフェッショナルなLogoを生成。"
       />
-      <Footer />
     </main>
   )
 }

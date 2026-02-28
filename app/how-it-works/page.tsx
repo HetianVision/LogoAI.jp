@@ -1,8 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 
 export default function HowItWorksPage() {
   const steps = [
@@ -67,7 +65,6 @@ export default function HowItWorksPage() {
 
   return (
     <main>
-      <Navbar />
 
       {/* Section 1: Hero */}
       <section className="relative pt-28 pb-12 px-6 bg-bg-base overflow-hidden">
@@ -286,7 +283,6 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   )
 }

@@ -2,8 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import BottomCTA from '@/components/BottomCTA'
 
 // Section 1: Page Hero
@@ -368,7 +366,6 @@ function FinalCTA() {
 export default function GuaranteePage() {
   return (
     <main>
-      <Navbar />
       <PageHero />
       <GuaranteePrinciples />
       <RefundSteps />
@@ -379,7 +376,6 @@ export default function GuaranteePage() {
         title="まずは無料で试してみてください。"
         description="気に入ったロゴが見つかれば、その時点で有料プランへの移行ができます。クレジットカード不要・登録は30秒・7日間全额返金保証付き。"
       />
-      <Footer />
     </main>
   )
 }

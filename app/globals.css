@@ -476,3 +476,886 @@ body {
   font-weight: 500;
   flex-wrap: wrap;
 }
+
+/* ========================================
+   VS Comparison Page Styles
+   ======================================== */
+
+/* VS List Page */
+.vs-list-hero {
+  padding: calc(64px + 60px) var(--container-px) 64px;
+  text-align: center;
+  background: var(--color-bg-base);
+}
+
+.vs-list-hero h1 {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.25;
+  margin: 12px 0 20px;
+}
+
+.vs-list-hero .h1-sub {
+  font-size: var(--text-2xl);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  display: block;
+  margin-top: 8px;
+}
+
+.vs-list-desc {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.vs-list-section {
+  padding: var(--section-py) var(--container-px);
+  background: var(--color-bg-section);
+}
+
+.vs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.vs-card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: 24px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+.vs-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.vs-card-header {
+  margin-bottom: 12px;
+}
+
+.vs-card-category {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.vs-card-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 8px;
+}
+
+.vs-card-tagline {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: 0 0 16px;
+  flex: 1;
+}
+
+.vs-card-footer {
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+.vs-card-link {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.vs-list-cta {
+  padding: var(--section-py) var(--container-px);
+  background: var(--color-bg-base);
+}
+
+.vs-list-cta-content {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.vs-list-cta-content h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 12px;
+}
+
+.vs-list-cta-content p {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  margin-bottom: 24px;
+}
+
+.vs-list-cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* VS Detail Page - Hero */
+.vs-hero {
+  padding: calc(64px + 60px) var(--container-px) 64px;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg-base);
+}
+
+.vs-hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(26,58,42,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,58,42,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.vs-hero-content {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.vs-hero-content h1 {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.25;
+  margin: 12px 0 20px;
+}
+
+.vs-hero-content .h1-sub {
+  font-size: var(--text-2xl);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  display: block;
+  margin-top: 8px;
+}
+
+.vs-hero-desc {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: 32px;
+}
+
+/* Breadcrumb */
+.breadcrumb ol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  font-size: var(--text-sm);
+}
+
+.breadcrumb li {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: '›';
+  margin: 0 8px;
+  color: var(--color-text-muted);
+}
+
+.breadcrumb a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--color-primary);
+}
+
+.breadcrumb li[aria-current] {
+  color: var(--color-text-secondary);
+}
+
+/* vs バナー */
+.vs-banner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.vs-side {
+  flex: 1;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.vs-side-logoai {
+  background: rgba(26,58,42,0.03);
+}
+
+.vs-side-competitor {
+  background: var(--color-bg-section);
+}
+
+.vs-service-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.vs-side-logoai .vs-service-name {
+  color: var(--color-primary);
+}
+
+.vs-service-tag {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.vs-label {
+  padding: 0 20px;
+  font-family: var(--font-number);
+  font-size: var(--text-xl);
+  font-weight: 900;
+  color: var(--color-text-muted);
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  background: white;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* クイック結論 */
+.vs-quick-verdict {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.vqv-logoai-wins,
+.vqv-competitor-wins {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.vqv-header {
+  padding: 12px 16px;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.vqv-header-logoai {
+  background: rgba(45,122,79,0.08);
+  color: var(--color-success);
+}
+
+.vqv-header-competitor {
+  background: var(--color-bg-section);
+  color: var(--color-text-muted);
+}
+
+.vqv-list {
+  list-style: none;
+  padding: 12px 16px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: white;
+}
+
+.vqv-list li {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.vqv-check {
+  color: var(--color-success);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.vqv-check-gray {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.vs-hero-cta {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* VS Table Section */
+.vs-table-section {
+  padding: var(--section-py) var(--container-px);
+}
+
+.vs-table-wrap {
+  max-width: 860px;
+  margin: 0 auto 24px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.vs-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.vs-table thead tr {
+  border-bottom: 2px solid var(--color-border);
+}
+
+.vst-feature-col {
+  width: 40%;
+  padding: 16px 24px;
+  text-align: left;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  background: var(--color-bg-section);
+}
+
+.vst-logoai-col,
+.vst-competitor-col {
+  width: 30%;
+  padding: 16px 24px;
+  text-align: center;
+}
+
+.vst-logoai-col {
+  background: rgba(26,58,42,0.04);
+  border-left: 2px solid var(--color-primary);
+}
+
+.vst-service-name {
+  display: block;
+  font-size: var(--text-base);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.vst-logoai-col .vst-service-name {
+  color: var(--color-primary);
+}
+
+.vst-service-note {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.vs-table tbody tr {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.vs-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.vst-feature {
+  padding: 14px 24px;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.vst-note {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 0.6rem;
+  cursor: help;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.vst-val {
+  padding: 14px 20px;
+  text-align: center;
+  font-size: var(--text-sm);
+}
+
+.vst-val-logoai {
+  background: rgba(26,58,42,0.02);
+  border-left: 2px solid var(--color-primary);
+}
+
+.vstv-check {
+  color: var(--color-success);
+  font-weight: 700;
+  font-size: var(--text-lg);
+}
+
+.vstv-cross {
+  color: #C41E3A;
+  font-weight: 700;
+  font-size: var(--text-lg);
+}
+
+.vstv-partial {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.vstv-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.vstv-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.vs-table-note {
+  max-width: 860px;
+  margin: 0 auto;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* VS Which One Section */
+.vs-whichone-section {
+  padding: var(--section-py) var(--container-px);
+  background: var(--color-bg-section);
+}
+
+.vs-whichone-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.vwo-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  background: white;
+}
+
+.vwo-card-logoai {
+  border-color: var(--color-primary);
+}
+
+.vwo-service {
+  padding: 16px 24px;
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.vwo-card-logoai .vwo-service {
+  background: var(--color-primary);
+  color: white;
+}
+
+.vwo-card-competitor .vwo-service {
+  background: var(--color-bg-section);
+  color: var(--color-text-secondary);
+}
+
+.vwo-list {
+  list-style: none;
+  padding: 20px 24px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.vwo-list li {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  padding-left: 20px;
+  position: relative;
+}
+
+.vwo-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--color-text-muted);
+}
+
+.vwo-card-logoai .vwo-list li::before {
+  color: var(--color-primary);
+  content: '✓';
+}
+
+.vwo-cta {
+  display: block;
+  margin: 0 20px 20px;
+  padding: 12px;
+  background: var(--color-primary);
+  color: white;
+  text-align: center;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.vwo-cta:hover {
+  background: var(--color-primary-hover);
+}
+
+.vwo-cta-competitor {
+  background: white;
+  color: var(--color-text-secondary);
+  border: 1.5px solid var(--color-border);
+}
+
+.vwo-cta-competitor:hover {
+  background: var(--color-bg-section);
+}
+
+/* VS Advantage Section */
+.vs-advantage-section {
+  padding: var(--section-py) var(--container-px);
+}
+
+.vs-advantage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.advantage-text h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.35;
+  margin: 12px 0 28px;
+}
+
+.advantage-points {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.adv-point {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.adv-num {
+  font-family: var(--font-number);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  width: 24px;
+  margin-top: 2px;
+}
+
+.adv-content strong {
+  display: block;
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 6px;
+}
+
+.adv-content p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 数字カード */
+.adv-numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.adv-num-card {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 20px 24px;
+}
+
+.adv-num-card-accent {
+  border-color: var(--color-accent);
+  background: rgba(201,150,58,0.03);
+}
+
+.anc-num {
+  font-family: var(--font-number);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.adv-num-card-accent .anc-num {
+  color: var(--color-accent);
+}
+
+.anc-unit {
+  font-size: 1rem;
+}
+
+.anc-label {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.anc-compare {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* VS FAQ Section */
+.vs-faq-section {
+  padding: var(--section-py) var(--container-px);
+}
+
+.faq-accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.faq-q-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  color: white;
+  font-weight: 700;
+  font-size: var(--text-xs);
+  border-radius: 50%;
+}
+
+.faq-q-text {
+  flex: 1;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+}
+
+.faq-answer {
+  padding: 0 24px 20px 60px;
+  overflow: hidden;
+}
+
+.faq-answer p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* VS Verdict Section */
+.vs-verdict-section {
+  padding: var(--section-py) var(--container-px);
+}
+
+.vs-verdict-card {
+  max-width: 760px;
+  margin: 0 auto;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: 48px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.vvc-header h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 8px 0 20px;
+}
+
+.vvc-body {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.vvc-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.vvc-note {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .vs-advantage-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .vs-hero-content h1,
+  .vs-list-hero h1 {
+    font-size: var(--text-2xl);
+  }
+
+  .vs-hero-content .h1-sub,
+  .vs-list-hero .h1-sub {
+    font-size: var(--text-lg);
+  }
+
+  .vs-quick-verdict {
+    grid-template-columns: 1fr;
+  }
+
+  .vs-whichone-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vst-feature-col,
+  .vst-logoai-col,
+  .vst-competitor-col {
+    padding: 12px;
+  }
+
+  .vst-feature,
+  .vst-val {
+    padding: 12px;
+    font-size: var(--text-xs);
+  }
+
+  .vs-banner {
+    flex-direction: column;
+  }
+
+  .vs-label {
+    padding: 12px;
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    width: 100%;
+    justify-content: center;
+  }
+
+  .vs-verdict-card {
+    padding: 24px;
+  }
+}

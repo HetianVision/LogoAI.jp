@@ -2,8 +2,6 @@
 
 import { useState, useMemo, useRef, useEffect } from 'react'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import BottomCTA from '@/components/BottomCTA'
 import { WORKS_DATA, type Industry, type LogoStyle } from '@/lib/works-data'
 
@@ -98,7 +96,6 @@ export default function WorksPage() {
 
   return (
     <main>
-      <Navbar />
 
       {/* Section 1: Hero */}
       <section className="relative pt-28 pb-12 px-6 bg-bg-base overflow-hidden">
@@ -372,7 +369,6 @@ export default function WorksPage() {
       </div>
 
       <BottomCTA title="あなたのロゴも、今日から。" description="まず無料で3案生成して、気に入ったものを購入するだけ。クレジットカード不要・7日間全额返金保証付き。" />
-      <Footer />
 
       {/* 结构化数据 */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'ホーム', item: 'https://logoai.jp/' }, { '@type': 'ListItem', position: 2, name: '生成事例', item: 'https://logoai.jp/works' }] }) }} />

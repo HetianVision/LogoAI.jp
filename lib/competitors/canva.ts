@@ -1,0 +1,57 @@
+import { CompetitorData } from './types'
+
+export const canva: CompetitorData = {
+  slug: 'canva',
+  name: 'Canva',
+  nameJa: 'キャンバ',
+  category: 'global-design',
+  comparisonKeyword: 'Canva ロゴ 比較',
+  metaDesc: '日本語フォント・著作権・商标登録対応力で徹底比較。',
+  tagline: 'デザイン全般対応ツール',
+  websiteUrl: 'https://www.canva.com',
+  heroSummary: 'Canvaは汎用デザインツールとして優れていますが、日本語フォントの選択肢と著作権の明確さでは、日本特化のLogoAI.jpに分があります。日本の事業者がビジネスロゴを作る目的なら、LogoAI.jpがより適しています。',
+  logoaiWins: [
+    '日本語フォント100種以上（Canvaは日本語フォント約20種）',
+    '著作権帰属証明書を自動発行（Canvaでは発行なし）',
+    '文化庁ガイドライン準拠の著作権整理（Canvaは規約が複雑）',
+    '日本の商标登録申請に対応（Canvaは非対応）',
+    '業種別AIロゴ最適化（Canvaは業種特化なし）',
+  ],
+  competitorWins: [
+    'バナー・プレゼン・SNS投稿など広範なデザイン機能',
+    '無料プランでも多くのデザイン機能を利用可能',
+  ],
+  featureComparison: [
+    { feature: '日本語フォント数', logoai: { type: 'text', label: '100種以上' }, competitor: { type: 'text', label: '約20種' } },
+    { feature: 'ロゴ特化AI生成', logoai: { type: 'check' }, competitor: { type: 'partial', label: 'ロゴマーカー機能あり' } },
+    { feature: '著作権帰属証明書', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: '商标登録申請対応', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: 'J-PlatPat商标類似チェック', logoai: { type: 'partial', label: 'プレミアムのみ' }, competitor: { type: 'cross' } },
+    { feature: 'SVGダウンロード', logoai: { type: 'check' }, competitor: { type: 'partial', label: '有料プランのみ' } },
+    { feature: '業種別AI最適化（47業種）', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: '7日間全额返金保証', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: '無料プランでの商用利用', logoai: { type: 'cross' }, competitor: { type: 'partial', label: '一部可能（条件あり）' } },
+    { feature: 'バナー・プレゼン等の汎用デザイン', logoai: { type: 'cross' }, competitor: { type: 'check' } },
+    { feature: '日本語サポート', logoai: { type: 'check' }, competitor: { type: 'check' } },
+    { feature: '最低価格（ロゴ1点）', logoai: { type: 'text', label: '¥4,980（スタンダード）' }, competitor: { type: 'text', label: '¥1,500/月〜（Canva Pro）' } },
+  ],
+  targetUser: {
+    logoai: '日本の事業者・士業・飲食店等、日本語フォントと著作権証明書が必要な方',
+    competitorItems: [
+      'バナー・SNS投稿・プレゼン等ロゴ以外のデザインもこなしたい方',
+      '月額サブスクリプションでデザインツール全体を利用中方',
+      'ロゴの著作権・商标登録を特に考えていない方',
+    ],
+  },
+  faqs: [
+    { question: 'CanvaのロゴとLogoAI.jpのロゴはどちらが著作権的に安全ですか？',
+      answer: 'LogoAI.jpの有料プランの方が明確です。Canvaの利用規約では、Canvaが提供する素材を使用したデザインの著作権はユーザーに帰属しますが、素材自体の使用条件はCanvaのライセンス規約に従います。LogoAI.jpの有料プランでは著作権帰属証明書を発行し、権利関係を明確にしています。' },
+    { question: 'Canvaで作ったロゴを商标登録できますか？',
+      answer: 'Canvaで作成したロゴの商标登録申請は技術的には可能ですが、Canvaの利用規約の解釈によっては素材部分の権利が曖昧になる場合があります。LogoAI.jpの有料プランでは著作権帰属証明書を提供し、商標登録申請への使用を明確にサポートしています。' },
+    { question: 'Canvaの日本語フォントは少ないのですか？',
+      answer: 'Canvaは世界向けの汎用ツールであり、日本語フォントの選択肢はおよそ20種程度です。LogoAI.jpは日本語ロゴに特化しており、100種以上の商用利用可能な日本語フォントを搭載しています。' },
+    { question: 'LogoAI.jpとCanvaを併用することはできますか？',
+      answer: 'はい。LogoAI.jpでロゴを作成し、その後Canvaで名刺・バナー・SNS投稿に組み込むという使い方が最も効率的です。LogoAI.jpのSVGファイルはCanvaにインポートできます。' },
+  ],
+  verdict: 'Canvaは汎用デザインツールとして優秀ですが、ロゴ専用ツールではありません。日本の事業者が著作権の明確なビジネスロゴを作る目的であれば、日本語フォント100種以上・著作権帰属証明書・商标登録対応を備えたLogoAI.jpが適しています。Canvaとの最適な使い分けは「LogoAI.jpでロゴを作り、Canvaで各種デザイン物に組み込む」という方法です。',
+}

@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import { SCENE_LIST, getSceneBySlug, SceneData } from '@/lib/scene'
 import { getIndustryBySlug, IndustryData } from '@/lib/industry'
 
@@ -52,8 +50,6 @@ export default async function SceneSlugPage({ params }: { params: Promise<{ slug
 
   return (
     <main>
-      <Navbar />
-
       {/* ============================================
           Section 1: Hero
       ============================================ */}
@@ -482,8 +478,6 @@ export default async function SceneSlugPage({ params }: { params: Promise<{ slug
           </div>
         </div>
       </section>
-
-      <Footer />
     </main>
   )
 }

@@ -1,0 +1,56 @@
+import { CompetitorData } from './types'
+
+export const looka: CompetitorData = {
+  slug: 'looka',
+  name: 'Looka',
+  nameJa: 'ルーカ',
+  category: 'ai-logo',
+  comparisonKeyword: 'Looka ロゴ 比較',
+  metaDesc: 'LookaとLogoAI.jpの日本語対応・版权を詳しく比较。',
+  tagline: '海外AIロゴ作成ツール',
+  websiteUrl: 'https://looka.com',
+  heroSummary: 'LookaはAIロゴ作成の先駆けとして優れたサービスですが、日本語フォント・日本の著作権法対応・日本語サポートの面でLogoAI.jpが大きく上回ります。日本の事業者には国産のLogoAI.jpをお勧めします。',
+  logoaiWins: [
+    '日本語フォント100種以上（Lookaは日本語フォント非対応）',
+    '日本の著作権法・文化庁ガイドライン準拠の証明書発行',
+    '日本語完全対応・日本語カスタマーサポート',
+    '日本の商标登録・J-PlatPat連携（プレミアム）',
+    '47業種の日本向け業種特化AIデータ',
+    '料金の円建て決済・日本のクレジットカード対応',
+  ],
+  competitorWins: [
+    '英語ブランドロゴの生成品質が高い',
+    'ブランドキットの総合的な機能（名刺・ウェブサイト等）',
+  ],
+  featureComparison: [
+    { feature: '日本語フォント対応', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: '日本語カスタマーサポート', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: '日本の著作権法準拠', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: '著作権帰属証明書（日本語）', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: 'J-PlatPat商標類似チェック', logoai: { type: 'partial', label: 'プレミアムのみ' }, competitor: { type: 'cross' } },
+    { feature: 'AIロゴ専用生成', logoai: { type: 'check' }, competitor: { type: 'check' } },
+    { feature: '日本向け業種特化（47業種）', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: '7日間全额返金保証', logoai: { type: 'check' }, competitor: { type: 'partial', label: '7日間（英語のみ）' } },
+    { feature: '円建て決済', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: 'SVGダウンロード', logoai: { type: 'check' }, competitor: { type: 'check' } },
+    { feature: '英語ブランドロゴ生成', logoai: { type: 'check' }, competitor: { type: 'check' } },
+  ],
+  targetUser: {
+    logoai: '日本の事業者・日本語屋号のロゴ作成・著作権証明書が必要な方',
+    competitorItems: [
+      '英語ブランドのロゴを作成中方',
+      '海外展開を主として考えている方',
+    ],
+  },
+  faqs: [
+    { question: 'LookaとLogoAI.jpの最大の違いは何ですか？',
+      answer: '最大の違いは日本語対応です。Lookaはカナダ発の英語ツールであり、日本語フォントには非対応です。LogoAI.jpは日本語フォント100種以上を搭載し、日本の著作権法・商标制度に準拠した証明書を発行します。' },
+    { question: 'LookaのロゴはCanvaのようにSVGでダウンロードできますか？',
+      answer: 'Lookaは有料プランでSVGのダウンロードに対応しています。LogoAI.jpのスタンダードプランでも同様にSVGのダウンロードが可能です。' },
+    { question: 'LookaのロゴをそのままLogoAI.jpで再作成できますか？',
+      answer: 'はい。LogoAI.jpでブランド名・業種・希望スタイルを入力し直すことで、Lookaで気に入っていたデザインの方向性を参考に新たなロゴを生成することができます。' },
+    { question: 'LookaとLogoAI.jpは料金体系が違いますか？',
+      answer: 'Lookaは基本的にサブスクリプション型（月額・年額）、LogoAI.jpは1ロゴ単位の買い切り型です。頻繁にロゴを作る場合はLooka、1ブランド向けに確実なロゴが必要な場合はLogoAI.jpが向いています。' },
+  ],
+  verdict: 'Lookaは優れたAIロゴツールですが、日本語フォントへの非対応が日本の事業者にとって致命的な弱点です。屋号・店名・事務所名のロゴを日本語で作る場合、LogoAI.jpを強くお勧めします。英語ブランドロゴのみが必要な場合はLookaも選択肢になりますが、日本向けの著作権証明書・商标サポートが必要であればLogoAI.jpの一選択肢です。',
+}

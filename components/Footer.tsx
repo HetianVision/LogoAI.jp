@@ -33,6 +33,9 @@ export default function Footer() {
               <li><Link href="/faq" className="hover:text-accent transition-colors">よくある質問</Link></li>
               <li><Link href="/contact" className="hover:text-accent transition-colors">お問い合わせ</Link></li>
               <li><Link href="/guide" className="hover:text-accent transition-colors">使い方ガイド</Link></li>
+              <li><Link href="/industry" className="hover:text-accent transition-colors">業種から探す</Link></li>
+              <li><Link href="/for" className="hover:text-accent transition-colors">用途から探す</Link></li>
+              <li><Link href="/vs" className="hover:text-accent transition-colors">比較</Link></li>
             </ul>
           </div>
 

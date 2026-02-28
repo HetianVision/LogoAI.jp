@@ -1,0 +1,56 @@
+import { CompetitorData } from './types'
+
+export const illustrator: CompetitorData = {
+  slug: 'illustrator',
+  name: 'Adobe Illustrator',
+  nameJa: 'イラストレーター',
+  category: 'vector-tool',
+  comparisonKeyword: 'Illustrator ロゴ 自作 比較',
+  metaDesc: 'IllustratorとLogoAI.jpのプロツールvsAI自動生成を詳しく比较。',
+  tagline: 'プロ向けベクターデザインツール',
+  websiteUrl: 'https://www.adobe.com/jp/products/illustrator.html',
+  heroSummary: 'Adobe Illustratorはプロのデザイナーが使う最高品質のツールですが、デザイン知識・習熟時間・月額コストが高く、一般の事業者には不向きです。最短10分でロゴが完成するLogoAI.jpとは比較の対象自体が異なります。',
+  logoaiWins: [
+    'デザイン知識ゼロでも最短10分でロゴ完成',
+    '月額3,280円の継続コスト不要（1ロゴ4,980円の買い切り）',
+    'AI自動生成でフォント選択・カラー調和を自动化',
+    '著作権帰属証明書を自動発行',
+    '商标登録申請に必要なデータを一括提供',
+  ],
+  competitorWins: [
+    'プロデザイナーによる完全カスタムデザインが可能',
+    'ロゴ以外の全てのビジュアルデザインに対応',
+    '细部の微调整・複雑なグラフィック作成が可能',
+  ],
+  featureComparison: [
+    { feature: '必要なデザインスキル', logoai: { type: 'text', label: '不要' }, competitor: { type: 'text', label: '専門スキル必須' } },
+    { feature: 'ロゴ完成までの時間', logoai: { type: 'text', label: '最短10分' }, competitor: { type: 'text', label: '数時間〜数日' } },
+    { feature: 'AI自動生成', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: '月額コスト', logoai: { type: 'text', label: '不要（買い切り）' }, competitor: { type: 'text', label: '¥3,280/月〜' } },
+    { feature: '著作権帰属証明書', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: 'カスタムデザインの自由度', logoai: { type: 'partial', label: '限定的' }, competitor: { type: 'check' } },
+    { feature: 'ロゴ以外のデザイン作業', logoai: { type: 'cross' }, competitor: { type: 'check' } },
+    { feature: '日本語フォント100種', logoai: { type: 'check' }, competitor: { type: 'check' } },
+    { feature: '7日間全额返金保証', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: 'SVG出力', logoai: { type: 'check' }, competitor: { type: 'check' } },
+  ],
+  targetUser: {
+    logoai: 'デザイン知識なしで短時間・低コストでロゴを完成させたい事業者',
+    competitorItems: [
+      'グラフィックデザインの専門家・デザイン事務所',
+      'ロゴ以外にも印刷物・ブランドデザイン全体を制作中方',
+      '完全カスタムの独自デザインを追求中方',
+    ],
+  },
+  faqs: [
+    { question: 'IllustratorとLogoAI.jpの最大の違いは何ですか？',
+      answer: 'Illustratorはプロデザイナーのためのツールでデザインスキルが必須です。LogoAI.jpはAIが自動生成するためデザイン知識ゼロでも最短10分でプロ品質のロゴが完成します。また、LogoAI.jpは著作権归属証明書を発行しますが、Illustratorではデザイナーがロゴを作成しても証明書は発行されません。' },
+    { question: 'デザイナーにIllustratorで作してもらうのとどちらが良いですか？',
+      answer: '予算と時間で选择します。デザイン会社に依頼すると30万円以上・数週間かかるのが一般的です。LogoAI.jpなら4,980円・最短10分で著作権証明書付きのロゴが完成します。开业初期のコスト削減にはLogoAI.jpが効果的です。' },
+    { question: 'LogoAI.jpで作ったロゴをIllustratorで後から編集できますか？',
+      answer: 'はい。LogoAI.jpのSVGファイルはIllustratorで開いて編集できます。基本ロゴをLogoAI.jpで作成し、细部をIllustratorで微调整するという方法もあります。' },
+    { question: 'Illustratorで自作したロゴの著作権はどうなりますか？',
+      answer: 'ご自身でIllustratorを使ってゼロから作成したロゴの著作権は作成者に归属します。ただし証明書は発行されないため、将来的に権利を证明する必要がある場合は记录を保管しておくことを推奨します。' },
+  ],
+  verdict: 'Adobe Illustratorはプロデザイナーのためのツールであり、デザイン知識のない事业者が开业用ロゴを作るためのツールではありません。最短10分・4,980円で著作権証明書付きのプロ品質ロゴを得たいならLogoAI.jpが最適です。Illustratorはロゴ作成後に名刺・チラシ等の各种デザイン物を自作する方向けのツールとして併用することをお勧めします。',
+}

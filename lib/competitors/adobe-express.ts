@@ -1,0 +1,56 @@
+import { CompetitorData } from './types'
+
+export const adobeExpress: CompetitorData = {
+  slug: 'adobe-express',
+  name: 'Adobe Express',
+  nameJa: 'アドビエクスプレス',
+  category: 'global-design',
+  comparisonKeyword: 'Adobe Express ロゴ 比較',
+  metaDesc: 'Adobe ExpressとLogoAI.jpの日本語対応・著作権を詳しく比較。',
+  tagline: 'Adobeデザインファミリー製品',
+  websiteUrl: 'https://www.adobe.com/jp/express',
+  heroSummary: 'Adobe ExpressはAdobeシリーズの強力なデザイン機能を持っていますが、日本語フォントの選択肢と日本の著作権法への対応ではLogoAI.jpに軍配が上がります。日本の事業者向けにはLogoAI.jpをお勧めします。',
+  logoaiWins: [
+    '日本語フォント100種以上（Adobe Expressは限定的）',
+    '日本の著作権法・文化庁ガイドライン準拠の証明書発行',
+    '47業種の日本向け業種特化AIデータ',
+    '商标登録申請への対応（J-PlatPat連携）',
+    '1ロゴ4,980円の明確な買い切り価格',
+  ],
+  competitorWins: [
+    'Adobe Fresco・Photoshop等との連携機能',
+    '豊富なデザイン素材とテンプレート',
+    'エンタープライズ向けのセキュリティ',
+  ],
+  featureComparison: [
+    { feature: '日本語フォント数', logoai: { type: 'text', label: '100種以上' }, competitor: { type: 'text', label: '約30種' } },
+    { feature: 'ロゴ特化AI生成', logoai: { type: 'check' }, competitor: { type: 'partial', label: 'AIクイックアクションあり' } },
+    { feature: '著作権帰属証明書', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: '日本の商标登録対応', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: 'J-PlatPat商標類似チェック', logoai: { type: 'partial', label: 'プレミアムのみ' }, competitor: { type: 'cross' } },
+    { feature: 'SVGダウンロード', logoai: { type: 'check' }, competitor: { type: 'check' } },
+    { feature: '業種別AI最適化（47業種）', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: '7日間全额返金保証', logoai: { type: 'check' }, competitor: { type: 'cross' } },
+    { feature: '日本語サポート', logoai: { type: 'check' }, competitor: { type: 'partial', label: '一部対応' } },
+    { feature: 'Adobe製品との連携', logoai: { type: 'cross' }, competitor: { type: 'check' } },
+  ],
+  targetUser: {
+    logoai: '日本の事業者・日本語ロゴ・著作権証明書が必要な方',
+    competitorItems: [
+      '既にAdobe製品を利用している方',
+      'デザイン素材やテンプレートを多用する方',
+      '企業向けセキュリティを重視する方',
+    ],
+  },
+  faqs: [
+    { question: 'Adobe Expressで作成したロゴの著作権は誰に帰属しますか？',
+      answer: 'Adobe Expressではユーザーの作成したデザインに対する著作権はユーザーに帰属しますが、Adobe提供の素材にはAdobeのライセンスが適用されます。LogoAI.jpでは著作権帰属証明書を自動発行し、より明確な権利関係を構築できます。' },
+    { question: 'Adobe ExpressとLogoAI.jpはどちらが日本語ロゴに適していますか？',
+      answer: 'LogoAI.jpは日本語ロゴに特化しており、100種以上の日本語フォント、日本の著作権法・商标制度への準拠があります。Adobe Expressは総合的なデザインツールであり、日本特化ではありません。' },
+    { question: 'Adobe ExpressからLogoAI.jpに乗り換えるメリットはありますか？',
+      answer: 'はい。日本でのビジネス展開を検討している場合、LogoAI.jpの日本語フォント・版权证书・商标チェック機能が高く評価されます。また買い切り型の料金体系でunnerve利用料も明確です。' },
+    { question: 'LogoAI.jpのロゴをAdobe製品で編集できますか？',
+      answer: 'はい。LogoAI.jpのSVG出力はAdobe IllustratorやAdobe Expressで自由に編集可能です。基本的なロゴはLogoAI.jpで作成し、细部调整はAdobe製品で行うという使い分けができます。' },
+  ],
+  verdict: 'Adobe Expressは強力な総合デザインツールですが、日本語ロゴの作成・著作権証明・商标登録のサポートではLogoAI.jpに軍配が上がります。日本の事業者が確実な著作権权属证书付きのロゴを求めるならLogoAI.jpが最適な选择です。',
+}

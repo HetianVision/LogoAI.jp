@@ -2,8 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 
 export default function TrademarkPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
@@ -33,7 +31,6 @@ export default function TrademarkPage() {
 
   return (
     <main>
-      <Navbar />
 
       {/* SEO */}
       <title>AIロゴで商標登録 | J-PlatPat連携商標類似チェック機能【LogoAI.jp プレミアム】</title>
@@ -595,7 +592,6 @@ export default function TrademarkPage() {
         本機能はあくまで参考情報であり、最終的な商标登録可否は特許庁の審査によります。
       </p>
 
-      <Footer />
     </main>
   )
 }

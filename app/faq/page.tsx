@@ -2,8 +2,6 @@
 
 import { useState, useMemo, useRef, useEffect } from 'react'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import { FAQ_DATA, type FAQCategory } from '@/lib/faq-data'
 
 export default function FAQPage() {
@@ -68,7 +66,6 @@ export default function FAQPage() {
 
   return (
     <main>
-      <Navbar />
 
       {/* Hero + 検索 */}
       <section className="relative pt-28 pb-12 px-6 bg-bg-base overflow-hidden">
@@ -224,7 +221,6 @@ export default function FAQPage() {
         </div>
       </section>
 
-      <Footer />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqSchemaData }) }} />
     </main>
   )
