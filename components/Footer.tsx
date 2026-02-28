@@ -32,7 +32,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-text-inverse/60">
               <li><Link href="/faq" className="hover:text-accent transition-colors">よくある質問</Link></li>
               <li><Link href="/contact" className="hover:text-accent transition-colors">お問い合わせ</Link></li>
-              <li><Link href="/guide" className="hover:text-accent transition-colors">使い方ガイド</Link></li>
+              <li><Link href="/how-it-works" className="hover:text-accent transition-colors">使い方ガイド</Link></li>
               <li><Link href="/industry" className="hover:text-accent transition-colors">業種から探す</Link></li>
               <li><Link href="/for" className="hover:text-accent transition-colors">用途から探す</Link></li>
               <li><Link href="/vs" className="hover:text-accent transition-colors">比較</Link></li>
@@ -44,7 +44,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-text-inverse/60">
               <li><Link href="/terms" className="hover:text-accent transition-colors">利用規約</Link></li>
               <li><Link href="/privacy" className="hover:text-accent transition-colors">プライバシーポリシー</Link></li>
-              <li><Link href="/law" className="hover:text-accent transition-colors">特定商取引法</Link></li>
+              {/* <li><Link href="/law" className="hover:text-accent transition-colors">特定商取引法</Link></li> */}
             </ul>
           </div>
         </div>

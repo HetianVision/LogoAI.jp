@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import BottomCTA from '@/components/BottomCTA'
 
 // Section 1: Page Hero
@@ -14,47 +15,84 @@ function PageHero() {
       }} />
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-        <nav className="mb-8" aria-label="パンくずリスト">
+        <motion.nav
+          className="mb-8"
+          aria-label="パンくずリスト"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
           <ol className="flex gap-2 text-sm text-text-muted list-none p-0">
             <li><Link href="/" className="hover:text-primary transition-colors">ホーム</Link></li>
             <li><span className="mx-2 opacity-40">/</span></li>
             <li className="text-text-secondary" aria-current="page">料金プラン</li>
           </ol>
-        </nav>
+        </motion.nav>
 
         <div className="max-w-[880px] mx-auto text-center">
-          <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">料金プラン</span>
-          <h1 className="font-heading text-4xl font-bold text-text-primary leading-tight mt-4 mb-5">
+          <motion.span
+            className="text-accent font-medium text-sm tracking-[0.1em] uppercase block"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            料金プラン
+          </motion.span>
+          <motion.h1
+            className="font-heading text-4xl font-bold text-text-primary leading-tight mt-4 mb-5"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             シンプルで透明な料金体系。<br />隠れた費用は一切ありません。
-          </h1>
-          <p className="text-text-secondary leading-relaxed mb-10">
+          </motion.h1>
+          <motion.p
+            className="text-text-secondary leading-relaxed mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             著作権の範囲・使用可能な機能・返金条件を全てこのページに明記しています。
             不明な点はページ下部のよくある質問でご確認。
-          </p>
+          </motion.p>
 
-          <div className="flex flex-wrap justify-center gap-8">
-            <div className="flex items-center gap-3 text-left">
+          <motion.div
+            className="flex flex-wrap justify-center gap-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <motion.div
+              className="flex items-center gap-3 text-left"
+              whileHover={{ scale: 1.02 }}
+            >
               <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center text-accent font-bold text-lg">★</div>
               <div>
                 <div className="font-bold text-text-primary text-sm">著作権100%帰属</div>
                 <div className="text-xs text-text-muted">有料プランのロゴは完全にあなたのもの</div>
               </div>
-            </div>
-            <div className="flex items-center gap-3 text-left">
+            </motion.div>
+            <motion.div
+              className="flex items-center gap-3 text-left"
+              whileHover={{ scale: 1.02 }}
+            >
               <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center text-accent font-bold text-lg">✓</div>
               <div>
                 <div className="font-bold text-text-primary text-sm">7日間全额返金保証</div>
                 <div className="text-xs text-text-muted">メール1通で返金申請完了</div>
               </div>
-            </div>
-            <div className="flex items-center gap-3 text-left">
+            </motion.div>
+            <motion.div
+              className="flex items-center gap-3 text-left"
+              whileHover={{ scale: 1.02 }}
+            >
               <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center text-accent font-bold text-lg">🔒</div>
               <div>
                 <div className="font-bold text-text-primary text-sm">データは学習に使用しない</div>
                 <div className="text-xs text-text-muted">ブランド名・ロゴデータの外部提供なし</div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

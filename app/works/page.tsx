@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useRef, useEffect } from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import BottomCTA from '@/components/BottomCTA'
 import { WORKS_DATA, type Industry, type LogoStyle } from '@/lib/works-data'
 

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import BottomCTA from '@/components/BottomCTA'
 
 export default function AboutPage() {

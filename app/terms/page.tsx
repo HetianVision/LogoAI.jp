@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 export default function TermsPage() {
   useEffect(() => {
@@ -35,17 +36,35 @@ export default function TermsPage() {
       {/* Hero */}
       <section className="pt-32 pb-8 px-6 bg-bg-section border-b border-border">
         <div className="max-w-[1200px] mx-auto">
-          <nav className="mb-6" aria-label="パンくずリスト">
+          <motion.nav
+            className="mb-6"
+            aria-label="パンくずリスト"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
             <ol className="flex items-center gap-2 text-sm">
               <li><Link href="/" className="text-text-muted hover:text-primary transition-colors">ホーム</Link></li>
               <li className="text-text-muted">/</li>
               <li aria-current="page" className="text-text-primary font-medium">利用規約</li>
             </ol>
-          </nav>
-          <h1 className="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-3">利用規約</h1>
-          <p className="text-sm text-text-muted">
+          </motion.nav>
+          <motion.h1
+            className="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-3"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            利用規約
+          </motion.h1>
+          <motion.p
+            className="text-sm text-text-muted"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             最終更新日：<time dateTime="2025-02-01">2025年2月1日</time>
-          </p>
+          </motion.p>
         </div>
       </section>
 
