@@ -255,20 +255,47 @@ export default function FAQPage() {
       {/* サポートCTA */}
       <section className="py-16 md:py-20 bg-bg-base">
         <div className="max-w-[800px] mx-auto px-6 text-center">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-4">まだ解決しない場合</h2>
-          <p className="text-text-secondary mb-8">上記以外のご疑問点がございましたら、お気軽に問い合わせください。</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-4">まだ解決しない場合</h2>
+            <p className="text-text-secondary mb-8">上記以外のご疑問点がございましたら、お気軽に問い合わせください。</p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
             <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-bold px-8 py-4 rounded-full transition-all hover:-translate-y-1 hover:shadow-lg">お問い合わせフォーム</Link>
             <Link href="/create" className="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-text-primary font-bold px-8 py-4 rounded-full transition-all hover:-translate-y-1 hover:shadow-lg">ロゴを生成してみる</Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* 関連ページリンク */}
       <section className="py-16 md:py-20 bg-bg-section">
         <div className="max-w-[1200px] mx-auto px-6">
-          <h2 className="font-heading text-2xl font-bold text-text-primary text-center mb-10">関連ページ</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="font-heading text-2xl font-bold text-text-primary text-center mb-10"
+          >
+            関連ページ
+          </motion.h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+          >
             {[
               { href: '/how-it-works', label: 'How It Works', description: 'ロゴ生成の流れ' },
               { href: '/works', label: 'Logo Gallery', description: '生成事例' },
@@ -282,7 +309,7 @@ export default function FAQPage() {
                 <span className="text-xs text-text-muted">{link.description}</span>
               </Link>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 

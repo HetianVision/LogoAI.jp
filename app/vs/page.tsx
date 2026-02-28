@@ -1,11 +1,8 @@
-import Link from 'next/link'
-import { Metadata } from 'next'
-import { COMPETITOR_LIST } from '@/lib/competitors'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'LogoAI.jp vs 競合比較 | 他社サービスとの違い徹底比較',
-  description: 'Canva、Adobe Express、Looka、Wix Logo、Tailor Brandsなど人気Logo作成ツールとの比較結果。LogoAI.jp 日本No.1AI Logo生成サービスのメリットをチェック。',
-}
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { COMPETITOR_LIST } from '@/lib/competitors'
 
 const CATEGORY_LABELS: Record<string, string> = {
   'global-design': '世界的なデザインツール',
@@ -14,13 +11,38 @@ const CATEGORY_LABELS: Record<string, string> = {
   'vector-tool': '本格デザインエディタ',
 }
 
+// Animation variants
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 }
+}
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.08
+    }
+  }
+}
+
+const cardVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 }
+}
+
 export default function VsPage() {
   return (
     <main>
       {/* Hero Section */}
       <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-bg-base">
         <div className="max-w-[1200px] mx-auto px-6">
-          <div className="text-center">
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase mb-4 block">
               Comparison
             </span>
@@ -32,7 +54,7 @@ export default function VsPage() {
               Canva、Adobe Express、Looka、Wix Logoなど<br />
               人気Logo作成ツールと徹底比較しています。
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -40,7 +62,12 @@ export default function VsPage() {
       <section className="py-12 md:py-16 bg-bg-section">
         <div className="max-w-[1200px] mx-auto px-6">
           {/* Category: AI Logo Services */}
-          <div className="mb-12">
+          <motion.div
+            className="mb-12"
+            initial="initial"
+            animate="animate"
+            variants={staggerContainer}
+          >
             <div className="flex items-center gap-4 mb-6">
               <h2 className="font-heading text-xl md:text-2xl font-bold text-text-primary">
                 AI Logo作成サービス
@@ -52,24 +79,30 @@ export default function VsPage() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {COMPETITOR_LIST.filter(c => c.category === 'ai-logo').map((competitor) => (
-                <Link
-                  key={competitor.slug}
-                  href={`/vs/${competitor.slug}`}
-                  className="group bg-white rounded-xl border border-border p-5 hover:border-accent hover:shadow-md transition-all"
-                >
-                  <div className="font-heading text-lg font-bold text-text-primary group-hover:text-accent transition-colors mb-1">
-                    {competitor.nameJa}
-                  </div>
-                  <div className="text-sm text-text-muted">
-                    {competitor.tagline}
-                  </div>
-                </Link>
+                <motion.div key={competitor.slug} variants={cardVariants}>
+                  <Link
+                    href={`/vs/${competitor.slug}`}
+                    className="group bg-white rounded-xl border border-border p-5 hover:border-accent hover:shadow-md transition-all"
+                  >
+                    <div className="font-heading text-lg font-bold text-text-primary group-hover:text-accent transition-colors mb-1">
+                      {competitor.nameJa}
+                    </div>
+                    <div className="text-sm text-text-muted">
+                      {competitor.tagline}
+                    </div>
+                  </Link>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Category: Global Design Tools */}
-          <div className="mb-12">
+          <motion.div
+            className="mb-12"
+            initial="initial"
+            animate="animate"
+            variants={staggerContainer}
+          >
             <div className="flex items-center gap-4 mb-6">
               <h2 className="font-heading text-xl md:text-2xl font-bold text-text-primary">
                 世界的なデザインツール
@@ -81,24 +114,30 @@ export default function VsPage() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {COMPETITOR_LIST.filter(c => c.category === 'global-design').map((competitor) => (
-                <Link
-                  key={competitor.slug}
-                  href={`/vs/${competitor.slug}`}
-                  className="group bg-white rounded-xl border border-border p-5 hover:border-accent hover:shadow-md transition-all"
-                >
-                  <div className="font-heading text-lg font-bold text-text-primary group-hover:text-accent transition-colors mb-1">
-                    {competitor.nameJa}
-                  </div>
-                  <div className="text-sm text-text-muted">
-                    {competitor.tagline}
-                  </div>
-                </Link>
+                <motion.div key={competitor.slug} variants={cardVariants}>
+                  <Link
+                    href={`/vs/${competitor.slug}`}
+                    className="group bg-white rounded-xl border border-border p-5 hover:border-accent hover:shadow-md transition-all"
+                  >
+                    <div className="font-heading text-lg font-bold text-text-primary group-hover:text-accent transition-colors mb-1">
+                      {competitor.nameJa}
+                    </div>
+                    <div className="text-sm text-text-muted">
+                      {competitor.tagline}
+                    </div>
+                  </Link>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Category: Local Design Services */}
-          <div className="mb-12">
+          <motion.div
+            className="mb-12"
+            initial="initial"
+            animate="animate"
+            variants={staggerContainer}
+          >
             <div className="flex items-center gap-4 mb-6">
               <h2 className="font-heading text-xl md:text-2xl font-bold text-text-primary">
                 地域特化サービス
@@ -110,24 +149,30 @@ export default function VsPage() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {COMPETITOR_LIST.filter(c => c.category === 'local-design').map((competitor) => (
-                <Link
-                  key={competitor.slug}
-                  href={`/vs/${competitor.slug}`}
-                  className="group bg-white rounded-xl border border-border p-5 hover:border-accent hover:shadow-md transition-all"
-                >
-                  <div className="font-heading text-lg font-bold text-text-primary group-hover:text-accent transition-colors mb-1">
-                    {competitor.nameJa}
-                  </div>
-                  <div className="text-sm text-text-muted">
-                    {competitor.tagline}
-                  </div>
-                </Link>
+                <motion.div key={competitor.slug} variants={cardVariants}>
+                  <Link
+                    href={`/vs/${competitor.slug}`}
+                    className="group bg-white rounded-xl border border-border p-5 hover:border-accent hover:shadow-md transition-all"
+                  >
+                    <div className="font-heading text-lg font-bold text-text-primary group-hover:text-accent transition-colors mb-1">
+                      {competitor.nameJa}
+                    </div>
+                    <div className="text-sm text-text-muted">
+                      {competitor.tagline}
+                    </div>
+                  </Link>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Category: Vector Tools */}
-          <div className="mb-12">
+          <motion.div
+            className="mb-12"
+            initial="initial"
+            animate="animate"
+            variants={staggerContainer}
+          >
             <div className="flex items-center gap-4 mb-6">
               <h2 className="font-heading text-xl md:text-2xl font-bold text-text-primary">
                 本格デザインエディタ
@@ -139,27 +184,33 @@ export default function VsPage() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {COMPETITOR_LIST.filter(c => c.category === 'vector-tool').map((competitor) => (
-                <Link
-                  key={competitor.slug}
-                  href={`/vs/${competitor.slug}`}
-                  className="group bg-white rounded-xl border border-border p-5 hover:border-accent hover:shadow-md transition-all"
-                >
-                  <div className="font-heading text-lg font-bold text-text-primary group-hover:text-accent transition-colors mb-1">
-                    {competitor.nameJa}
-                  </div>
-                  <div className="text-sm text-text-muted">
-                    {competitor.tagline}
-                  </div>
-                </Link>
+                <motion.div key={competitor.slug} variants={cardVariants}>
+                  <Link
+                    href={`/vs/${competitor.slug}`}
+                    className="group bg-white rounded-xl border border-border p-5 hover:border-accent hover:shadow-md transition-all"
+                  >
+                    <div className="font-heading text-lg font-bold text-text-primary group-hover:text-accent transition-colors mb-1">
+                      {competitor.nameJa}
+                    </div>
+                    <div className="text-sm text-text-muted">
+                      {competitor.tagline}
+                    </div>
+                  </Link>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-bg-base">
-        <div className="max-w-[800px] mx-auto px-6 text-center">
+        <motion.div
+          className="max-w-[800px] mx-auto px-6 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-4">
             まずは無料で試してみる
           </h2>
@@ -181,7 +232,7 @@ export default function VsPage() {
               事例を見る
             </Link>
           </div>
-        </div>
+        </motion.div>
       </section>
     </main>
   )

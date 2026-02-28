@@ -6,6 +6,35 @@ import { motion } from 'framer-motion'
 import BottomCTA from '@/components/BottomCTA'
 import { WORKS_DATA, type Industry, type LogoStyle } from '@/lib/works-data'
 
+// Animation variants
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 }
+}
+
+const staggerChildren = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+}
+
+const staggerSmall = {
+  animate: {
+    transition: {
+      staggerChildren: 0.05
+    }
+  }
+}
+
+const cardVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.4 }
+}
+
 export default function WorksPage() {
   const [filter, setFilter] = useState<{ industry: Industry | 'all'; style: LogoStyle | 'all' }>({
     industry: 'all',
@@ -145,46 +174,73 @@ export default function WorksPage() {
               業種・スタイル・フォントで絞り込んで、理想のイメージを見つけてください。
             </motion.p>
 
-            <div className="flex items-center justify-center gap-0 bg-white border border-border rounded-2xl p-6 md:p-8 shadow-sm flex-wrap">
-              <div className="flex flex-col items-center gap-1.5 px-4 md:px-9">
+            <motion.div
+              className="flex items-center justify-center gap-0 bg-white border border-border rounded-2xl p-6 md:p-8 shadow-sm flex-wrap"
+              variants={staggerChildren}
+              initial="initial"
+              animate="animate"
+            >
+              <motion.div
+                className="flex flex-col items-center gap-1.5 px-4 md:px-9"
+                variants={cardVariants}
+              >
                 <span className="font-number text-3xl md:text-4xl font-semibold text-text-primary">
                   12,000<span className="text-accent text-base font-medium">+</span>
                 </span>
                 <span className="text-xs text-text-muted font-medium tracking-[0.03em]">生成ロゴ数</span>
-              </div>
+              </motion.div>
               <div className="w-px h-10 md:h-12 bg-border hidden md:block" aria-hidden="true" />
-              <div className="flex flex-col items-center gap-1.5 px-4 md:px-9">
+              <motion.div
+                className="flex flex-col items-center gap-1.5 px-4 md:px-9"
+                variants={cardVariants}
+              >
                 <span className="font-number text-3xl md:text-4xl font-semibold text-text-primary">47</span>
                 <span className="text-xs text-text-muted font-medium tracking-[0.03em]">対応業種</span>
-              </div>
+              </motion.div>
               <div className="w-px h-10 md:h-12 bg-border hidden md:block" aria-hidden="true" />
-              <div className="flex flex-col items-center gap-1.5 px-4 md:px-9">
+              <motion.div
+                className="flex flex-col items-center gap-1.5 px-4 md:px-9"
+                variants={cardVariants}
+              >
                 <span className="font-number text-3xl md:text-4xl font-semibold text-text-primary">
                   4.9<span className="text-accent text-sm font-medium">/ 5</span>
                 </span>
                 <span className="text-xs text-text-muted font-medium tracking-[0.03em]">ユーザー満足度</span>
-              </div>
+              </motion.div>
               <div className="w-px h-10 md:h-12 bg-border hidden md:block" aria-hidden="true" />
-              <div className="flex flex-col items-center gap-1.5 px-4 md:px-9">
+              <motion.div
+                className="flex flex-col items-center gap-1.5 px-4 md:px-9"
+                variants={cardVariants}
+              >
                 <span className="font-number text-3xl md:text-4xl font-semibold text-text-primary">
                   98<span className="text-accent text-sm font-medium">%</span>
                 </span>
                 <span className="text-xs text-text-muted font-medium tracking-[0.03em]">返金申請なし率</span>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Section 2: Filter Bar */}
-      <div className="sticky top-16 z-50 bg-[rgba(250,250,247,0.95)] backdrop-blur-xl border-b border-border">
+      <motion.div
+        className="sticky top-16 z-50 bg-[rgba(250,250,247,0.95)] backdrop-blur-xl border-b border-border"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.4 }}
+      >
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="flex items-center gap-5 py-4 overflow-x-auto scrollbar-hide">
             <div className="flex items-center gap-2.5 flex-shrink-0">
               <span className="text-xs font-bold text-text-muted uppercase tracking-[0.08em] whitespace-nowrap">業種</span>
-              <div className="flex gap-1.5 flex-nowrap">
+              <motion.div
+                className="flex gap-1.5 flex-nowrap"
+                variants={staggerSmall}
+                initial="initial"
+                animate="animate"
+              >
                 {INDUSTRY_OPTIONS.map((option) => (
-                  <button
+                  <motion.button
                     key={option.value}
                     onClick={() => handleIndustryChange(option.value as Industry | 'all')}
                     className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
@@ -192,18 +248,24 @@ export default function WorksPage() {
                         ? 'bg-primary text-white border-primary'
                         : 'bg-white text-text-secondary border-border hover:border-primary hover:text-primary border'
                     }`}
+                    variants={cardVariants}
                   >
                     {option.label}
-                  </button>
+                  </motion.button>
                 ))}
-              </div>
+              </motion.div>
             </div>
             <div className="w-px h-7 bg-border flex-shrink-0 hidden md:block" aria-hidden="true" />
             <div className="flex items-center gap-2.5 flex-shrink-0">
               <span className="text-xs font-bold text-text-muted uppercase tracking-[0.08em] whitespace-nowrap">スタイル</span>
-              <div className="flex gap-1.5 flex-nowrap">
+              <motion.div
+                className="flex gap-1.5 flex-nowrap"
+                variants={staggerSmall}
+                initial="initial"
+                animate="animate"
+              >
                 {STYLE_OPTIONS.map((option) => (
-                  <button
+                  <motion.button
                     key={option.value}
                     onClick={() => handleStyleChange(option.value as LogoStyle | 'all')}
                     className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
@@ -211,18 +273,19 @@ export default function WorksPage() {
                         ? 'bg-primary text-white border-primary'
                         : 'bg-white text-text-secondary border-border hover:border-primary hover:text-primary border'
                     }`}
+                    variants={cardVariants}
                   >
                     {option.label}
-                  </button>
+                  </motion.button>
                 ))}
-              </div>
+              </motion.div>
             </div>
             <div className="ml-auto flex-shrink-0 text-sm text-text-muted whitespace-nowrap pr-2">
               <span className="font-bold text-text-primary">{filtered.length}</span>件を表示中
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Section 3: Gallery */}
       <section className="py-8 md:py-12 bg-bg-base">
@@ -322,49 +385,91 @@ export default function WorksPage() {
       </section>
 
       {/* Section 4: Review Band */}
-      <section className="py-16 md:py-20 bg-bg-section">
+      <motion.section
+        className="py-16 md:py-20 bg-bg-section"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="max-w-[1200px] mx-auto px-6">
-          <div className="bg-white border border-border rounded-2xl p-8 md:p-12 grid md:grid-cols-[1fr_auto_1fr_auto] gap-8 md:gap-10 items-center">
-            <div className="text-center md:text-left">
+          <motion.div
+            className="bg-white border border-border rounded-2xl p-8 md:p-12 grid md:grid-cols-[1fr_auto_1fr_auto] gap-8 md:gap-10 items-center"
+            variants={staggerChildren}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <motion.div
+              className="text-center md:text-left"
+              variants={cardVariants}
+            >
               <div className="text-accent text-xl mb-3">★★★★★</div>
               <p className="font-heading text-xl font-bold text-text-primary mb-2">
                 「想像以上の 퀄리티で驚きました」
               </p>
               <p className="text-sm text-text-muted">— 飲食店オーナー、大阪</p>
-            </div>
+            </motion.div>
             <div className="hidden md:block w-px h-20 bg-border" aria-hidden="true" />
-            <div className="flex flex-col gap-4">
-              <div className="flex items-baseline gap-2">
+            <motion.div
+              className="flex flex-col gap-4"
+              variants={staggerChildren}
+            >
+              <motion.div
+                className="flex items-baseline gap-2"
+                variants={cardVariants}
+              >
                 <span className="font-number text-2xl md:text-3xl font-semibold text-primary">98%</span>
                 <span className="text-sm text-text-secondary">のユーザーがロゴに満足</span>
-              </div>
-              <div className="flex items-baseline gap-2">
+              </motion.div>
+              <motion.div
+                className="flex items-baseline gap-2"
+                variants={cardVariants}
+              >
                 <span className="font-number text-2xl md:text-3xl font-semibold text-primary">500+</span>
                 <span className="text-sm text-text-secondary">件の5つ星レビュー</span>
-              </div>
-              <div className="flex items-baseline gap-2">
+              </motion.div>
+              <motion.div
+                className="flex items-baseline gap-2"
+                variants={cardVariants}
+              >
                 <span className="font-number text-2xl md:text-3xl font-semibold text-primary">2分</span>
                 <span className="text-sm text-text-secondary">平均生成時間</span>
-              </div>
-            </div>
-            <div className="flex flex-col items-center gap-2 text-center">
+              </motion.div>
+            </motion.div>
+            <motion.div
+              className="flex flex-col items-center gap-2 text-center"
+              variants={cardVariants}
+            >
               <Link href="/create" className="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-text-primary font-bold px-8 py-3 rounded-full transition-all hover:-translate-y-1 hover:shadow-lg">
                 今すぐ試す →
               </Link>
               <p className="text-xs text-text-muted">無料から・返金保証あり</p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Section 5: Industry CTA Grid */}
       <section className="py-16 md:py-20 bg-bg-section">
         <div className="max-w-[1200px] mx-auto px-6">
-          <div className="text-center mb-10">
+          <motion.div
+            className="text-center mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase block mb-3">業種別に見る</span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary">あなたの業種のロゴを確認する</h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          </motion.div>
+          <motion.div
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+            variants={staggerChildren}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {[
               { slug: '/industry/restaurant', icon: '🍜', label: '飲食店', count: '320件' },
               { slug: '/industry/beauty', icon: '💇', label: '美容・ Salon', count: '280件' },
@@ -373,18 +478,25 @@ export default function WorksPage() {
               { slug: '/industry/medical', icon: '🏥', label: '医療・健康', count: '150件' },
               { slug: '/industry/legal', icon: '⚖️', label: '士業・法律', count: '120件' },
             ].map((item) => (
-              <Link key={item.slug} href={item.slug} className="flex flex-col items-center gap-2 p-6 bg-white border border-border rounded-xl text-center hover:border-primary hover:shadow-sm transition-all hover:-translate-y-0.5">
-                <span className="text-2xl md:text-3xl">{item.icon}</span>
-                <span className="font-heading text-sm font-bold text-text-primary">{item.label}</span>
-                <span className="text-xs text-text-muted">{item.count}の事例</span>
-              </Link>
+              <motion.div
+                key={item.slug}
+                variants={cardVariants}
+              >
+                <Link href={item.slug} className="flex flex-col items-center gap-2 p-6 bg-white border border-border rounded-xl text-center hover:border-primary hover:shadow-sm transition-all hover:-translate-y-0.5">
+                  <span className="text-2xl md:text-3xl">{item.icon}</span>
+                  <span className="font-heading text-sm font-bold text-text-primary">{item.label}</span>
+                  <span className="text-xs text-text-muted">{item.count}の事例</span>
+                </Link>
+              </motion.div>
             ))}
-            <Link href="/works" className="flex flex-col items-center justify-center gap-2 p-6 bg-bg-section border border-dashed border-border rounded-xl text-center hover:border-primary hover:bg-white transition-all hover:-translate-y-0.5">
-              <span className="text-2xl md:text-3xl font-bold text-primary">＋</span>
-              <span className="font-heading text-sm font-bold text-text-primary">全業種を見る</span>
-              <span className="text-xs text-text-muted">47業種対応</span>
-            </Link>
-          </div>
+            <motion.div variants={cardVariants}>
+              <Link href="/works" className="flex flex-col items-center justify-center gap-2 p-6 bg-bg-section border border-dashed border-border rounded-xl text-center hover:border-primary hover:bg-white transition-all hover:-translate-y-0.5">
+                <span className="text-2xl md:text-3xl font-bold text-primary">＋</span>
+                <span className="font-heading text-sm font-bold text-text-primary">全業種を見る</span>
+                <span className="text-xs text-text-muted">47業種対応</span>
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 

@@ -86,78 +86,140 @@ export default function PrivacyPage() {
             <div className="grid grid-cols-[220px_1fr] gap-12 max-w-[1200px] mx-auto items-start">
 
               {/* 左：目次（PC sticky） */}
-              <nav className="hidden md:block sticky top-24 bg-white border border-border rounded-xl p-5" aria-label="目次">
+              <motion.nav
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="hidden md:block sticky top-24 bg-white border border-border rounded-xl p-5"
+                aria-label="目次"
+              >
                 <div className="text-xs font-bold text-text-muted uppercase tracking-wider mb-3">
                   目次
                 </div>
-                <ol className="list-none p-0 m-0 flex flex-col gap-0.5">
-                  <li>
+                <motion.ol
+                  className="list-none p-0 m-0 flex flex-col gap-0.5"
+                  variants={{
+                    hidden: { opacity: 0 },
+                    show: {
+                      opacity: 1,
+                      transition: {
+                        staggerChildren: 0.05,
+                        delayChildren: 0.1
+                      }
+                    }
+                  }}
+                  initial="hidden"
+                  animate="show"
+                >
+                  <motion.li variants={{
+                    hidden: { opacity: 0, x: -10 },
+                    show: { opacity: 1, x: 0 }
+                  }}>
                     <a href="#pp-collection" className="block py-1.5 px-2.5 text-xs text-text-secondary no-underline rounded-md transition-all duration-150 hover:bg-primary/5 hover:text-primary">
                       第1条（個人情報の収集）
                     </a>
-                  </li>
-                  <li>
+                  </motion.li>
+                  <motion.li variants={{
+                    hidden: { opacity: 0, x: -10 },
+                    show: { opacity: 1, x: 0 }
+                  }}>
                     <a href="#pp-purpose" className="block py-1.5 px-2.5 text-xs text-text-secondary no-underline rounded-md transition-all duration-150 hover:bg-primary/5 hover:text-primary">
                       第2条（利用目的）
                     </a>
-                  </li>
-                  <li>
+                  </motion.li>
+                  <motion.li variants={{
+                    hidden: { opacity: 0, x: -10 },
+                    show: { opacity: 1, x: 0 }
+                  }}>
                     <a href="#pp-third-party" className="block py-1.5 px-2.5 text-xs text-text-secondary no-underline rounded-md transition-all duration-150 hover:bg-primary/5 hover:text-primary">
                       第3条（第三者提供）
                     </a>
-                  </li>
-                  <li>
+                  </motion.li>
+                  <motion.li variants={{
+                    hidden: { opacity: 0, x: -10 },
+                    show: { opacity: 1, x: 0 }
+                  }}>
                     <a href="#pp-outsourcing" className="block py-1.5 px-2.5 text-xs text-text-secondary no-underline rounded-md transition-all duration-150 hover:bg-primary/5 hover:text-primary">
                       第4条（委託）
                     </a>
-                  </li>
-                  <li>
+                  </motion.li>
+                  <motion.li variants={{
+                    hidden: { opacity: 0, x: -10 },
+                    show: { opacity: 1, x: 0 }
+                  }}>
                     <a href="#pp-cookies" className="block py-1.5 px-2.5 text-xs text-text-secondary no-underline rounded-md transition-all duration-150 hover:bg-primary/5 hover:text-primary">
                       第5条（Cookieの使用）
                     </a>
-                  </li>
-                  <li>
+                  </motion.li>
+                  <motion.li variants={{
+                    hidden: { opacity: 0, x: -10 },
+                    show: { opacity: 1, x: 0 }
+                  }}>
                     <a href="#pp-analytics" className="block py-1.5 px-2.5 text-xs text-text-secondary no-underline rounded-md transition-all duration-150 hover:bg-primary/5 hover:text-primary">
                       第6条（アクセス解析）
                     </a>
-                  </li>
-                  <li>
+                  </motion.li>
+                  <motion.li variants={{
+                    hidden: { opacity: 0, x: -10 },
+                    show: { opacity: 1, x: 0 }
+                  }}>
                     <a href="#pp-security" className="block py-1.5 px-2.5 text-xs text-text-secondary no-underline rounded-md transition-all duration-150 hover:bg-primary/5 hover:text-primary">
                       第7条（安全管理）
                     </a>
-                  </li>
-                  <li>
+                  </motion.li>
+                  <motion.li variants={{
+                    hidden: { opacity: 0, x: -10 },
+                    show: { opacity: 1, x: 0 }
+                  }}>
                     <a href="#pp-disclosure" className="block py-1.5 px-2.5 text-xs text-text-secondary no-underline rounded-md transition-all duration-150 hover:bg-primary/5 hover:text-primary">
                       第8条（開示・訂正・削除）
                     </a>
-                  </li>
-                  <li>
+                  </motion.li>
+                  <motion.li variants={{
+                    hidden: { opacity: 0, x: -10 },
+                    show: { opacity: 1, x: 0 }
+                  }}>
                     <a href="#pp-change" className="block py-1.5 px-2.5 text-xs text-text-secondary no-underline rounded-md transition-all duration-150 hover:bg-primary/5 hover:text-primary">
                       第9条（ポリシーの変更）
                     </a>
-                  </li>
-                  <li>
+                  </motion.li>
+                  <motion.li variants={{
+                    hidden: { opacity: 0, x: -10 },
+                    show: { opacity: 1, x: 0 }
+                  }}>
                     <a href="#pp-contact" className="block py-1.5 px-2.5 text-xs text-text-secondary no-underline rounded-md transition-all duration-150 hover:bg-primary/5 hover:text-primary">
                       第10条（お問い合わせ）
                     </a>
-                  </li>
-                </ol>
-              </nav>
+                  </motion.li>
+                </motion.ol>
+              </motion.nav>
 
               {/* 右：本文 */}
               <article className="max-w-[720px]" id="legal-body">
 
                 {/* 序文 */}
-                <div className="bg-bg-section border-l-[3px] border-primary pl-5 pr-4 py-4 rounded-r-lg text-sm text-text-secondary leading-relaxed mb-9">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="bg-bg-section border-l-[3px] border-primary pl-5 pr-4 py-4 rounded-r-lg text-sm text-text-secondary leading-relaxed mb-9"
+                >
                   LogoAI.jp（以下「当サービス」）は、ユーザーの個人情報の保護を
                   重要な責務と考えています。本プライバシーポリシーは、当サービスにおける
                   個人情報の取り扱いについて説明します。
-                </div>
+                </motion.div>
 
                 {/* 第1条 */}
-                <section id="pp-collection" className="mb-9 pb-9 border-b border-border scroll-mt-24">
+                <motion.section
+                  id="pp-collection"
+                  className="mb-9 pb-9 border-b border-border scroll-mt-24"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5 }}
+                >
                   <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第1条（収集する個人情報）</h2>
-                  <p className="text-sm text-text-secondary leading-relaxed mb-3">当サービスは、以下の個人情報を収集することがあります。</p>
+                  <p className="text-sm text-text-secondary leading-relaxed mb-3">当サービスは、以下の個人情報を収集ることがあります。</p>
                   <ol className="pl-5 m-0 flex flex-col gap-2">
                     <li className="text-sm text-text-secondary leading-relaxed">氏名・会社名</li>
                     <li className="text-sm text-text-secondary leading-relaxed">メールアドレス</li>
@@ -165,10 +227,17 @@ export default function PrivacyPage() {
                     <li className="text-sm text-text-secondary leading-relaxed">IPアドレス・ブラウザ情報・利用端末情報</li>
                     <li className="text-sm text-text-secondary leading-relaxed">サービス利用履歴（生成したロゴデータ、設定情報等）</li>
                   </ol>
-                </section>
+                </motion.section>
 
                 {/* 第2条 */}
-                <section id="pp-purpose" className="mb-9 pb-9 border-b border-border scroll-mt-24">
+                <motion.section
+                  id="pp-purpose"
+                  className="mb-9 pb-9 border-b border-border scroll-mt-24"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5 }}
+                >
                   <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第2条（利用目的）</h2>
                   <p className="text-sm text-text-secondary leading-relaxed mb-3">収集した個人情報は、以下の目的のために利用します。</p>
                   <ol className="pl-5 m-0 flex flex-col gap-2">
@@ -179,13 +248,20 @@ export default function PrivacyPage() {
                     <li className="text-sm text-text-secondary leading-relaxed">利用規約違反への対応</li>
                     <li className="text-sm text-text-secondary leading-relaxed">サービスに関する重要なお知らせの送付</li>
                   </ol>
-                </section>
+                </motion.section>
 
                 {/* 第3条 */}
-                <section id="pp-third-party" className="mb-9 pb-9 border-b border-border scroll-mt-24">
+                <motion.section
+                  id="pp-third-party"
+                  className="mb-9 pb-9 border-b border-border scroll-mt-24"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5 }}
+                >
                   <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第3条（第三者への提供）</h2>
                   <p className="text-sm text-text-secondary leading-relaxed mb-3">
-                    当社は、以下の場合を除き、ユーザーの個人情報を第三者に提供しません。
+                    当社は、以下の場合を除き、ユーザーの個人情報を第三者には提供しません。
                   </p>
                   <ol className="pl-5 m-0 flex flex-col gap-2">
                     <li className="text-sm text-text-secondary leading-relaxed">ユーザーの同意がある場合</li>
@@ -193,10 +269,17 @@ export default function PrivacyPage() {
                     <li className="text-sm text-text-secondary leading-relaxed">人の生命・身体・財産の保護のために必要な場合</li>
                     <li className="text-sm text-text-secondary leading-relaxed">公衆衛生の向上・児童の健全育成のために必要な場合</li>
                   </ol>
-                </section>
+                </motion.section>
 
                 {/* 第4条 */}
-                <section id="pp-outsourcing" className="mb-9 pb-9 border-b border-border scroll-mt-24">
+                <motion.section
+                  id="pp-outsourcing"
+                  className="mb-9 pb-9 border-b border-border scroll-mt-24"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5 }}
+                >
                   <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第4条（業務委託）</h2>
                   <p className="text-sm text-text-secondary leading-relaxed mb-3">
                     当社は、利用目的の達成に必要な範囲内において、
@@ -208,10 +291,17 @@ export default function PrivacyPage() {
                     Vercel Inc.（ホスティング）、
                     Google LLC（アクセス解析）
                   </div>
-                </section>
+                </motion.section>
 
                 {/* 第5条 */}
-                <section id="pp-cookies" className="mb-9 pb-9 border-b border-border scroll-mt-24">
+                <motion.section
+                  id="pp-cookies"
+                  className="mb-9 pb-9 border-b border-border scroll-mt-24"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5 }}
+                >
                   <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第5条（Cookieの使用）</h2>
                   <p className="text-sm text-text-secondary leading-relaxed mb-3">
                     当サービスは、サービス品質向上のためCookieを使用しています。
@@ -224,10 +314,17 @@ export default function PrivacyPage() {
                     <li className="text-sm text-text-secondary leading-relaxed">機能Cookie：ユーザー設定の保存</li>
                     <li className="text-sm text-text-secondary leading-relaxed">分析Cookie：アクセス状況の分析（Google Analytics）</li>
                   </ol>
-                </section>
+                </motion.section>
 
                 {/* 第6条 */}
-                <section id="pp-analytics" className="mb-9 pb-9 border-b border-border scroll-mt-24">
+                <motion.section
+                  id="pp-analytics"
+                  className="mb-9 pb-9 border-b border-border scroll-mt-24"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5 }}
+                >
                   <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第6条（アクセス解析ツール）</h2>
                   <p className="text-sm text-text-secondary leading-relaxed mb-3">
                     当サービスは、Googleが提供するアクセス解析ツール
@@ -247,41 +344,69 @@ export default function PrivacyPage() {
                     </a>
                     をご確認ください。
                   </p>
-                </section>
+                </motion.section>
 
                 {/* 第7条 */}
-                <section id="pp-security" className="mb-9 pb-9 border-b border-border scroll-mt-24">
+                <motion.section
+                  id="pp-security"
+                  className="mb-9 pb-9 border-b border-border scroll-mt-24"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5 }}
+                >
                   <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第7条（個人情報の安全管理）</h2>
                   <p className="text-sm text-text-secondary leading-relaxed">
-                    当社は、個人情報の丢失、破壊、改ざん及び漏洩などのリスクに対して、
+                    当社は個人情報の丢失、破壊、改ざん及び漏洩などのリスクに対して、
                     適切なセキュリティ対策を実施し、個人情報の安全管理に努めます。
                     決済情報はStripe社のセキュリティ基準（PCI DSS）に準拠した形で管理され、
                     当社のサーバーには保存されません。
                   </p>
-                </section>
+                </motion.section>
 
                 {/* 第8条 */}
-                <section id="pp-disclosure" className="mb-9 pb-9 border-b border-border scroll-mt-24">
+                <motion.section
+                  id="pp-disclosure"
+                  className="mb-9 pb-9 border-b border-border scroll-mt-24"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5 }}
+                >
                   <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第8条（個人情報の開示・訂正・削除）</h2>
                   <p className="text-sm text-text-secondary leading-relaxed">
-                    ユーザーは当社に対して、個人情報の開示、訂正、削除を請求することができます。
+                    ユーザーは当社に対して個人情報の開示、訂正、削除を請求することができます。
                     請求はお問い合わせフォームより受け付けます。ご本人確認の上、
                     法令に従い対応いたします。
                   </p>
-                </section>
+                </motion.section>
 
                 {/* 第9条 */}
-                <section id="pp-change" className="mb-9 pb-9 border-b border-border scroll-mt-24">
+                <motion.section
+                  id="pp-change"
+                  className="mb-9 pb-9 border-b border-border scroll-mt-24"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5 }}
+                >
                   <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第9条（プライバシーポリシーの変更）</h2>
                   <p className="text-sm text-text-secondary leading-relaxed">
                     本ポリシーの内容は、法令その他本ポリシーに別段の定めのある事項を除いて、
                     ユーザーへの通知なく変更することができるものとします。
                     変更後のプライバシーポリシーは、当サービスに掲載した時点より効力を生じます。
                   </p>
-                </section>
+                </motion.section>
 
                 {/* 第10条 */}
-                <section id="pp-contact" className="mb-9 pb-9 border-b border-border scroll-mt-24">
+                <motion.section
+                  id="pp-contact"
+                  className="mb-9 pb-9 border-b border-border scroll-mt-24"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5 }}
+                >
                   <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第10条（お問い合わせ窓口）</h2>
                   <p className="text-sm text-text-secondary leading-relaxed">
                     個人情報の取り扱いに関するお問い合わせは、
@@ -290,17 +415,23 @@ export default function PrivacyPage() {
                     </Link>
                     よりご連絡ください。
                   </p>
-                </section>
+                </motion.section>
 
                 {/* 関連ページリンク */}
-                <div className="flex gap-3 flex-wrap mt-10 pt-6 border-t border-border">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5 }}
+                  className="flex gap-3 flex-wrap mt-10 pt-6 border-t border-border"
+                >
                   <Link href="/terms" className="text-sm font-semibold text-primary no-underline px-4 py-2.5 border-1.5 border-primary rounded-full transition-all duration-200 hover:bg-primary hover:text-white">
                     利用規約 →
                   </Link>
                   <Link href="/tokutei" className="text-sm font-semibold text-primary no-underline px-4 py-2.5 border-1.5 border-primary rounded-full transition-all duration-200 hover:bg-primary hover:text-white">
                     特定商取引法に基づく表示 →
                   </Link>
-                </div>
+                </motion.div>
 
               </article>
             </div>

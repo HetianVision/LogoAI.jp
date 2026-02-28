@@ -5,6 +5,24 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import BottomCTA from '@/components/BottomCTA'
 
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: 'easeOut' }
+  }
+}
+
+const staggerChildren = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+}
+
 // Section 1: Page Hero
 function PageHero() {
   return (
@@ -106,7 +124,13 @@ function PricingToggle() {
   return (
     <section className="py-8 bg-bg-base text-center">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="inline-flex items-center gap-4 bg-white rounded-full p-1.5 border border-border shadow-sm">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-4 bg-white rounded-full p-1.5 border border-border shadow-sm"
+        >
           <button
             onClick={() => setIsYearly(false)}
             className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${!isYearly ? 'bg-primary text-text-inverse' : 'text-text-secondary hover:text-primary'}`}
@@ -119,7 +143,7 @@ function PricingToggle() {
           >
             月額換算 <span className="text-[10px] bg-accent text-white px-1.5 py-0.5 rounded-full font-bold ml-1">参考</span>
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -203,10 +227,17 @@ function PricingCards() {
   return (
     <section className="py-16 bg-bg-section">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-5 max-w-[1000px] mx-auto">
+        <motion.div
+          className="grid md:grid-cols-3 gap-5 max-w-[1000px] mx-auto"
+          variants={staggerChildren}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {plans.map((plan, index) => (
-            <div
+            <motion.div
               key={index}
+              variants={fadeInUp}
               className={`bg-white rounded-2xl p-7 relative transition-all ${
                 plan.highlight
                   ? 'ring-2 ring-accent shadow-xl -mt-2 pt-9'
@@ -259,9 +290,9 @@ function PricingCards() {
               >
                 {plan.cta}
               </Link>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -272,7 +303,13 @@ function CopyrightInfo() {
   return (
     <section className="py-16 md:py-24 bg-bg-section">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="bg-white rounded-2xl border border-border overflow-hidden">
+        <motion.div
+          className="bg-white rounded-2xl border border-border overflow-hidden"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="flex items-center gap-4 px-9 py-7 bg-primary">
             <div className="w-13 h-13 bg-white/10 rounded-lg flex items-center justify-center text-2xl flex-shrink-0">📋</div>
             <h2 className="font-heading text-2xl font-bold text-white">著作権について、正直elezしてください</h2>
@@ -285,7 +322,13 @@ function CopyrightInfo() {
             </p>
 
             <div className="grid md:grid-cols-[1fr,1fr] gap-6 mb-6">
-              <div className="bg-bg-section rounded-xl p-6 border border-border">
+              <motion.div
+                className="bg-bg-section rounded-xl p-6 border border-border"
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-xs bg-bg-base text-text-muted px-2.5 py-1 rounded-full font-bold border border-border">無料プラン</span>
                   <h3 className="font-bold text-text-primary">著作権：当社に帰属</h3>
@@ -305,9 +348,15 @@ function CopyrightInfo() {
                   </li>
                 </ul>
                 <p className="text-xs text-text-muted">無料プランはロゴのデザインイメージを確認するための試用目的です。</p>
-              </div>
+              </motion.div>
 
-              <div className="bg-primary/5 rounded-xl p-6 border border-primary/20">
+              <motion.div
+                className="bg-primary/5 rounded-xl p-6 border border-primary/20"
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-xs bg-primary text-white px-2.5 py-1 rounded-full font-bold">有料プラン</span>
                   <h3 className="font-bold text-text-primary">著作権：お客様に100%帰属</h3>
@@ -323,7 +372,7 @@ function CopyrightInfo() {
                   </li>
                   <li className="flex items-center gap-2 text-sm text-text-secondary pl-5 relative">
                     <span className="absolute left-0 text-green-700 font-bold">✓</span>
-                    第三者への譲渡・ライセンス
+                    第三者への转让・ライセンス
                   </li>
                   <li className="flex items-center gap-2 text-sm text-text-secondary pl-5 relative">
                     <span className="absolute left-0 text-green-700 font-bold">✓</span>
@@ -334,7 +383,7 @@ function CopyrightInfo() {
                   ユーザーがデザインの選択・指示・編集に参加するプロセスを設計し、
                   「ユーザーの創作的寄与」の記録を証明書に明記しています。
                 </p>
-              </div>
+              </motion.div>
             </div>
 
             <div className="flex items-center gap-2 text-xs text-text-muted p-3.5 bg-bg-section rounded-lg flex-wrap">
@@ -344,7 +393,7 @@ function CopyrightInfo() {
               <Link href="/copyright" className="text-primary underline">当サービスの著作権詳細ページ →</Link>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -359,20 +408,45 @@ function RefundGuarantee() {
       </div>
 
       <div className="max-w-[800px] mx-auto px-6 text-center relative z-10">
-        <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
-          <svg className="w-8 h-8 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
-          </svg>
-        </div>
-        <h2 className="font-heading text-3xl font-bold text-text-inverse mb-4">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg className="w-8 h-8 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+            </svg>
+          </div>
+        </motion.div>
+        <motion.h2
+          className="font-heading text-3xl font-bold text-text-inverse mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
           7日間全额返金保証
-        </h2>
-        <p className="text-text-inverse/80 mb-6 max-w-[500px] mx-auto">
+        </motion.h2>
+        <motion.p
+          className="text-text-inverse/80 mb-6 max-w-[500px] mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           生成されたロゴがご要望に沿わない場合、
           お支払いいただいた料金を全额返金いたします。
           返金申請はメール1通で完了いたします。
-        </p>
-        <div className="flex flex-wrap justify-center gap-6 text-sm text-text-inverse/60">
+        </motion.p>
+        <motion.div
+          className="flex flex-wrap justify-center gap-6 text-sm text-text-inverse/60"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
           <div className="flex items-center gap-2">
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -391,7 +465,7 @@ function RefundGuarantee() {
             </svg>
             面倒な手続き一切なし
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -413,12 +487,24 @@ function FeatureComparison() {
   return (
     <section className="py-16 bg-bg-base">
       <div className="max-w-[1000px] mx-auto px-6">
-        <div className="text-center mb-10">
+        <motion.div
+          className="text-center mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <h2 className="font-heading text-3xl font-bold text-text-primary mb-3">すべての機能を比較</h2>
           <p className="text-text-secondary">各プランの詳細な機能比較</p>
-        </div>
+        </motion.div>
 
-        <div className="overflow-x-auto">
+        <motion.div
+          className="overflow-x-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <table className="w-full bg-white rounded-2xl border border-border overflow-hidden">
             <thead>
               <tr className="bg-bg-section">
@@ -430,16 +516,23 @@ function FeatureComparison() {
             </thead>
             <tbody>
               {features.map((row, index) => (
-                <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-bg-base'}>
+                <motion.tr
+                  key={index}
+                  variants={fadeInUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className={index % 2 === 0 ? 'bg-white' : 'bg-bg-base'}
+                >
                   <td className="p-4 text-text-secondary">{row.name}</td>
                   <td className="p-4 text-center text-text-muted">{row.free}</td>
                   <td className="p-4 text-center font-bold text-primary">{row.standard}</td>
                   <td className="p-4 text-center text-text-primary">{row.premium}</td>
-                </tr>
+                </motion.tr>
               ))}
             </tbody>
           </table>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -450,17 +543,30 @@ function PaymentMethods() {
   return (
     <section className="py-16 bg-bg-section">
       <div className="max-w-[600px] mx-auto px-6 text-center">
-        <h2 className="font-heading text-2xl font-bold text-text-primary mb-6">お支払い方法</h2>
-        <p className="text-text-secondary mb-6">
-          クレジットカード(VISA/MasterCard/Amex)、PayPay対応。
-          セキュリティはPCI DSS準拠で安全に決済いただけます。
-        </p>
-        <div className="flex justify-center gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="font-heading text-2xl font-bold text-text-primary mb-6">お支払い方法</h2>
+          <p className="text-text-secondary mb-6">
+            クレジットカード(VISA/MasterCard/Amex)、PayPay対応。
+            セキュリティはPCI DSS準拠で安全に決済いただけます。
+          </p>
+        </motion.div>
+        <motion.div
+          className="flex justify-center gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <div className="px-4 py-2 bg-white rounded-lg border border-border text-sm text-text-muted">VISA</div>
           <div className="px-4 py-2 bg-white rounded-lg border border-border text-sm text-text-muted">MasterCard</div>
           <div className="px-4 py-2 bg-white rounded-lg border border-border text-sm text-text-muted">Amex</div>
           <div className="px-4 py-2 bg-white rounded-lg border border-border text-sm text-text-muted">PayPay</div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -498,32 +604,52 @@ function FAQ() {
   return (
     <section className="py-16 bg-bg-base">
       <div className="max-w-[1000px] mx-auto px-6">
-        <div className="text-center mb-10">
+        <motion.div
+          className="text-center mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">よくある質問</span>
           <h2 className="font-heading text-3xl font-bold text-text-primary mt-4 mb-3">購入前のご疑問にお答えします</h2>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-0 mb-10">
+        <motion.div
+          className="grid md:grid-cols-2 gap-0 mb-10"
+          variants={staggerChildren}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {faqs.map((faq, index) => (
-            <details key={index} className="bg-white rounded-xl border border-border group">
-              <summary className="px-6 py-4 cursor-pointer font-medium text-text-primary flex justify-between items-center">
-                <span>{faq.q}</span>
-                <svg className="w-5 h-5 text-text-muted group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 8l5 5 5-5" />
-                </svg>
-              </summary>
-              <div className="px-6 pb-4 text-text-secondary leading-relaxed">
-                <p>{faq.a}</p>
-              </div>
-            </details>
+            <motion.div key={index} variants={fadeInUp}>
+              <details className="bg-white rounded-xl border border-border group">
+                <summary className="px-6 py-4 cursor-pointer font-medium text-text-primary flex justify-between items-center">
+                  <span>{faq.q}</span>
+                  <svg className="w-5 h-5 text-text-muted group-open:rotate-180 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 8l5 5 5-5" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-4 text-text-secondary leading-relaxed">
+                  <p>{faq.a}</p>
+                </div>
+              </details>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="text-center">
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
           <Link href="/faq" className="inline-block border border-primary text-primary hover:bg-primary hover:text-text-inverse font-medium px-6 py-3 rounded-full transition-all">
             その他のよくある質問はこちら →
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -561,14 +687,26 @@ function UserReviews() {
   return (
     <section className="py-16 bg-bg-section">
       <div className="max-w-[1000px] mx-auto px-6">
-        <div className="text-center mb-10">
+        <motion.div
+          className="text-center mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">購入者の声</span>
           <h2 className="font-heading text-3xl font-bold text-text-primary mt-4 mb-3">実際に使った方のリアルな感想</h2>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <motion.div
+          className="grid md:grid-cols-3 gap-6"
+          variants={staggerChildren}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {reviews.map((review, index) => (
-            <div key={index} className="bg-white p-6 rounded-xl border border-border">
+            <motion.div key={index} variants={fadeInUp} className="bg-white p-6 rounded-xl border border-border">
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <span key={i} className="text-accent">★</span>
@@ -587,9 +725,9 @@ function UserReviews() {
                   {review.plan}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

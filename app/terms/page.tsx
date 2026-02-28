@@ -4,6 +4,30 @@ import { useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut',
+    },
+  },
+}
+
 export default function TermsPage() {
   useEffect(() => {
     const sections = document.querySelectorAll<HTMLElement>('.legal-section')
@@ -74,7 +98,14 @@ export default function TermsPage() {
           <div className="grid grid-cols-[220px_1fr] gap-12 max-w-[1200px] mx-auto items-start">
 
             {/* Left: TOC */}
-            <nav className="hidden md:block sticky top-24 bg-white border border-border rounded-xl p-5" aria-label="目次">
+            <motion.nav
+              className="hidden md:block sticky top-24 bg-white border border-border rounded-xl p-5"
+              aria-label="目次"
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
               <div className="text-xs font-bold text-text-muted uppercase tracking-wider mb-3">目次</div>
               <ol className="list-none p-0 m-0 flex flex-col gap-0.5">
                 <li>
@@ -150,30 +181,44 @@ export default function TermsPage() {
                   </a>
                 </li>
               </ol>
-            </nav>
+            </motion.nav>
 
             {/* Right: Content */}
-            <article className="max-w-[720px]" id="legal-body">
+            <motion.article
+              className="max-w-[720px]"
+              id="legal-body"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
 
               {/* Preamble */}
-              <div className="bg-bg-section border-l-3 border-primary p-4 rounded-r-lg text-sm text-text-secondary leading-relaxed mb-9">
+              <motion.div
+                className="bg-bg-section border-l-3 border-primary p-4 rounded-r-lg text-sm text-text-secondary leading-relaxed mb-9"
+                variants={itemVariants}
+              >
                 本利用規約（以下「本規約」）は、LogoAI.jp（以下「当サービス」）の
                 利用条件を定めるものです。ユーザーの皆さまには、本規約に同意いただいた
                 上でご利用いただきます。
-              </div>
+              </motion.div>
 
               {/* Section 1 */}
-              <section id="terms-intro" className="legal-section mb-9 pb-9 border-b border-border scroll-mt-24">
+              <motion.section
+                id="terms-intro"
+                className="legal-section mb-9 pb-9 border-b border-border scroll-mt-24"
+                variants={itemVariants}
+              >
                 <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第1条（適用）</h2>
                 <p className="text-sm text-text-secondary leading-relaxed mb-3">
                   本規約は、本サービスの提供条件及び当社とユーザーの間の権利義務関係を
                   定めることを目的とし、ユーザーと当社との間の本サービスの利用に関わる
                   一切の関係に適用されます。
                 </p>
-              </section>
+              </motion.section>
 
               {/* Section 2 */}
-              <section id="terms-definitions" className="legal-section mb-9 pb-9 border-b border-border scroll-mt-24">
+              <motion.section id="terms-definitions" className="legal-section mb-9 pb-9 border-b border-border scroll-mt-24" variants={itemVariants}>
                 <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第2条（定義）</h2>
                 <p className="text-sm text-text-secondary leading-relaxed mb-3">
                   本規約において使用する用語の定義は次のとおりです。
@@ -185,10 +230,10 @@ export default function TermsPage() {
                   <li className="text-sm text-text-secondary leading-relaxed">「生成ロゴ」とは、本サービスを通じて生成されたロゴデータををいいます。</li>
                   <li className="text-sm text-text-secondary leading-relaxed">「著作権帰属証明書」とは、当社が発行する、生成ロゴの著作権帰属を証明する文書ををいいます。</li>
                 </ol>
-              </section>
+              </motion.section>
 
               {/* Section 3 */}
-              <section id="terms-registration" className="legal-section mb-9 pb-9 border-b border-border scroll-mt-24">
+              <motion.section id="terms-registration" className="legal-section mb-9 pb-9 border-b border-border scroll-mt-24" variants={itemVariants}>
                 <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第3条（利用登録）</h2>
                 <p className="text-sm text-text-secondary leading-relaxed mb-3">
                   登録希望者が当社の定める方法によって利用登録を申請し、当社がこれを
@@ -200,10 +245,10 @@ export default function TermsPage() {
                   <li className="text-sm text-text-secondary leading-relaxed">本規約に違反したことがある者からの申請である場合</li>
                   <li className="text-sm text-text-secondary leading-relaxed">その他、当社が利用登録を相当でないと判断した場合</li>
                 </ol>
-              </section>
+              </motion.section>
 
               {/* Section 4 */}
-              <section id="terms-prohibited" className="legal-section mb-9 pb-9 border-b border-border scroll-mt-24">
+              <motion.section id="terms-prohibited" className="legal-section mb-9 pb-9 border-b border-border scroll-mt-24" variants={itemVariants}>
                 <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第4条（禁止事項）</h2>
                 <p className="text-sm text-text-secondary leading-relaxed mb-3">
                   ユーザーは、本サービスの利用にあたり、以下の行為をしてはなりません。
@@ -219,10 +264,10 @@ export default function TermsPage() {
                   <li className="text-sm text-text-secondary leading-relaxed">逆アセンブル、逆コンパイル等のリバースエンジニアリングを行う行為</li>
                   <li className="text-sm text-text-secondary leading-relaxed">その他、当社が不適切と判断する行為</li>
                 </ol>
-              </section>
+              </motion.section>
 
               {/* Section 5 */}
-              <section id="terms-suspension" className="legal-section mb-9 pb-9 border-b border-border scroll-mt-24">
+              <motion.section id="terms-suspension" className="legal-section mb-9 pb-9 border-b border-border scroll-mt-24" variants={itemVariants}>
                 <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第5条（利用停止等）</h2>
                 <p className="text-sm text-text-secondary leading-relaxed mb-3">
                   当社は、ユーザーが以下のいずれかの事由に該当する場合には、
@@ -235,10 +280,10 @@ export default function TermsPage() {
                   <li className="text-sm text-text-secondary leading-relaxed">料金等の支払債務の不履行があった場合</li>
                   <li className="text-sm text-text-secondary leading-relaxed">その他、当社が本サービスの利用を適当でないと判断した場合</li>
                 </ol>
-              </section>
+              </motion.section>
 
               {/* Section 6 */}
-              <section id="terms-copyright" className="legal-section mb-9 pb-9 border-b border-border scroll-mt-24">
+              <motion.section id="terms-copyright" className="legal-section mb-9 pb-9 border-b border-border scroll-mt-24" variants={itemVariants}>
                 <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第6条（著作権・知的財産権）</h2>
                 <ol className="list-decimal pl-5 m-0 flex flex-col gap-2 mb-4">
                   <li className="text-sm text-text-secondary leading-relaxed">
@@ -265,10 +310,10 @@ export default function TermsPage() {
                   <strong className="text-text-primary">著作権に関する詳細は</strong>
                   <Link href="/copyright" className="text-primary font-semibold ml-1">著作権ページ</Link>をご参照ください。
                 </div>
-              </section>
+              </motion.section>
 
               {/* Section 7 */}
-              <section id="terms-disclaimer" className="legal-section mb-9 pb-9 border-b border-border scroll-mt-24">
+              <motion.section id="terms-disclaimer" className="legal-section mb-9 pb-9 border-b border-border scroll-mt-24" variants={itemVariants}>
                 <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第7条（免責事項）</h2>
                 <ol className="list-decimal pl-5 m-0 flex flex-col gap-2">
                   <li className="text-sm text-text-secondary leading-relaxed">
@@ -287,39 +332,42 @@ export default function TermsPage() {
                     当社の故意又は重大な過失による場合を除き、一切の責任を負いません。
                   </li>
                 </ol>
-              </section>
+              </motion.section>
 
               {/* Section 8 */}
-              <section id="terms-change" className="legal-section mb-9 pb-9 border-b border-border scroll-mt-24">
+              <motion.section id="terms-change" className="legal-section mb-9 pb-9 border-b border-border scroll-mt-24" variants={itemVariants}>
                 <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第8条（利用規約の変更）</h2>
                 <p className="text-sm text-text-secondary leading-relaxed mb-3">
                   当社は必要と判断した場合には、ユーザーに通知することなく本規約を
                   変更することができるとします。変更後の利用規約は、当社のウェブサイトに
                   掲載した時点で効力を生じるものとします。
                 </p>
-              </section>
+              </motion.section>
 
               {/* Section 9 */}
-              <section id="terms-governing" className="legal-section mb-9 pb-9 border-b-0 scroll-mt-24">
+              <motion.section id="terms-governing" className="legal-section mb-9 pb-9 border-b-0 scroll-mt-24" variants={itemVariants}>
                 <h2 className="font-heading text-xl font-bold text-text-primary mb-3.5">第9条（準拠法・管轄裁判所）</h2>
                 <p className="text-sm text-text-secondary leading-relaxed mb-3">
                   本規約の解釈にあたっては、日本法を準拠法とします。
                   本サービスに関して紛争が生じた場合には当社の本店所在地を
                   管轄する裁判所を専属的合意管轄とします。
                 </p>
-              </section>
+              </motion.section>
 
               {/* Related Links */}
-              <div className="flex gap-3 flex-wrap mt-10 pt-6 border-t border-border">
+              <motion.div
+                className="flex gap-3 flex-wrap mt-10 pt-6 border-t border-border"
+                variants={itemVariants}
+              >
                 <Link href="/privacy" className="text-sm font-semibold text-primary no-underline px-4 py-2.5 border border-primary rounded-full transition-all hover:bg-primary hover:text-white">
                   プライバシーポリシー →
                 </Link>
                 <Link href="/tokutei" className="text-sm font-semibold text-primary no-underline px-4 py-2.5 border border-primary rounded-full transition-all hover:bg-primary hover:text-white">
                   特定商取引法に基づく表示 →
                 </Link>
-              </div>
+              </motion.div>
 
-            </article>
+            </motion.article>
           </div>
         </div>
       </div>

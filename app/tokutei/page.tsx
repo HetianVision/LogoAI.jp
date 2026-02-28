@@ -1,10 +1,7 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
+'use client'
 
-export const metadata: Metadata = {
-  title: '特定商取引法に基づく表示 | LogoAI.jp',
-  description: 'LogoAI.jpの特定商取引法に基づく表示です。',
-}
+import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 export default function TokuteiPage() {
   return (
@@ -21,21 +18,37 @@ export default function TokuteiPage() {
         }} />
 
         <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-          <nav className="mb-8" aria-label="パンくずリスト">
+          <motion.nav
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="mb-8"
+            aria-label="パンくずリスト"
+          >
             <ol className="flex gap-2 text-sm text-text-muted list-none p-0">
               <li><Link href="/" className="hover:text-primary transition-colors">ホーム</Link></li>
               <li><span className="mx-2 opacity-40">/</span></li>
               <li className="text-text-secondary" aria-current="page">特定商取引法に基づく表示</li>
             </ol>
-          </nav>
+          </motion.nav>
 
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-text-primary leading-tight">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-heading text-4xl md:text-5xl font-bold text-text-primary leading-tight"
+          >
             特定商取引法に基づく表示
-          </h1>
+          </motion.h1>
 
-          <p className="text-text-secondary mt-4">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-text-secondary mt-4"
+          >
             最終更新日：<time dateTime="2025-02-01">2025年2月1日</time>
-          </p>
+          </motion.p>
         </div>
       </section>
 
@@ -45,12 +58,22 @@ export default function TokuteiPage() {
           <div className="max-w-[800px] mx-auto pb-20">
 
             {/* Note */}
-            <p className="text-sm text-text-secondary mb-5">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-sm text-text-secondary mb-5"
+            >
               特定商取引法に基づき、以下の事項を表示します。
-            </p>
+            </motion.p>
 
             {/* Table */}
-            <table className="w-full border-collapse border border-border rounded-2xl overflow-hidden bg-white mb-8">
+            <motion.table
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="w-full border-collapse border border-border rounded-2xl overflow-hidden bg-white mb-8"
+            >
               <tbody>
 
                 <tr>
@@ -198,10 +221,15 @@ export default function TokuteiPage() {
                 </tr>
 
               </tbody>
-            </table>
+            </motion.table>
 
             {/* Related Links */}
-            <div className="flex flex-wrap gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex flex-wrap gap-6"
+            >
               <Link href="/terms" className="text-primary font-semibold hover:underline">
                 利用規約 →
               </Link>
@@ -211,7 +239,7 @@ export default function TokuteiPage() {
               <Link href="/guarantee" className="text-primary font-semibold hover:underline">
                 返金保証 →
               </Link>
-            </div>
+            </motion.div>
 
           </div>
         </div>
