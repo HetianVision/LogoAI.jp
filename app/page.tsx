@@ -40,13 +40,23 @@ function Hero() {
           {/* 左侧内容 */}
           <div className="lg:col-span-3">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 rounded-full px-4 py-1.5 mb-6">
+            <motion.div
+              className="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 rounded-full px-4 py-1.5 mb-6"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
               <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
               <span className="text-accent font-medium text-xs tracking-wider">日本語フォント100種以上 搭載</span>
-            </div>
+            </motion.div>
 
             {/* 主标题 */}
-            <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+            <motion.h1
+              className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
               AIで、あなただけの<br />
               <em className="text-accent italic not-underline relative">
                 ロゴ
@@ -55,17 +65,27 @@ function Hero() {
                 </svg>
               </em>
               を。
-            </h1>
-            <p className="font-heading text-2xl md:text-3xl text-text-secondary mb-6">
+            </motion.h1>
+            <motion.p
+              className="font-heading text-2xl md:text-3xl text-text-secondary mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               5分で完成、著作権もあなたのもの。
-            </p>
+            </motion.p>
 
             {/* 副标题说明 */}
-            <p className="text-lg text-text-secondary leading-relaxed max-w-[520px] mb-8">
+            <motion.p
+              className="text-lg text-text-secondary leading-relaxed max-w-[520px] mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
               業種を選んで、ブランド名を入力するだけ。<br />
               100種類以上の日本語フォントから、プロ品質のロゴをAIが自動生成します。<br />
               <strong className="text-text-primary font-bold">商用利用OK・商標登録対応・全额返金保証付き。</strong>
-            </p>
+            </motion.p>
 
             {/* CTA按钮 */}
             <div className="flex flex-wrap gap-4 mb-7">
@@ -160,35 +180,59 @@ function TrustBar() {
   return (
     <section className="bg-primary py-5 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6 flex flex-wrap justify-center items-center gap-8 md:gap-12">
-        <div className="flex flex-col items-center gap-1">
+        <motion.div
+          className="flex flex-col items-center gap-1"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0 }}
+        >
           <span className="font-number text-2xl font-semibold text-accent">5,000<small className="text-xs font-body">社以上</small></span>
           <span className="text-xs text-text-inverse/60 tracking-wider">ご利用実績</span>
-        </div>
+        </motion.div>
 
         <div className="hidden md:block w-px h-8 bg-text-inverse/15" />
 
-        <div className="flex flex-col items-center gap-1">
+        <motion.div
+          className="flex flex-col items-center gap-1"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+        >
           <span className="font-number text-2xl font-semibold text-accent">★ 4.9</span>
           <span className="text-xs text-text-inverse/60 tracking-wider">ユーザー満足度</span>
-        </div>
+        </motion.div>
 
         <div className="hidden md:block w-px h-8 bg-text-inverse/15" />
 
-        <div className="flex flex-col items-center gap-1">
+        <motion.div
+          className="flex flex-col items-center gap-1"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+        >
           <span className="font-number text-2xl font-semibold text-accent">2分</span>
           <span className="text-xs text-text-inverse/60 tracking-wider">平均ロゴ完成時間</span>
-        </div>
+        </motion.div>
 
         <div className="hidden md:block w-px h-8 bg-text-inverse/15" />
 
-        <div className="flex flex-col items-center gap-2">
+        <motion.div
+          className="flex flex-col items-center gap-2"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+        >
           <span className="text-xs text-text-inverse/50 tracking-wider">掲載メディア</span>
           <div className="flex gap-5 items-center">
             <div className="h-5 text-text-inverse/40 font-bold text-xs tracking-wider">TECH</div>
             <div className="h-5 text-text-inverse/40 font-bold text-xs tracking-wider"> Forbes</div>
             <div className="h-5 text-text-inverse/40 font-bold text-xs tracking-wider">NIKKEI</div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -230,22 +274,42 @@ function Features() {
     <section className="py-16 md:py-24 bg-bg-base">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="text-center mb-14">
-          <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase mb-4 block">なぜ選ばれるのか</span>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-text-primary">
+          <motion.span
+            className="text-accent font-medium text-sm tracking-[0.1em] uppercase mb-4 block"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >なぜ選ばれるのか</motion.span>
+          <motion.h2
+            className="font-heading text-4xl md:text-5xl font-bold text-text-primary"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
             海外ツールとは異なり、<br className="md:hidden" />
             日本のためのロゴAI
-          </h2>
+          </motion.h2>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
-            <div key={index} className="bg-white p-8 rounded-xl border border-border hover:shadow-lg transition-shadow">
+            <motion.div
+              key={index}
+              className="bg-white p-8 rounded-xl border border-border hover:shadow-lg transition-shadow"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.02 }}
+            >
               <div className="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center text-accent mb-5">
                 {feature.icon}
               </div>
               <h3 className="font-heading text-xl font-bold text-text-primary mb-3">{feature.title}</h3>
               <p className="text-text-secondary leading-relaxed">{feature.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -277,16 +341,35 @@ function HowItWorks() {
     <section className="py-16 md:py-24 bg-bg-section">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="text-center mb-14">
-          <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase mb-4 block">How It Works</span>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-text-primary">
+          <motion.span
+            className="text-accent font-medium text-sm tracking-[0.1em] uppercase mb-4 block"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >How It Works</motion.span>
+          <motion.h2
+            className="font-heading text-4xl md:text-5xl font-bold text-text-primary"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
             3つのステップで<br className="md:hidden" />
-            ロゴが完成
-          </h2>
+            ロゴが完了
+          </motion.h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {steps.map((step, index) => (
-            <div key={index} className="relative">
+            <motion.div
+              key={index}
+              className="relative"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+            >
               <div className="bg-white p-8 rounded-xl border border-border h-full">
                 <span className="font-number text-6xl font-semibold text-accent/20 absolute top-4 right-6">{step.number}</span>
                 <h3 className="font-heading text-xl font-bold text-text-primary mb-3 relative z-10">{step.title}</h3>
@@ -299,17 +382,24 @@ function HowItWorks() {
                   </svg>
                 </div>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
 
         <div className="text-center mt-12">
-          <Link href="/create" className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-text-primary font-bold px-8 py-4 rounded-full transition-all hover:-translate-y-1 hover:shadow-lg">
-            無料でロゴを作る
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <Link href="/create" className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-text-primary font-bold px-8 py-4 rounded-full transition-all hover:-translate-y-1 hover:shadow-lg">
+              無料でロゴを作る
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -415,21 +505,38 @@ function Pricing() {
     <section className="py-16 md:py-24 bg-bg-section">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="text-center mb-14">
-          <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase mb-4 block">Pricing</span>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-text-primary">
+          <motion.span
+            className="text-accent font-medium text-sm tracking-[0.1em] uppercase mb-4 block"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >Pricing</motion.span>
+          <motion.h2
+            className="font-heading text-4xl md:text-5xl font-bold text-text-primary"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
             シンプルな料金体系
-          </h2>
+          </motion.h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-[1000px] mx-auto">
           {plans.map((plan, index) => (
-            <div
+            <motion.div
               key={index}
               className={`bg-white rounded-2xl p-8 ${
                 plan.highlight
                   ? 'ring-2 ring-accent shadow-xl scale-105 relative'
                   : 'border border-border'
               }`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: plan.highlight ? 1.08 : 1.03 }}
             >
               {plan.highlight && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-accent text-text-primary text-xs font-bold px-4 py-1 rounded-full">
@@ -464,7 +571,7 @@ function Pricing() {
               >
                 無料で始める
               </Link>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -499,15 +606,35 @@ function Testimonials() {
     <section className="py-16 md:py-24 bg-bg-base">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="text-center mb-14">
-          <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase mb-4 block">Reviews</span>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-text-primary">
+          <motion.span
+            className="text-accent font-medium text-sm tracking-[0.1em] uppercase mb-4 block"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >Reviews</motion.span>
+          <motion.h2
+            className="font-heading text-4xl md:text-5xl font-bold text-text-primary"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
             ご利用者様の声
-          </h2>
+          </motion.h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {reviews.map((review, index) => (
-            <div key={index} className="bg-white p-6 rounded-xl border border-border">
+            <motion.div
+              key={index}
+              className="bg-white p-6 rounded-xl border border-border"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.02 }}
+            >
               <div className="flex gap-1 mb-4">
                 {[...Array(review.rating)].map((_, i) => (
                   <svg key={i} className="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
@@ -520,7 +647,7 @@ function Testimonials() {
                 <div className="font-bold text-text-primary">{review.name}</div>
                 <div className="text-sm text-text-muted">{review.company}</div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -553,15 +680,34 @@ function FAQ() {
     <section className="py-16 md:py-24 bg-bg-section">
       <div className="max-w-[800px] mx-auto px-6">
         <div className="text-center mb-14">
-          <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase mb-4 block">FAQ</span>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-text-primary">
+          <motion.span
+            className="text-accent font-medium text-sm tracking-[0.1em] uppercase mb-4 block"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >FAQ</motion.span>
+          <motion.h2
+            className="font-heading text-4xl md:text-5xl font-bold text-text-primary"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
             よくある質問
-          </h2>
+          </motion.h2>
         </div>
 
         <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <details key={index} className="bg-white rounded-xl border border-border group">
+            <motion.details
+              key={index}
+              className="bg-white rounded-xl border border-border group"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
               <summary className="px-6 py-4 cursor-pointer font-medium text-text-primary flex justify-between items-center">
                 {faq.q}
                 <svg className="w-5 h-5 text-text-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -571,7 +717,7 @@ function FAQ() {
               <div className="px-6 pb-4 text-text-secondary leading-relaxed">
                 {faq.a}
               </div>
-            </details>
+            </motion.details>
           ))}
         </div>
       </div>

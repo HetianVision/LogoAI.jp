@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 export default function CopyrightPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
@@ -45,24 +46,47 @@ export default function CopyrightPage() {
         </div>
 
         <div className="max-w-[800px] mx-auto relative z-10">
-          <nav className="mb-8" aria-label="パンくずリスト">
+          <motion.nav
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="mb-8"
+            aria-label="パンくずリスト"
+          >
             <ol className="flex items-center gap-2 text-sm">
               <li><Link href="/" className="text-text-muted hover:text-primary transition-colors">ホーム</Link></li>
               <li className="text-text-muted">/</li>
               <li aria-current="page" className="text-text-primary font-medium">著作権について</li>
             </ol>
-          </nav>
+          </motion.nav>
 
           <div className="text-center">
-            <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">著作権について</span>
-            <h1 className="font-heading text-3xl md:text-5xl font-bold text-text-primary leading-tight mt-4 mb-5">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className="text-accent font-medium text-sm tracking-[0.1em] uppercase block"
+            >
+              著作権について
+            </motion.span>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="font-heading text-3xl md:text-5xl font-bold text-text-primary leading-tight mt-4 mb-5"
+            >
               有料プランで生成したロゴの<br className="md:hidden" />著作権は、100%あなたのものです。
-            </h1>
-            <p className="text-text-secondary text-base leading-relaxed max-w-[680px] mx-auto mb-10">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-text-secondary text-base leading-relaxed max-w-[680px] mx-auto mb-10"
+            >
               AIが生成したロゴの著作権は誰のものか——これは多くの方が疑問に思う点です。
               LogoAI.jpでは、日本の著作権法と文化庁ガイドラインに基づいて、
               有料プランのユーザーへ著作権が完全帰属する仕組みを構築しています。
-            </p>
+            </motion.p>
 
             {/* 結論サマリーボックス */}
             <div className="grid md:grid-cols-[1fr_auto_1fr] gap-0 border border-border rounded-2xl overflow-hidden text-left shadow-md bg-white max-w-[700px] mx-auto">

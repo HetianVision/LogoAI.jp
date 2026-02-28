@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 export default function HowItWorksPage() {
   const steps = [
@@ -70,19 +71,51 @@ export default function HowItWorksPage() {
       <section className="relative pt-28 pb-12 px-6 bg-bg-base overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/[0.06] rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <nav className="mb-8" aria-label="パンくずリスト">
+          <motion.nav
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="mb-8"
+            aria-label="パンくずリスト"
+          >
             <ol className="flex items-center gap-2 text-sm">
               <li><Link href="/" className="text-text-muted hover:text-primary transition-colors">ホーム</Link></li>
               <li className="text-text-muted">/</li>
               <li aria-current="page" className="text-text-primary font-medium">使い方・生成フロー</li>
             </ol>
-          </nav>
+          </motion.nav>
           <div className="max-w-[880px] mx-auto text-center">
-            <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">使い方・生成フロー</span>
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-text-primary leading-tight mt-4 mb-5">最短10分で、<br />プロ品質のロゴと著作権証明書。</h1>
-            <p className="text-text-secondary text-base leading-relaxed mb-10">ブランド名と業種を入力するだけ。AIが最適なデザインを提案し、気に入ったものを選んでダウンロード년까지、難しい操作は一切ありません。</p>
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-accent font-medium text-sm tracking-[0.1em] uppercase"
+            >
+              使い方・生成フロー
+            </motion.span>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="font-heading text-4xl md:text-5xl font-bold text-text-primary leading-tight mt-4 mb-5"
+            >
+              最短10分で、<br />プロ品質のロゴと著作権証明書。
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-text-secondary text-base leading-relaxed mb-10"
+            >
+              ブランド名と業種を入力するだけ。AIが最適なデザインを提案し、気に入ったものを選んでダウンロード년까지、難しい操作は一切ありません。
+            </motion.p>
 
-            <div className="flex flex-wrap justify-center items-center gap-3 mb-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex flex-wrap justify-center items-center gap-3 mb-10"
+            >
               <div className="flex flex-col items-center gap-1 bg-white border border-border rounded-xl px-5 py-3 min-w-[72px]">
                 <span className="font-number text-xl font-semibold text-primary">2分</span>
                 <span className="text-[10px] text-text-muted font-medium">入力</span>
@@ -102,12 +135,24 @@ export default function HowItWorksPage() {
                 <span className="font-number text-xl font-semibold text-accent">1分</span>
                 <span className="text-[10px] text-text-muted font-medium">完成・証明書</span>
               </div>
-            </div>
-            <div className="text-sm text-text-muted mb-8">合計 <strong className="text-accent font-bold">約10分</strong></div>
-            <div className="flex flex-col items-center gap-2.5">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="text-sm text-text-muted mb-8"
+            >
+              合計 <strong className="text-accent font-bold">約10分</strong>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="flex flex-col items-center gap-2.5"
+            >
               <Link href="/create" className="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-text-primary font-bold text-lg px-10 py-4 rounded-full transition-all hover:-translate-y-1 hover:shadow-lg">今すぐ無料で始める</Link>
               <span className="text-xs text-text-muted">クレジットカード不要・アカウント登録30秒</span>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -117,7 +162,14 @@ export default function HowItWorksPage() {
         <div className="max-w-[1200px] mx-auto">
           <div className="flex items-start justify-center gap-2 md:gap-0">
             {steps.map((step, index) => (
-              <div key={step.num} className={`flex flex-col items-center text-center gap-2.5 flex-1 relative ${step.isFinal ? '' : 'hidden md:block'}`}>
+              <motion.div
+                key={step.num}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.15 }}
+                className={`flex flex-col items-center text-center gap-2.5 flex-1 relative ${step.isFinal ? '' : 'hidden md:block'}`}
+              >
                 <span className="font-number text-[10px] font-bold text-text-muted tracking-[0.1em]">{step.num}</span>
                 <div className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-sm relative z-10 ${step.isFinal ? 'bg-primary border-2 border-primary shadow-md' : 'bg-white border-2 border-border'}`}>
                   {step.icon}
@@ -127,7 +179,7 @@ export default function HowItWorksPage() {
                 {index < steps.length - 1 && (
                   <div className="absolute top-[calc(10px+28px)] left-[calc(50%+28px)] right-[calc(-50%+28px)] h-0.5 hidden md:block" style={{ background: 'repeating-linear-gradient(to right, #C9963A 0, #C9963A 4px, transparent 4px, transparent 10px)' }} />
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -243,28 +295,53 @@ export default function HowItWorksPage() {
       {/* Section 4: Mini FAQ */}
       <section className="py-16 md:py-20 px-6 bg-bg-section">
         <div className="max-w-[1200px] mx-auto">
-          <div className="text-center mb-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-10"
+          >
             <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase block mb-3">よくある疑問</span>
             <h2 className="font-heading text-2xl md:text-3xl font-bold text-text-primary">使い始める前の疑問を解消</h2>
-          </div>
+          </motion.div>
           <div className="grid md:grid-cols-2 gap-5 max-w-[1000px] mx-auto mb-10">
             {faqs.map((faq, index) => (
-              <div key={index} className="bg-white border border-border rounded-xl p-6">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="bg-white border border-border rounded-xl p-6"
+              >
                 <div className="font-bold text-text-primary mb-3 pl-5 relative"><span className="absolute left-0 text-accent font-number font-black">Q</span>{faq.q}</div>
                 <div className="text-sm text-text-secondary leading-relaxed pl-5 relative"><span className="absolute left-0 text-primary font-number font-black">A</span>{faq.a}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
-          <div className="text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="text-center"
+          >
             <Link href="/faq" className="inline-block border border-primary text-primary hover:bg-primary hover:text-white font-medium px-6 py-3 rounded-full transition-all">全てのよくある質問を見る →</Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Section 5: CTA */}
       <section className="py-16 md:py-20 px-6 bg-bg-base">
         <div className="max-w-[800px] mx-auto">
-          <div className="bg-white border border-border rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-white border border-border rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
+          >
             <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-accent/[0.05] rounded-full blur-3xl pointer-events-none" />
             <div className="relative z-10">
               <h2 className="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-4">まず、ためしてみてください。</h2>
@@ -279,7 +356,7 @@ export default function HowItWorksPage() {
                 <span className="flex items-center gap-1"><svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>著作権完全帰属（有料プラン）</span>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 

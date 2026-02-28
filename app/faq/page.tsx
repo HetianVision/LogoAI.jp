@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useRef, useEffect } from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { FAQ_DATA, type FAQCategory } from '@/lib/faq-data'
 
 export default function FAQPage() {
@@ -71,19 +72,51 @@ export default function FAQPage() {
       <section className="relative pt-28 pb-12 px-6 bg-bg-base overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/[0.06] rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <nav className="mb-8" aria-label="パンくずリスト">
+          <motion.nav
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="mb-8"
+            aria-label="パンくずリスト"
+          >
             <ol className="flex items-center gap-2 text-sm">
               <li><Link href="/" className="text-text-muted hover:text-primary transition-colors">ホーム</Link></li>
               <li className="text-text-muted">/</li>
               <li aria-current="page" className="text-text-primary font-medium">よくある質問</li>
             </ol>
-          </nav>
+          </motion.nav>
           <div className="max-w-[680px] mx-auto text-center">
-            <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">よくある質問</span>
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-text-primary leading-tight mt-4 mb-5">ご利用前のご疑問に、<br />全てお答えします。</h1>
-            <p className="text-text-secondary text-base leading-relaxed mb-9">30問以上の質問と回答を掲載しています。キーワードで検索するか、カテゴリから探してください。</p>
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-accent font-medium text-sm tracking-[0.1em] uppercase"
+            >
+              よくある質問
+            </motion.span>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="font-heading text-4xl md:text-5xl font-bold text-text-primary leading-tight mt-4 mb-5"
+            >
+              ご利用前のご疑問に、<br />全てお答えします。
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-text-secondary text-base leading-relaxed mb-9"
+            >
+              30問以上の質問と回答を掲載しています。キーワードで検索するか、カテゴリから探してください。
+            </motion.p>
 
-            <div className="relative max-w-[560px] mx-auto mb-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="relative max-w-[560px] mx-auto mb-6"
+            >
               <form onSubmit={(e) => { e.preventDefault(); if (searchQuery.trim()) handleSearch(searchQuery.trim()) }} role="search">
                 <div className="flex items-center gap-3 bg-white border-2 border-border rounded-2xl p-3.5 md:p-4 shadow-md focus-within:border-accent focus-within:shadow-[0_0_0_4px_rgba(201,150,58,0.1)] transition-all">
                   <svg className="w-5 h-5 text-text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="9" cy="9" r="6" strokeWidth="1.5" /><path d="M13.5 13.5L17 17" strokeWidth="1.5" strokeLinecap="round" /></svg>
@@ -91,33 +124,51 @@ export default function FAQPage() {
                   <kbd className="text-[10px] text-text-muted bg-bg-section border border-border rounded px-1.5 py-0.5 font-mono flex-shrink-0" aria-hidden="true">⌘K</kbd>
                 </div>
               </form>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-wrap justify-center items-center gap-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex flex-wrap justify-center items-center gap-2"
+            >
               <span className="text-xs text-text-muted">よく検索される：</span>
               {popularSearches.map((tag) => (
                 <button key={tag} onClick={() => { setSearchQuery(tag); handleSearch(tag) }} className="text-xs px-3 py-1.5 bg-white border border-border rounded-full text-text-secondary hover:border-primary hover:text-primary transition-colors">{tag}</button>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* カテゴリナビゲーション */}
       <div id="faq-category-nav">
-        <div className="sticky top-16 z-40 bg-[rgba(250,250,247,0.95)] backdrop-blur-xl border-b border-border">
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+          className="sticky top-16 z-40 bg-[rgba(250,250,247,0.95)] backdrop-blur-xl border-b border-border"
+        >
           <div className="max-w-[1200px] mx-auto px-6">
             <nav className="flex gap-1 py-3 overflow-x-auto scrollbar-hide" aria-label="FAQカテゴリ">
-              {FAQ_CATEGORIES.map((cat) => (
-                <button key={cat.id} onClick={() => handleCategoryChange(cat.id)} className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${activeCategory === cat.id ? 'bg-primary text-white' : 'bg-white text-text-secondary border border-border hover:border-primary hover:text-primary'}`}>
+              {FAQ_CATEGORIES.map((cat, index) => (
+                <motion.button
+                  key={cat.id}
+                  onClick={() => handleCategoryChange(cat.id)}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.05 * index }}
+                  whileHover={{ scale: 1.02 }}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${activeCategory === cat.id ? 'bg-primary text-white' : 'bg-white text-text-secondary border border-border hover:border-primary hover:text-primary'}`}
+                >
                   <span>{cat.icon}</span>
                   <span>{cat.label}</span>
                   <span className={`text-xs ${activeCategory === cat.id ? 'text-white/70' : 'text-text-muted'}`}>{cat.count}問</span>
-                </button>
+                </motion.button>
               ))}
             </nav>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* FAQコンテンツ */}
@@ -157,7 +208,14 @@ export default function FAQPage() {
           ) : (
             <div className="space-y-16">
               {FAQ_CATEGORIES.map((category) => (
-                <div key={category.id} ref={(el) => { sectionRefs.current[category.id] = el }}>
+                <motion.div
+                  key={category.id}
+                  ref={(el) => { sectionRefs.current[category.id] = el }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
                   <div className="flex items-center gap-3 mb-6">
                     <span className="text-2xl">{category.icon}</span>
                     <h2 className="font-heading text-2xl font-bold text-text-primary">{category.label}</h2>
@@ -165,7 +223,14 @@ export default function FAQPage() {
                   </div>
                   <div className="space-y-4">
                     {FAQ_DATA.filter((item) => item.category === category.id).map((item) => (
-                      <div key={item.id} className="border border-border rounded-xl bg-white overflow-hidden">
+                      <motion.div
+                        key={item.id}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3 }}
+                        className="border border-border rounded-xl bg-white overflow-hidden"
+                      >
                         <button onClick={() => { const el = document.getElementById(`ans-${item.id}`); if (el) el.classList.toggle('hidden') }} className="w-full flex items-center justify-between p-5 text-left hover:bg-bg-section/50 transition-colors">
                           <span className="font-medium text-text-primary pr-4">{item.question}</span>
                           <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-bg-section text-text-muted">
@@ -177,10 +242,10 @@ export default function FAQPage() {
                             {item.answer.split('。').filter(s => s.trim()).map((sentence, i) => (<p key={i}>{sentence}。</p>))}
                           </div>
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           )}

@@ -18,7 +18,13 @@ export default function AboutPage() {
 
         <div className="max-w-[1200px] mx-auto px-6 relative">
           {/* 面包屑导航 */}
-          <nav className="mb-8" aria-label="パンくずリスト">
+          <motion.nav
+            className="mb-8"
+            aria-label="パンくずリスト"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
             <ol className="flex items-center gap-2 text-sm">
               <li>
                 <Link href="/" className="text-text-muted hover:text-primary transition-colors">
@@ -30,18 +36,35 @@ export default function AboutPage() {
                 私たちについて
               </li>
             </ol>
-          </nav>
+          </motion.nav>
 
           <div className="max-w-[640px] mx-auto text-center">
-            <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">About Us</span>
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-text-primary leading-tight mt-4 mb-6">
+            <motion.span
+              className="text-accent font-medium text-sm tracking-[0.1em] uppercase"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              About Us
+            </motion.span>
+            <motion.h1
+              className="font-heading text-4xl md:text-5xl font-bold text-text-primary leading-tight mt-4 mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               日本のすべての事業者に、<br />プロ品質のブランドを。
-            </h1>
-            <p className="text-lg text-text-secondary leading-relaxed">
+            </motion.h1>
+            <motion.p
+              className="text-lg text-text-secondary leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
               デザイナーに頼む予算がない、それでもブランドを妥協したくない。
               そんな日本中の個人事業主・スタートアップのために、
               LogoAI.jpは生まれました。
-            </p>
+            </motion.p>
           </div>
         </div>
       </section>
@@ -52,7 +75,12 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
             {/* 左：ストーリーテキスト */}
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
               <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">Our Story</span>
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary mt-3 mb-7">
                 なぜ、このサービスを作ったのか
@@ -83,13 +111,19 @@ export default function AboutPage() {
               </div>
 
               {/* ミッションステートメント */}
-              <blockquote className="border-l-4 border-accent pl-6 py-5 bg-accent/5 rounded-r-xl">
+              <motion.blockquote
+                className="border-l-4 border-accent pl-6 py-5 bg-accent/5 rounded-r-xl"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 <p className="font-heading text-lg font-bold text-text-primary leading-relaxed mb-2">
                   「すべての日本の事業者が、ブランドの力を持てる世界を作る」
                 </p>
                 <footer className="text-xs text-text-muted">— LogoAI.jp ミッションステートメント</footer>
-              </blockquote>
-            </div>
+              </motion.blockquote>
+            </motion.div>
 
             {/* 右：視覚的要素（数字カード積み重ね） */}
             <div className="relative h-[360px] lg:h-[400px]">

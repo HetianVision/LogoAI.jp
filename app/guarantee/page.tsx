@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import BottomCTA from '@/components/BottomCTA'
 
 // Section 1: Page Hero
@@ -17,23 +18,34 @@ function PageHero() {
       }} />
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-        <nav className="mb-8" aria-label="パンくずリスト">
+        <motion.nav
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="mb-8"
+          aria-label="パンくずリスト"
+        >
           <ol className="flex gap-2 text-sm text-text-muted list-none p-0">
             <li><Link href="/" className="hover:text-primary transition-colors">ホーム</Link></li>
             <li><span className="mx-2 opacity-40">/</span></li>
             <li className="text-text-secondary" aria-current="page">返金保証</li>
           </ol>
-        </nav>
+        </motion.nav>
 
         <div className="max-w-[600px] mx-auto text-center">
-          <div className="flex justify-center mb-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-center mb-4"
+          >
             <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
               <path d="M40 8L10 22v24c0 18 10.67 34.8 30 40 19.33-5.2 30-22 30-40V22L40 8z"
                     fill="rgba(26,58,42,0.08)" stroke="#1A3A2A" strokeWidth="2"/>
               <path d="M28 40l9 9 18-20" stroke="#C9963A" strokeWidth="3"
                     strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-          </div>
+          </motion.div>
 
           <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">返金保証</span>
           <h1 className="font-heading text-4xl font-bold text-text-primary leading-tight mt-3 mb-5">

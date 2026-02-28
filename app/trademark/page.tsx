@@ -43,25 +43,48 @@ export default function TrademarkPage() {
         <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-accent/[0.04] rounded-full blur-3xl -translate-y-1/2 -translate-x-1/3 pointer-events-none" />
         <div className="max-w-[1200px] mx-auto relative z-10">
           {/* Breadcrumb */}
-          <nav className="mb-8" aria-label="パンくずリスト">
+          <motion.nav
+            className="mb-8"
+            aria-label="パンくずリスト"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
             <ol className="flex items-center gap-2 text-sm">
               <li><Link href="/" className="text-text-muted hover:text-primary transition-colors">ホーム</Link></li>
               <li className="text-text-muted">/</li>
               <li aria-current="page" className="text-text-primary font-medium">商標登録について</li>
             </ol>
-          </nav>
+          </motion.nav>
 
           <div className="max-w-[680px] mx-auto text-center">
-            <span className="text-primary font-medium text-sm tracking-[0.1em] uppercase">商標登録について</span>
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-text-primary leading-tight mt-4 mb-5">
+            <motion.span
+              className="text-primary font-medium text-sm tracking-[0.1em] uppercase"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              商標登録について
+            </motion.span>
+            <motion.h1
+              className="font-heading text-4xl md:text-5xl font-bold text-text-primary leading-tight mt-4 mb-5"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               AIで作ったロゴでも、<br className="md:hidden" />商標登録できます。
-            </h1>
-            <p className="text-text-secondary text-base leading-relaxed mb-8">
+            </motion.h1>
+            <motion.p
+              className="text-text-secondary text-base leading-relaxed mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
               有料プランで生成したロゴは著作権がユーザーへ帰属し、
               商標登録申請に利用できます。
               プレミアムプランでは、J-PlatPatとのAI連携による
               商標類似チェック機能も搭載しています。
-            </p>
+            </motion.p>
 
             {/* 3つのポイント */}
             <div className="flex flex-col gap-2.5 text-left max-w-[480px] mx-auto mb-8 p-6 bg-white border border-border rounded-2xl shadow-sm">
@@ -96,13 +119,35 @@ export default function TrademarkPage() {
       <section className="py-16 md:py-24 px-6 bg-bg-section">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-12">
-            <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">基礎知識</span>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary mt-3 mb-4">商標登録とは何か、なぜ必要か</h2>
+            <motion.span
+              className="text-accent font-medium text-sm tracking-[0.1em] uppercase"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              基礎知識
+            </motion.span>
+            <motion.h2
+              className="font-heading text-3xl md:text-4xl font-bold text-text-primary mt-3 mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              商標登録とは何か、なぜ必要か
+            </motion.h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-[1100px] mx-auto">
             {/* Card 1 */}
-            <div className="bg-white border border-border rounded-2xl p-7 flex flex-col gap-4">
+            <motion.div
+              className="bg-white border border-border rounded-2xl p-7 flex flex-col gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
               <div className="text-3xl">🛡️</div>
               <h3 className="font-heading text-xl font-bold text-text-primary">商標登録とは</h3>
               <p className="text-sm text-text-secondary leading-relaxed">
@@ -115,10 +160,16 @@ export default function TrademarkPage() {
                 <span className="text-xs font-bold text-text-muted uppercase tracking-wider">商標権を取得すると</span>
                 <span className="text-xs text-text-secondary leading-relaxed">登録した商标を他者が無断使用した場合、使用停止・損害賠償を請求できます</span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 2 */}
-            <div className="bg-white border border-border rounded-2xl p-7 flex flex-col gap-4">
+            <motion.div
+              className="bg-white border border-border rounded-2xl p-7 flex flex-col gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <div className="text-3xl">⚠️</div>
               <h3 className="font-heading text-xl font-bold text-text-primary">登録しないリスク</h3>
               <p className="text-sm text-text-secondary leading-relaxed">
@@ -132,10 +183,16 @@ export default function TrademarkPage() {
                 <span className="text-xs font-bold text-text-muted uppercase tracking-wider">実際にあるケース</span>
                 <span className="text-xs text-text-secondary leading-relaxed">長年使っていたロゴと同じ商標を第三者が登録し、使用停止を余儀なくされた</span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 3 */}
-            <div className="bg-white border border-border rounded-2xl p-7 flex flex-col gap-4">
+            <motion.div
+              className="bg-white border border-border rounded-2xl p-7 flex flex-col gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
               <div className="text-3xl">📋</div>
               <h3 className="font-heading text-xl font-bold text-text-primary">申請から登録まで</h3>
               <p className="text-sm text-text-secondary leading-relaxed">
@@ -148,7 +205,7 @@ export default function TrademarkPage() {
               <a href="https://www.j-platpat.inpit.go.jp/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-primary underline">
                 特許庁 J-PlatPat →
               </a>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

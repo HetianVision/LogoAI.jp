@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import BottomCTA from '@/components/BottomCTA'
 
 // Page Hero Section
@@ -18,32 +19,60 @@ function PageHero() {
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         {/* Breadcrumb */}
-        <nav className="mb-8" aria-label="パンくずリスト">
+        <motion.nav
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="mb-8"
+          aria-label="パンくずリスト"
+        >
           <ol className="flex gap-2 text-sm text-text-muted list-none p-0">
             <li><Link href="/" className="hover:text-primary transition-colors">ホーム</Link></li>
             <li><span className="mx-2 opacity-40">/</span></li>
             <li className="text-text-secondary" aria-current="page">機能一覧</li>
           </ol>
-        </nav>
+        </motion.nav>
 
         <div className="max-w-[720px]">
-          <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">すべての機能</span>
-          <h1 className="font-heading text-5xl md:text-6xl font-bold text-text-primary leading-tight mt-4 mb-6">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-accent font-medium text-sm tracking-[0.1em] uppercase"
+          >
+            すべての機能
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="font-heading text-5xl md:text-6xl font-bold text-text-primary leading-tight mt-4 mb-6"
+          >
             日本語ロゴのための、<br />すべてが揃っている
-          </h1>
-          <p className="text-lg text-text-secondary leading-relaxed mb-10 max-w-[600px]">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-lg text-text-secondary leading-relaxed mb-10 max-w-[600px]"
+          >
             フォント・著作権・商標・ブランドガイドライン・ファイル形式。
             ロゴ作成に必要なものを、ひとつのサービスで完結。
             海外ツールでは実現できない、日本市場特化の機能群をお楽しみください。
-          </p>
-          <div className="flex flex-wrap gap-4">
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex flex-wrap gap-4"
+          >
             <Link href="/create" className="bg-accent hover:bg-accent-dark text-text-primary font-bold text-lg px-8 py-4 rounded-full transition-all hover:-translate-y-1 hover:shadow-lg">
               無料でロゴを作る
             </Link>
             <Link href="/pricing" className="border border-primary text-primary hover:bg-primary hover:text-text-inverse font-medium px-6 py-4 rounded-full transition-all">
               料金プランを見る
             </Link>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -62,13 +91,22 @@ function FeaturesNav() {
   ]
 
   return (
-    <section className="sticky top-16 z-40 bg-bg-section border-b border-border">
+    <motion.section
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: 0.2 }}
+      className="sticky top-16 z-40 bg-bg-section border-b border-border"
+    >
       <div className="max-w-[1200px] mx-auto">
         <div className="flex">
           {features.map((feature, index) => (
-            <a
+            <motion.a
               key={feature.id}
               href={`#${feature.id}`}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 * index }}
+              whileHover={{ scale: 1.02 }}
               className={`flex items-center gap-2.5 px-4 py-4 text-text-secondary hover:text-primary border-r border-border transition-all relative group flex-1 justify-center ${index === features.length - 1 ? 'border-r-0' : ''}`}
             >
               <div className="w-7 h-7 bg-primary/10 rounded-md flex items-center justify-center text-primary text-sm font-bold">
@@ -82,11 +120,11 @@ function FeaturesNav() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
               <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform" />
-            </a>
+            </motion.a>
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
 
@@ -105,7 +143,12 @@ function JapaneseFonts() {
     <section id="japanese-fonts" className="py-20 md:py-28 bg-bg-base">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">日本語フォント</span>
             <h2 className="font-heading text-4xl font-bold text-text-primary mt-4 mb-6">
               日本、ビジネスに<br />最適化されたフォント
@@ -135,13 +178,21 @@ function JapaneseFonts() {
                 フォント太さや文字間も調整可能
               </li>
             </ul>
-          </div>
+          </motion.div>
           <div className="grid grid-cols-2 gap-4">
             {fonts.map((font, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl border border-border hover:shadow-md transition-shadow">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+                className="bg-white p-6 rounded-xl border border-border hover:shadow-md transition-shadow"
+              >
                 <div className="text-2xl text-primary mb-2" style={{ fontFamily: 'Noto Serif JP' }}>{font.sample}</div>
                 <div className="text-xs text-text-muted">{font.name}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -449,7 +500,13 @@ function FileFormats() {
   return (
     <section id="file-formats" className="py-20 md:py-28 bg-bg-section">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
           <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">ファイル形式</span>
           <h2 className="font-heading text-4xl font-bold text-text-primary mt-4 mb-6">
             すべての形式で<br />ダウンロード可能
@@ -458,17 +515,25 @@ function FileFormats() {
             WEB用・印刷用・加工用など、用途に合わせたファイル形式を選択できます。
             SVG・AI・EPS形式は自由に拡大縮小でき、インク印刷劣化しません。
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {formats.map((format, index) => (
-            <div key={index} className="bg-white p-6 rounded-xl border border-border text-center hover:shadow-md transition-shadow">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-xl border border-border text-center hover:shadow-md transition-shadow"
+            >
               <div className={`w-12 h-12 ${format.color} rounded-lg mx-auto mb-3 flex items-center justify-center`}>
                 <span className="font-bold text-primary">{format.name.charAt(0)}</span>
               </div>
               <div className="font-bold text-text-primary mb-1">{format.name}</div>
               <div className="text-xs text-text-muted">{format.desc}</div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

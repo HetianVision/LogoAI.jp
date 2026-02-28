@@ -106,23 +106,44 @@ export default function WorksPage() {
         </div>
 
         <div className="max-w-[1200px] mx-auto relative z-10">
-          <nav className="mb-8" aria-label="パンくずリスト">
+          <motion.nav
+            className="mb-8"
+            aria-label="パンくずリスト"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
             <ol className="flex items-center gap-2 text-sm">
               <li><Link href="/" className="text-text-muted hover:text-primary transition-colors">ホーム</Link></li>
               <li className="text-text-muted">/</li>
               <li aria-current="page" className="text-text-primary font-medium">生成事例</li>
             </ol>
-          </nav>
+          </motion.nav>
 
           <div className="max-w-[680px] mx-auto text-center">
-            <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">生成事例</span>
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-text-primary leading-tight mt-4 mb-5">
-              AIが生成した<br />日本語ロゴ、全て実例です。
-            </h1>
-            <p className="text-text-secondary text-base leading-relaxed mb-12">
+            <motion.span
+              className="text-accent font-medium text-sm tracking-[0.1em] uppercase"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >生成事例</motion.span>
+            <motion.h1
+              className="font-heading text-4xl md:text-5xl font-bold text-text-primary leading-tight mt-4 mb-5"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              AIが生成した<br />日本語ロゴは全て実例です。
+            </motion.h1>
+            <motion.p
+              className="text-text-secondary text-base leading-relaxed mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
               実際のユーザーが当サービスで生成したロゴをご紹介します。
               業種・スタイル・フォントで絞り込んで、理想のイメージを見つけてください。
-            </p>
+            </motion.p>
 
             <div className="flex items-center justify-center gap-0 bg-white border border-border rounded-2xl p-6 md:p-8 shadow-sm flex-wrap">
               <div className="flex flex-col items-center gap-1.5 px-4 md:px-9">
@@ -208,11 +229,16 @@ export default function WorksPage() {
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="columns-1 md:columns-2 lg:columns-3 gap-5">
             {displayed.map((item) => (
-              <article
+              <motion.article
                 key={item.id}
                 className="break-inside-avoid mb-5 rounded-xl overflow-hidden bg-white border border-border shadow-sm hover:shadow-xl transition-all hover:-translate-y-1"
                 data-industry={item.industry}
                 data-style={item.style}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                whileHover={{ scale: 1.02 }}
               >
                 <div className="relative overflow-hidden bg-bg-section">
                   <img
@@ -270,7 +296,7 @@ export default function WorksPage() {
                     ))}
                   </div>
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
 

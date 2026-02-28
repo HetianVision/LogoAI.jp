@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 export default function ContactPage() {
   const [isRefund, setIsRefund] = useState(false)
@@ -107,18 +108,36 @@ export default function ContactPage() {
       {/* ヒーロー */}
       <section className="pt-28 pb-9 px-6 bg-bg-base border-b border-border">
         <div className="max-w-[1200px] mx-auto">
-          <nav className="mb-8" aria-label="パンくずリスト">
+          <motion.nav
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="mb-8"
+            aria-label="パンくずリスト"
+          >
             <ol className="flex items-center gap-2 text-sm">
               <li><Link href="/" className="text-text-muted hover:text-primary transition-colors">ホーム</Link></li>
               <li className="text-text-muted">/</li>
               <li aria-current="page" className="text-text-primary font-medium">お問い合わせ</li>
             </ol>
-          </nav>
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-text-primary mt-2 mb-3">お問い合わせ</h1>
-          <p className="text-text-secondary text-base leading-relaxed">
+          </motion.nav>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-heading text-4xl md:text-5xl font-bold text-text-primary mt-2 mb-3"
+          >
+            お問い合わせ
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-text-secondary text-base leading-relaxed"
+          >
             ご質問・ご要望・返金申請など、お気軽にお問い合わせください。<br />
             通常、<strong>1〜2営業日以内</strong>にメールにてご回答します。
-          </p>
+          </motion.p>
         </div>
       </section>
 
@@ -128,7 +147,12 @@ export default function ContactPage() {
           <div className="grid grid-cols-[320px_1fr] gap-12 max-lg:grid-cols-1">
 
             {/* 左：よくある問い合わせへのショートカット */}
-            <div className="lg:sticky lg:top-24 lg:self-start">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="lg:sticky lg:top-24 lg:self-start"
+            >
               <h2 className="font-heading text-xl font-bold text-text-primary mb-2">よくあるお問い合わせ</h2>
               <p className="text-sm text-text-secondary mb-5">
                 以下の場合は、対応ページで解決できることがあります。
@@ -177,10 +201,15 @@ export default function ContactPage() {
                   翌営業日以降に対応いたします。
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* 右：お問い合わせフォーム */}
-            <div className="max-w-[580px]">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="max-w-[580px]"
+            >
               <h2 className="font-heading text-xl font-bold text-text-primary mb-6">お問い合わせフォーム</h2>
 
               {/* 送信前フォーム */}
@@ -344,7 +373,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
