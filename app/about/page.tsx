@@ -547,20 +547,20 @@ export default function AboutPage() {
             <table className="w-full border-collapse bg-white">
               <tbody>
                 <tr className="border-b border-border">
-                  <th scope="row" className="w-[220px] px-6 py-4.5 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">サービス名</th>
-                  <td className="px-6 py-4.5 text-sm text-text-primary align-top">LogoAI.jp（ロゴエーアイジェーピー）</td>
+                  <th scope="row" className="w-[220px] px-6 py-6 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">サービス名</th>
+                  <td className="px-6 py-6 text-sm text-text-primary align-top">LogoAI.jp（ロゴエーアイジェーピー）</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <th scope="row" className="px-6 py-4.5 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">運営会社</th>
-                  <td className="px-6 py-4.5 text-sm text-text-primary align-top">株式会社ロゴエーアイ</td>
+                  <th scope="row" className="px-6 py-6 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">運営会社</th>
+                  <td className="px-6 py-6 text-sm text-text-primary align-top">株式会社ロゴエーアイ</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <th scope="row" className="px-6 py-4.5 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">設立</th>
-                  <td className="px-6 py-4.5 text-sm text-text-primary align-top">2024年4月</td>
+                  <th scope="row" className="px-6 py-6 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">設立</th>
+                  <td className="px-6 py-6 text-sm text-text-primary align-top">2024年4月</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <th scope="row" className="px-6 py-4.5 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">所在地</th>
-                  <td className="px-6 py-4.5 text-sm text-text-primary align-top leading-relaxed">
+                  <th scope="row" className="px-6 py-6 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">所在地</th>
+                  <td className="px-6 py-6 text-sm text-text-primary align-top leading-relaxed">
                     〒150-0001 東京都渋谷区神宮前X-XX-XX<br />
                     <span className="text-xs text-text-muted">
                       ※ 個別の来訪・窓口対応はございません。お問い合わせはメールにてお願いします。
@@ -568,27 +568,27 @@ export default function AboutPage() {
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <th scope="row" className="px-6 py-4.5 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">代表者</th>
-                  <td className="px-6 py-4.5 text-sm text-text-primary align-top">代表取締役 山田 太郎（仮名）</td>
+                  <th scope="row" className="px-6 py-6 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">代表者</th>
+                  <td className="px-6 py-6 text-sm text-text-primary align-top">代表取締役 山田 太郎（仮名）</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <th scope="row" className="px-6 py-4.5 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">資本金</th>
-                  <td className="px-6 py-4.5 text-sm text-text-primary align-top">1,000万円</td>
+                  <th scope="row" className="px-6 py-6 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">資本金</th>
+                  <td className="px-6 py-6 text-sm text-text-primary align-top">1,000万円</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <th scope="row" className="px-6 py-4.5 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">事業内容</th>
-                  <td className="px-6 py-4.5 text-sm text-text-primary align-top leading-relaxed">
+                  <th scope="row" className="px-6 py-6 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">事業内容</th>
+                  <td className="px-6 py-6 text-sm text-text-primary align-top leading-relaxed">
                     AIを活用したロゴ作成サービスの開発・運営<br />
                     ブランドアイデンティティ支援ツールの提供
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <th scope="row" className="px-6 py-4.5 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">適格請求書発行事業者番号</th>
-                  <td className="px-6 py-4.5 text-sm text-text-primary align-top">T1234567890123</td>
+                  <th scope="row" className="px-6 py-6 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">適格請求書発行事業者番号</th>
+                  <td className="px-6 py-6 text-sm text-text-primary align-top">T1234567890123</td>
                 </tr>
                 <tr className="border-b border-border">
-                  <th scope="row" className="px-6 py-4.5 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">お問い合わせ</th>
-                  <td className="px-6 py-4.5 text-sm text-text-primary align-top leading-relaxed">
+                  <th scope="row" className="px-6 py-6 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">お問い合わせ</th>
+                  <td className="px-6 py-6 text-sm text-text-primary align-top leading-relaxed">
                     <a href="mailto:support@logoai.jp" className="text-primary underline">support@logoai.jp</a><br />
                     <span className="text-xs text-text-muted">
                       平日 10:00〜18:00（土日祝除く ※メール受付は24時間）
@@ -596,20 +596,20 @@ export default function AboutPage() {
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <th scope="row" className="px-6 py-4.5 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">プライバシーポリシー</th>
-                  <td className="px-6 py-4.5 text-sm text-primary align-top">
+                  <th scope="row" className="px-6 py-6 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">プライバシーポリシー</th>
+                  <td className="px-6 py-6 text-sm text-primary align-top">
                     <a href="/privacy" className="underline">プライバシーポリシー →</a>
                   </td>
                 </tr>
                 <tr className="border-b border-border">
-                  <th scope="row" className="px-6 py-4.5 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">利用規約</th>
-                  <td className="px-6 py-4.5 text-sm text-primary align-top">
+                  <th scope="row" className="px-6 py-6 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">利用規約</th>
+                  <td className="px-6 py-6 text-sm text-primary align-top">
                     <a href="/terms" className="underline">利用規約 →</a>
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row" className="px-6 py-4.5 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">特定商取引法に基づく表記</th>
-                  <td className="px-6 py-4.5 text-sm text-primary align-top">
+                  <th scope="row" className="px-6 py-6 text-left text-sm font-bold text-text-secondary bg-bg-section align-top whitespace-nowrap">特定商取引法に基づく表記</th>
+                  <td className="px-6 py-6 text-sm text-primary align-top">
                     <a href="/tokutei" className="underline">特定商取引法表記 →</a>
                   </td>
                 </tr>
@@ -682,7 +682,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <Link href="/create" className="bg-accent hover:bg-accent-dark text-text-primary font-bold px-8 py-4 rounded-full transition-all hover:-translate-y-1 hover:shadow-lg inline-flex items-center gap-2">
+                <Link href="/create" className="bg-accent hover:bg-accent-dark text-text-primary font-bold px-6 py-4 rounded-full transition-all hover:-translate-y-1 hover:shadow-lg inline-flex items-center gap-2">
                   無料でロゴを作る →
                 </Link>
                 <Link href="/works" className="border border-white text-white hover:bg-white hover:text-primary font-medium px-6 py-4 rounded-full transition-all inline-block">
