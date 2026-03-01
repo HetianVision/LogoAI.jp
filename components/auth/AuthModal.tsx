@@ -1,8 +1,20 @@
 'use client'
 
-import { useState, FormEvent, useEffect } from 'react'
+import { useState, FormEvent, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuthStore } from './auth-modal'
+
+// Password strength calculator
+function calculatePasswordStrength(password: string): { level: 'weak' | 'fair' | 'strong' | ''; label: string } {
+  if (password.length === 0) return { level: '', label: '' }
+  if (password.length < 8 || !/[a-zA-Z]/.test(password) || !/[0-9]/.test(password)) {
+    return { level: 'weak', label: '弱い' }
+  }
+  if (password.length < 12) {
+    return { level: 'fair', label: '普通' }
+  }
+  return { level: 'strong', label: '強い' }
+}
 
 export default function AuthModal() {
   const {
@@ -22,15 +34,36 @@ export default function AuthModal() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [passwordStrength, setPasswordStrength] = useState<{ level: 'weak' | 'fair' | 'strong' | ''; label: string }>({ level: '', label: '' })
 
   // Reset form when modal closes or mode changes
   useEffect(() => {
     if (!isOpen) {
       setEmail('')
       setPassword('')
+      setPasswordStrength({ level: '', label: '' })
       clearMessages()
     }
   }, [isOpen, mode, clearMessages])
+
+  // Password strength calculation
+  useEffect(() => {
+    if (mode === 'register') {
+      setPasswordStrength(calculatePasswordStrength(password))
+    }
+  }, [password, mode])
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -48,12 +81,16 @@ export default function AuthModal() {
     }
   }
 
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value)
+  }
+
   const getTitle = () => {
     switch (mode) {
       case 'login':
-        return 'ログインして購入を続ける'
+        return 'おかえりなさい'
       case 'register':
-        return '新規登録'
+        return 'アカウント作成'
       case 'reset-password':
         return 'パスワードをリセット'
     }
@@ -62,11 +99,11 @@ export default function AuthModal() {
   const getDescription = () => {
     switch (mode) {
       case 'login':
-        return '著作権証明書の送付先メールアドレスの確認のため、ログインが必要です。'
+        return 'ログインして購入済みロゴを管理しましょう。'
       case 'register':
-        return 'アカウントを作成して、ロゴを購入・管理しましょう。'
+        return '30秒で登録完了。購入済みロゴと著作権証明書を管理できます。'
       case 'reset-password':
-        return '登録したメールアドレスを入力してください。パスワードリセット手順を送信します。'
+        return '登録したメールアドレスを入力してください。パスワード再設定用のリンクをお送りします。'
     }
   }
 
@@ -76,7 +113,7 @@ export default function AuthModal() {
       case 'login':
         return 'ログイン'
       case 'register':
-        return '新規登録'
+        return 'アカウントを作成する'
       case 'reset-password':
         return 'リセットメールを送信'
     }
@@ -120,13 +157,13 @@ export default function AuthModal() {
             </button>
 
             {/* Tabs */}
-            <div className="am-tabs" role="tablist">
+            <div className="am-tabs" role="tablist" aria-label="ログイン・新規登録">
               <button
                 type="button"
                 className={`am-tab ${mode === 'login' ? 'am-tab-active' : ''}`}
                 role="tab"
                 aria-selected={mode === 'login'}
-                aria-controls="am-login"
+                aria-controls="am-panel-login"
                 id="tab-login"
                 onClick={() => setMode('login')}
               >
@@ -137,7 +174,7 @@ export default function AuthModal() {
                 className={`am-tab ${mode === 'register' ? 'am-tab-active' : ''}`}
                 role="tab"
                 aria-selected={mode === 'register'}
-                aria-controls="am-register"
+                aria-controls="am-panel-register"
                 id="tab-register"
                 onClick={() => setMode('register')}
               >
@@ -145,128 +182,305 @@ export default function AuthModal() {
               </button>
             </div>
 
-            {/* Form Panel */}
-            <div className="am-panel" role="tabpanel" aria-labelledby={`tab-${mode}`}>
-              <h2 id="auth-modal-title" className="am-title">
-                {getTitle()}
-              </h2>
-              <p className="am-desc">{getDescription()}</p>
-
-              {/* Error Message */}
-              {error && (
+            {/* Login Panel */}
+            {mode === 'login' && (
                 <motion.div
-                  className="am-form-error"
-                  role="alert"
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  key="login-panel"
+                  className="am-panel"
+                  role="tabpanel"
+                  aria-labelledby="tab-login"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  {error}
-                </motion.div>
-              )}
+                  <h2 id="auth-modal-title" className="am-title">
+                    {getTitle()}
+                  </h2>
+                  <p className="am-desc">{getDescription()}</p>
 
-              {/* Success Message */}
-              {successMessage && (
-                <motion.div
-                  className="am-form-success"
-                  role="status"
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  {successMessage}
-                </motion.div>
-              )}
+                  {/* Error Message */}
+                  {error && (
+                    <motion.div
+                      className="am-form-error"
+                      role="alert"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                    >
+                      {error}
+                    </motion.div>
+                  )}
 
-              <form className="am-form" onSubmit={handleSubmit} noValidate>
-                {/* Email Field */}
-                <div className="form-field">
-                  <label htmlFor="auth-email" className="field-label">
-                    メールアドレス
-                    <span className="field-required">必須</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="auth-email"
-                    name="email"
-                    className="field-input"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    autoComplete="email"
-                    placeholder="例）yamamoto@example.com"
-                  />
-                </div>
-
-                {/* Password Field (not shown for reset password) */}
-                {mode !== 'reset-password' && (
-                  <div className="form-field">
-                    <label htmlFor="auth-password" className="field-label">
-                      パスワード
-                      <span className="field-required">必須</span>
-                    </label>
-                    <div className="password-wrap">
+                  <form className="am-form" onSubmit={handleSubmit} noValidate>
+                    {/* Email Field */}
+                    <div className="form-field">
+                      <label htmlFor="login-email" className="field-label">
+                        メールアドレス
+                        <span className="field-required" aria-label="必須">必須</span>
+                      </label>
                       <input
-                        type={showPassword ? 'text' : 'password'}
-                        id="auth-password"
-                        name="password"
+                        type="email"
+                        id="login-email"
+                        name="email"
                         className="field-input"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
-                        autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
-                        minLength={8}
+                        autoComplete="email"
+                        placeholder="例）yamamoto@example.com"
                       />
-                      <button
-                        type="button"
-                        className="pw-toggle"
-                        onClick={() => setShowPassword(!showPassword)}
-                        aria-label={showPassword ? 'パスワードを隠す' : 'パスワードを表示'}
-                      >
-                        {showPassword ? '👁' : '👁‍🗨'}
-                      </button>
                     </div>
-                    {mode === 'login' && (
-                      <button
-                        type="button"
-                        className="field-link"
-                        onClick={() => setMode('reset-password')}
-                        style={{ marginTop: '8px', display: 'inline-block' }}
-                      >
-                        パスワードをお忘れですか？
-                      </button>
-                    )}
-                  </div>
-                )}
 
-                {/* Register: Back to login link */}
-                {mode === 'reset-password' && (
+                    {/* Password Field */}
+                    <div className="form-field">
+                      <label htmlFor="login-password" className="field-label">
+                        パスワード
+                        <span className="field-required" aria-label="必須">必須</span>
+                      </label>
+                      <div className="password-wrap">
+                        <input
+                          type={showPassword ? 'text' : 'password'}
+                          id="login-password"
+                          name="password"
+                          className="field-input"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          required
+                          autoComplete="current-password"
+                          placeholder="パスワードを入力"
+                        />
+                        <button
+                          type="button"
+                          className="pw-toggle"
+                          onClick={() => setShowPassword(!showPassword)}
+                          aria-label={showPassword ? 'パスワードを非表示' : 'パスワードを表示'}
+                        >
+                          {showPassword ? '👁' : '👁‍🗨'}
+                        </button>
+                      </div>
+                      <div className="field-footer">
+                        <button
+                          type="button"
+                          className="field-link-btn"
+                          onClick={() => setMode('reset-password')}
+                        >
+                          パスワードをお忘れの方
+                        </button>
+                      </div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="btn-auth-submit"
+                      disabled={isLoading}
+                    >
+                      {getSubmitText()}
+                    </button>
+                  </form>
+
+                  <div className="am-switch">
+                    アカウントをお持ちでない方は
+                    <button type="button" className="am-switch-btn" onClick={() => setMode('register')}>
+                      新規登録
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Register Panel */}
+              {mode === 'register' && (
+                <motion.div
+                  key="register-panel"
+                  className="am-panel"
+                  role="tabpanel"
+                  aria-labelledby="tab-register"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <h2 className="am-title">{getTitle()}</h2>
+                  <p className="am-desc">{getDescription()}</p>
+
+                  {/* Error Message */}
+                  {error && (
+                    <motion.div
+                      className="am-form-error"
+                      role="alert"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                    >
+                      {error}
+                    </motion.div>
+                  )}
+
+                  <form className="am-form" onSubmit={handleSubmit} noValidate>
+                    {/* Email Field */}
+                    <div className="form-field">
+                      <label htmlFor="reg-email" className="field-label">
+                        メールアドレス
+                        <span className="field-required" aria-label="必須">必須</span>
+                      </label>
+                      <input
+                        type="email"
+                        id="reg-email"
+                        name="email"
+                        className="field-input"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        autoComplete="email"
+                        placeholder="例）yamamoto@example.com"
+                      />
+                    </div>
+
+                    {/* Password Field */}
+                    <div className="form-field">
+                      <label htmlFor="reg-password" className="field-label">
+                        パスワード
+                        <span className="field-required" aria-label="必須">必須</span>
+                      </label>
+                      <div className="password-wrap">
+                        <input
+                          type={showPassword ? 'text' : 'password'}
+                          id="reg-password"
+                          name="password"
+                          className="field-input"
+                          value={password}
+                          onChange={handlePasswordChange}
+                          required
+                          minLength={8}
+                          autoComplete="new-password"
+                          placeholder="8文字以上"
+                          aria-describedby="reg-pw-hint"
+                        />
+                        <button
+                          type="button"
+                          className="pw-toggle"
+                          onClick={() => setShowPassword(!showPassword)}
+                          aria-label={showPassword ? 'パスワードを非表示' : 'パスワードを表示'}
+                        >
+                          {showPassword ? '👁' : '👁‍🗨'}
+                        </button>
+                      </div>
+                      <span id="reg-pw-hint" className="field-hint">
+                        8文字以上、英字と数字を含めてください
+                      </span>
+                    </div>
+
+                    {/* Password Strength Indicator */}
+                    {mode === 'register' && (
+                      <div className="pw-strength" aria-live="polite">
+                        <div className="pws-bar">
+                          <div className={`pws-fill ${passwordStrength.level}`} />
+                        </div>
+                        <span className="pws-label">{passwordStrength.label}</span>
+                      </div>
+                    )}
+
+                    <p className="am-terms-note">
+                      登録することで
+                      <a href="/terms" target="_blank" rel="noopener">利用規約</a>
+                      ・
+                      <a href="/privacy" target="_blank" rel="noopener">プライバシーポリシー</a>
+                      に同意したものとみなします。
+                    </p>
+
+                    <button
+                      type="submit"
+                      className="btn-auth-submit"
+                      disabled={isLoading}
+                    >
+                      {getSubmitText()}
+                    </button>
+                  </form>
+
+                  <div className="am-switch">
+                    すでにアカウントをお持ちの方は
+                    <button type="button" className="am-switch-btn" onClick={() => setMode('login')}>
+                      ログイン
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Reset Password Panel */}
+              {mode === 'reset-password' && (
+                <motion.div
+                  key="reset-panel"
+                  className="am-panel"
+                  role="tabpanel"
+                  aria-labelledby="tab-login"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.2 }}
+                >
                   <button
                     type="button"
-                    className="field-link"
+                    className="am-back-btn"
                     onClick={() => setMode('login')}
-                    style={{ marginBottom: '16px', display: 'inline-block' }}
                   >
-                    ← ログイン画面に戻る
+                    ← ログインに戻る
                   </button>
-                )}
 
-                {/* Register: Terms note */}
-                {mode === 'register' && (
-                  <p className="am-terms-note">
-                    登録することで、
-                    <a href="/terms">利用規約</a>と
-                    <a href="/privacy">プライバシーポリシー</a>に同意します。
-                  </p>
-                )}
+                  <h2 className="am-title">{getTitle()}</h2>
+                  <p className="am-desc">{getDescription()}</p>
 
-                <button
-                  type="submit"
-                  className="btn-auth-submit"
-                  disabled={isLoading}
-                >
-                  {getSubmitText()}
-                </button>
-              </form>
-            </div>
+                  {/* Error Message */}
+                  {error && (
+                    <motion.div
+                      className="am-form-error"
+                      role="alert"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                    >
+                      {error}
+                    </motion.div>
+                  )}
+
+                  {/* Success Message */}
+                  {successMessage && (
+                    <motion.div
+                      className="am-form-success"
+                      role="status"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                    >
+                      ✓ {successMessage}
+                      <br />届かない場合は迷惑メールフォルダもご確認ください。
+                    </motion.div>
+                  )}
+
+                  <form className="am-form" onSubmit={handleSubmit} noValidate>
+                    <div className="form-field">
+                      <label htmlFor="reset-email" className="field-label">
+                        メールアドレス
+                        <span className="field-required" aria-label="必須">必須</span>
+                      </label>
+                      <input
+                        type="email"
+                        id="reset-email"
+                        name="email"
+                        className="field-input"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        autoComplete="email"
+                        placeholder="登録したメールアドレス"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="btn-auth-submit"
+                      disabled={isLoading}
+                    >
+                      {getSubmitText()}
+                    </button>
+                  </form>
+                </motion.div>
+              )}
           </motion.div>
 
           <style jsx>{`
@@ -291,9 +505,15 @@ export default function AuthModal() {
               position: absolute;
               background: white;
               border-radius: 1rem;
-              width: min(92vw, 460px);
+              width: min(92vw, 440px);
               max-height: 92vh;
               overflow-y: auto;
+              box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            }
+
+            @keyframes modalIn {
+              from { opacity: 0; transform: translate(-50%, -47%); }
+              to { opacity: 1; transform: translate(-50%, -50%); }
             }
 
             .am-close {
@@ -311,8 +531,8 @@ export default function AuthModal() {
               align-items: center;
               justify-content: center;
               color: #5A5A5A;
-              transition: all 0.2s;
-              z-index: 10;
+              transition: all 0.15s;
+              z-index: 1;
             }
 
             .am-close:hover {
@@ -329,14 +549,18 @@ export default function AuthModal() {
               padding: 16px;
               background: none;
               border: none;
+              border-bottom: 2px solid transparent;
+              margin-bottom: -2px;
               font-family: inherit;
               font-size: 0.875rem;
               font-weight: 600;
               color: #9A9A9A;
               cursor: pointer;
-              border-bottom: 2px solid transparent;
-              margin-bottom: -2px;
               transition: all 0.2s;
+            }
+
+            .am-tab:hover {
+              color: #1A1A1A;
             }
 
             .am-tab-active {
@@ -353,7 +577,7 @@ export default function AuthModal() {
               font-size: 1.25rem;
               font-weight: 700;
               color: #1A1A1A;
-              margin: 0 0 8px;
+              margin: 0 0 6px;
             }
 
             .am-desc {
@@ -366,7 +590,7 @@ export default function AuthModal() {
             .am-form {
               display: flex;
               flex-direction: column;
-              gap: 20px;
+              gap: 18px;
             }
 
             .form-field {
@@ -408,6 +632,18 @@ export default function AuthModal() {
               color: #9A9A9A;
             }
 
+            .field-hint {
+              font-size: 0.75rem;
+              color: #9A9A9A;
+              margin-top: 4px;
+            }
+
+            .field-footer {
+              display: flex;
+              justify-content: flex-end;
+              margin-top: 4px;
+            }
+
             .password-wrap {
               position: relative;
             }
@@ -425,28 +661,61 @@ export default function AuthModal() {
               border: none;
               cursor: pointer;
               font-size: 1rem;
-              opacity: 0.5;
+              opacity: 0.4;
               transition: opacity 0.2s;
+              padding: 4px;
             }
 
             .pw-toggle:hover {
               opacity: 1;
             }
 
-            .field-link {
+            /* Password Strength */
+            .pw-strength {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+            }
+
+            .pws-bar {
+              flex: 1;
+              height: 4px;
+              background: #E0DDD6;
+              border-radius: 9999px;
+              overflow: hidden;
+            }
+
+            .pws-fill {
+              height: 100%;
+              border-radius: 9999px;
+              transition: width 0.3s ease, background 0.3s ease;
+              width: 0%;
+            }
+
+            .pws-fill.weak {
+              width: 33%;
+              background: #C41E3A;
+            }
+
+            .pws-fill.fair {
+              width: 66%;
+              background: #C9963A;
+            }
+
+            .pws-fill.strong {
+              width: 100%;
+              background: #2D7A4F;
+            }
+
+            .pws-label {
               font-size: 0.75rem;
-              color: #1A3A2A;
-              text-decoration: none;
-              background: none;
-              border: none;
-              cursor: pointer;
-              padding: 0;
+              font-weight: 600;
+              color: #9A9A9A;
+              white-space: nowrap;
+              min-width: 40px;
             }
 
-            .field-link:hover {
-              text-decoration: underline;
-            }
-
+            /* Error & Success Messages */
             .am-form-error {
               padding: 10px 14px;
               background: rgba(196, 30, 58, 0.06);
@@ -458,13 +727,14 @@ export default function AuthModal() {
             }
 
             .am-form-success {
-              padding: 10px 14px;
+              padding: 12px 14px;
               background: rgba(45, 122, 79, 0.06);
               border: 1px solid rgba(45, 122, 79, 0.2);
               border-radius: 0.75rem;
               font-size: 0.875rem;
               color: #2D7A4F;
               font-weight: 600;
+              line-height: 1.6;
             }
 
             .am-terms-note {
@@ -476,8 +746,14 @@ export default function AuthModal() {
 
             .am-terms-note a {
               color: #1A3A2A;
+              text-decoration: none;
             }
 
+            .am-terms-note a:hover {
+              text-decoration: underline;
+            }
+
+            /* Submit Button */
             .btn-auth-submit {
               width: 100%;
               padding: 15px;
@@ -490,6 +766,7 @@ export default function AuthModal() {
               border-radius: 9999px;
               cursor: pointer;
               transition: all 0.2s;
+              position: relative;
             }
 
             .btn-auth-submit:hover:not(:disabled) {
@@ -500,6 +777,79 @@ export default function AuthModal() {
               background: #E0DDD6;
               color: #9A9A9A;
               cursor: not-allowed;
+            }
+
+            .btn-auth-submit.loading::after {
+              content: '';
+              position: absolute;
+              right: 16px;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 16px;
+              height: 16px;
+              border: 2px solid rgba(255, 255, 255, 0.4);
+              border-top-color: white;
+              border-radius: 50%;
+              animation: spin 0.8s linear infinite;
+            }
+
+            @keyframes spin {
+              to { transform: translateY(-50%) rotate(360deg); }
+            }
+
+            /* Tab Switch */
+            .am-switch {
+              margin-top: 16px;
+              text-align: center;
+              font-size: 0.875rem;
+              color: #9A9A9A;
+            }
+
+            .am-switch-btn {
+              background: none;
+              border: none;
+              font-family: inherit;
+              font-size: 0.875rem;
+              font-weight: 700;
+              color: #1A3A2A;
+              cursor: pointer;
+              padding: 0;
+              text-decoration: underline;
+            }
+
+            /* Back Button */
+            .am-back-btn {
+              background: none;
+              border: none;
+              font-family: inherit;
+              font-size: 0.875rem;
+              font-weight: 600;
+              color: #9A9A9A;
+              cursor: pointer;
+              padding: 0;
+              margin-bottom: 20px;
+              display: block;
+              transition: color 0.15s;
+            }
+
+            .am-back-btn:hover {
+              color: #1A3A2A;
+            }
+
+            /* Password Link Button */
+            .field-link-btn {
+              background: none;
+              border: none;
+              font-family: inherit;
+              font-size: 0.75rem;
+              color: #1A3A2A;
+              cursor: pointer;
+              padding: 0;
+              text-decoration: none;
+            }
+
+            .field-link-btn:hover {
+              text-decoration: underline;
             }
           `}</style>
         </motion.div>
