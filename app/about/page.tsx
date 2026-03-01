@@ -126,9 +126,9 @@ export default function AboutPage() {
             </motion.div>
 
             {/* 右：視覚的要素（数字カード積み重ね） */}
-            <div className="relative h-[360px] lg:h-[400px]">
+            <div className="relative h-[400px] lg:h-[400px]">
               <motion.div
-                className="absolute top-0 left-0 sm:left-10 bg-white border border-border rounded-2xl p-7 shadow-md w-[240px] rotate-[-3deg] z-10"
+                className="absolute top-0 left-0 sm:left-10 bg-white border border-border rounded-2xl p-7 sm:p-8 shadow-md w-[240px] sm:w-[280px] rotate-[-3deg] z-10"
                 initial={{ opacity: 0, y: 30, rotate: -3 }}
                 whileInView={{ opacity: 1, y: 0, rotate: -3 }}
                 viewport={{ once: true }}
@@ -142,9 +142,9 @@ export default function AboutPage() {
               </motion.div>
 
               <motion.div
-                className="absolute top-20 sm:top-24 left-20 sm:left-32 bg-white border border-border rounded-2xl p-7 shadow-md w-[240px] rotate-[1deg] z-20 border-accent/30"
-                initial={{ opacity: 0, y: 30, rotate: 1 }}
-                whileInView={{ opacity: 1, y: 0, rotate: 1 }}
+                className="absolute top-32 sm:top-32 left-20 sm:left-48 bg-white border border-border rounded-2xl p-7 sm:p-8 shadow-md w-[240px] sm:w-[280px] rotate-[1deg] z-20 border-accent/30"
+                initial={{ opacity: 0, y: 30, rotate: 0 }}
+                whileInView={{ opacity: 1, y: 0, rotate: 3 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.25 }}
               >
@@ -156,7 +156,7 @@ export default function AboutPage() {
               </motion.div>
 
               <motion.div
-                className="absolute top-40 sm:top-48 left-0 sm:left-12 bg-primary border border-primary rounded-2xl p-7 shadow-lg w-[240px] rotate-[-1.5deg] z-30"
+                className="absolute top-64 sm:top-64 left-0 sm:left-12 bg-primary border border-primary rounded-2xl p-7 sm:p-8 shadow-lg w-[240px] sm:w-[280px] rotate-[-1.5deg] z-30"
                 initial={{ opacity: 0, y: 30, rotate: -1.5 }}
                 whileInView={{ opacity: 1, y: 0, rotate: -1.5 }}
                 viewport={{ once: true }}

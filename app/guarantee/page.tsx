@@ -507,80 +507,6 @@ function GuaranteeConfidence() {
   )
 }
 
-// Section 6: Final CTA
-function FinalCTA() {
-  return (
-    <section className="py-16 md:py-20 bg-bg-base">
-      <div className="max-w-[1200px] mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-primary rounded-2xl p-10 md:p-14 text-center relative overflow-hidden"
-        >
-          <motion.div
-            initial={{ scale: 0.8 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="absolute right-[-100px] top-[-100px] w-[300px] h-[300px] rounded-full opacity-10 bg-accent"
-          />
-          <div className="relative z-10">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="font-heading text-3xl font-bold text-white mb-4"
-            >
-              リスクゼロで、まず試してみてください。
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-white/80 mb-8 max-w-[500px] mx-auto"
-            >
-              7日間全额返金保証があるので、「気に入らなかったら返金」という<br />
-              安心感を持ちながらロゴを作り始められます。
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
-            >
-              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
-                <Link href="/pricing" className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-text-primary font-bold text-lg px-8 py-4 rounded-full transition-all hover:-translate-y-1 hover:shadow-lg">
-                  料金プランを見る →
-                </Link>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
-                <Link href="/create" className="inline-flex items-center gap-2 border-2 border-white text-white hover:bg-white hover:text-primary font-bold text-lg px-8 py-4 rounded-full transition-all">
-                  まず無料で試す
-                </Link>
-              </motion.div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-white/60"
-            >
-              <span>・理由不問・全额返金✓ 7日間</span>
-              <span>✓ 返金手数料ゼロ</span>
-              <span>✓ 申請はメール1通だけ</span>
-            </motion.div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
 
 // Main Page
 export default function GuaranteePage() {
@@ -591,7 +517,6 @@ export default function GuaranteePage() {
       <RefundSteps />
       <GuaranteeFAQ />
       <GuaranteeConfidence />
-      <FinalCTA />
       <BottomCTA
         title="まずは無料で试してみてください。"
         description="気に入ったロゴが見つかれば、その時点で有料プランへの移行ができます。クレジットカード不要・登録は30秒・7日間全额返金保証付き。"
