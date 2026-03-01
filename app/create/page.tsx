@@ -3,7 +3,7 @@
 import { useState, useEffect, Suspense } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 // 行业数据
 const industries = [
@@ -188,6 +188,7 @@ const initialFormData: FormData = {
 }
 
 function CreatePageContent() {
+  const router = useRouter()
   const searchParams = useSearchParams()
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState<FormData>(initialFormData)
@@ -925,6 +926,22 @@ function CreatePageContent() {
                     </button>
                     <button
                       type="button"
+                      onClick={() => {
+                        // 保存Wizard状态到sessionStorage
+                        const usageValue = formData.usage
+                        const usageArray = usageValue ? [usageValue] : []
+                        const wizardState = {
+                          brandName: formData.brandName,
+                          impression: formData.impressions,
+                          usage: usageArray,
+                          industry: formData.industry,
+                          industryLabel: formData.industryName,
+                          avoid: formData.avoid || undefined,
+                        }
+                        sessionStorage.setItem('logoai_wizard', JSON.stringify(wizardState))
+                        sessionStorage.setItem('logoai_regen_left', '3')
+                        router.push('/create/result')
+                      }}
                       className="flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-full font-body text-base font-bold hover:bg-primary-light transition-all hover:translate-x-0.5"
                     >
                       <span aria-hidden="true">✨</span>

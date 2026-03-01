@@ -11,7 +11,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
-  const isCreatePage = pathname === '/create'
+  const isCreatePage = pathname === '/create' || pathname === '/create/result'
 
   return (
     <html lang="ja">
