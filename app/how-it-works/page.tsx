@@ -191,25 +191,60 @@ export default function HowItWorksPage() {
           <div className="max-w-[1200px] mx-auto px-6">
             <div className={`grid md:grid-cols-2 gap-16 items-center ${step.even ? 'direction-rtl' : ''}`}>
               <div className={step.even ? 'md:order-2' : ''}>
-                <div className="flex items-center gap-2.5 mb-4">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="flex items-center gap-2.5 mb-4"
+                >
                   <span className={`text-xs font-bold px-3 py-1 ${step.final ? 'bg-accent text-text-primary' : 'bg-primary text-white'}`}>Step {String(step.num).padStart(2, '0')}</span>
                   <span className="text-xs text-text-muted">約{step.time}</span>
-                </div>
-                <h2 className="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-4">{step.title}</h2>
-                <p className="text-text-secondary leading-relaxed mb-6">{step.description}</p>
+                </motion.div>
+                <motion.h2
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-4"
+                >
+                  {step.title}
+                </motion.h2>
+                <motion.p
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="text-text-secondary leading-relaxed mb-6"
+                >
+                  {step.description}
+                </motion.p>
                 <ul className="space-y-4">
                   {step.points.map((point, i) => (
-                    <li key={i} className="flex gap-3">
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+                      className="flex gap-3"
+                    >
                       <span className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold mt-0.5 ${step.final ? 'bg-accent/20 text-accent' : 'bg-primary/10 text-primary'}`}>✓</span>
                       <div>
                         <strong className="text-text-primary block mb-1">{point.title}</strong>
                         <p className="text-sm text-text-muted leading-relaxed">{point.desc}</p>
                       </div>
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
               </div>
-              <div className={step.even ? 'md:order-1' : ''}>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                className={step.even ? 'md:order-1' : ''}
+              >
                 {step.mockup === 'form' && (
                   <div className="bg-white rounded-xl shadow-lg border border-border overflow-hidden">
                     <div className="bg-bg-section px-4 py-2 flex items-center gap-2 border-b border-border">
@@ -286,7 +321,7 @@ export default function HowItWorksPage() {
                     </div>
                   </div>
                 )}
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
