@@ -31,13 +31,24 @@ jpLogo/
 │   ├── works/              # 作品展示
 │   ├── about/              # 关于我们
 │   ├── how-it-works/       # 使用流程
+│   ├── industry/           # 行业模板列表
 │   ├── industry/[slug]/    # 行业模板动态路由
-│   └── for/[slug]/         # 场景模板动态路由
+│   ├── for/                # 场景模板列表
+│   ├── for/[slug]/         # 场景模板动态路由
+│   ├── vs/                 # 竞品对比页面
+│   ├── vs/[slug]/          # 竞品对比动态路由
+│   ├── copyright/          # 版权页面
+│   ├── trademark/          # 商标页面
+│   ├── guarantee/          # 保障页面
+│   ├── privacy/            # 隐私政策
+│   ├── terms/              # 服务条款
+│   ├── tokutei/            # 特商法页面
+│   └── contact/            # 联系页面
 ├── components/             # 共享组件
 │   ├── Navbar.tsx
 │   ├── Footer.tsx
 │   └── BottomCTA.tsx
-├── doc/                    # 规格文档 (19个规范文件)
+├── doc/                    # 规格文档 (22个规范文件: 001-022)
 ├── public/                 # 静态资源
 ├── tailwind.config.ts      # 设计系统配置
 ├── next.config.mjs         # Next.js配置
@@ -48,19 +59,36 @@ jpLogo/
 
 已在 `tailwind.config.ts` 中定义:
 
-- **Primary**: `#1A3A2A` (深绿)
-- **Accent**: `#C9963A` (金色)
-- **Background**: `#FAFAF7`
-- **Heading字体**: Noto Serif JP
-- **Body字体**: Noto Sans JP
-- **动画**: float, pulse-slow, typing, blink
+### Colors
+- **Primary**: `#1A3A2A` (深绿), light: `#2D5A3D`, dark: `#0F2518`
+- **Accent**: `#C9963A` (金色), light: `#E8B85A`, dark: `#A67A2E`
+- **Background**: `#FAFAF7` (base), `#F2F0EB` (section), `#1A3A2A` (dark)
+- **Text**: `#1A1A1A` (primary), `#5A5A5A` (secondary), `#9A9A9A` (muted)
+- **Border**: `#E0DDD6` (default), `#C5C2BB` (strong)
+
+### Typography
+- **Heading字体**: Noto Serif JP, Yu Mincho, Hiragino Mincho Pro
+- **Body字体**: Noto Sans JP, Hiragino Kaku Gothic Pro, Meiryo
+- **Number字体**: Cormorant Garamond, Times New Roman
+
+### Shadows
+- `shadow-sm`: 轻微投影
+- `shadow-md`: 中等投影
+- `shadow-lg`: 强投影
+- `shadow-xl`: 超强投影
+
+### Animations
+- `float`: 上下浮动动画 (6s循环)
+- `pulse-slow`: 慢速脉冲动画 (3s循环)
+- `typing`: 打字机效果
+- `blink`: 光标闪烁效果
 
 ## Key Patterns
 
 1. **SEO Metadata**: 所有页面在 `layout.tsx` 中定义全局 metadata，支持日文SEO
-2. **动态路由**: 使用 `[slug]` 文件夹实现 `/industry/餐饮`、`/for/个人品牌` 等
+2. **动态路由**: 使用 `[slug]` 文件夹实现 `/industry/餐饮`、`/for/个人品牌`、`vs/对比项` 等
 3. **Framer Motion**: 用于页面动画和交互效果
-4. **规格文档**: 详细开发规范在 `doc/` 目录，按编号组织
+4. **规格文档**: 详细开发规范在 `doc/` 目录，按编号组织 (001-022)
 
 ## Development Notes
 
