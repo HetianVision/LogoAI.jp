@@ -45,7 +45,8 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-text-inverse/60">
               <li><Link href="/terms" className="hover:text-accent transition-colors">利用規約</Link></li>
               <li><Link href="/privacy" className="hover:text-accent transition-colors">プライバシーポリシー</Link></li>
-              {/* <li><Link href="/law" className="hover:text-accent transition-colors">特定商取引法</Link></li> */}
+              <li><Link href="/tokutei" className="hover:text-accent transition-colors">特定商取引法</Link></li>
+              <li><Link href="/guarantee" className="hover:text-accent transition-colors">返金保証</Link></li>
             </ul>
           </div>
         </div>
