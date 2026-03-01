@@ -5,10 +5,10 @@ import { motion } from 'framer-motion'
 
 export default function HowItWorksPage() {
   const steps = [
-    { num: '01', icon: '✏️', title: '入力', desc: 'ブランド名・業種・<br />イメージを入力' },
-    { num: '02', icon: '✨', title: 'AI生成', desc: '3案のロゴを<br />約2分で生成' },
-    { num: '03', icon: '🎨', title: 'カスタマイズ', desc: 'フォント・色・字間を<br />自由に調整' },
-    { num: '04', icon: '📥', title: '完成・取得', desc: '全形式DL＋<br />著作権証明書', isFinal: true },
+    { num: '01', icon: '✏️', title: '入力', desc: 'ブランド名・業種・イメージを入力' },
+    { num: '02', icon: '✨', title: 'AI生成', desc: '3案のロゴは約2分で生成' },
+    { num: '03', icon: '🎨', title: 'カスタマイズ', desc: 'フォント・色・字間を自由に調整' },
+    { num: '04', icon: '📥', title: '完成・取得', desc: '全形式DL＋著作権証明書', isFinal: true },
   ]
 
   const stepDetails = [
@@ -160,7 +160,34 @@ export default function HowItWorksPage() {
       {/* Section 2: Overview */}
       <section className="py-12 px-6 bg-bg-section">
         <div className="max-w-[1200px] mx-auto">
-          <div className="flex items-start justify-center gap-2 md:gap-0">
+          {/* 移动端：横向布局 - 序号+图标+文字内容 */}
+          <div className="md:hidden">
+            {steps.map((step, index) => (
+              <motion.div
+                key={step.num}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="flex items-center gap-3 relative pb-8 last:pb-0"
+              >
+                <span className="font-number text-xl font-bold text-text-muted tracking-[0.1em]">{step.num}</span>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center text-lg shadow-sm ${step.isFinal ? 'bg-primary border-2 border-primary shadow-md' : 'bg-white border-2 border-border'}`}>
+                  {step.icon}
+                </div>
+                <div className="flex-1">
+                  <div className={`font-bold text-base ${step.isFinal ? 'text-primary' : 'text-text-primary'}`}>{step.title}</div>
+                  <div className="text-xs text-text-muted">{step.desc}</div>
+                </div>
+                {/* 连接线 */}
+                {index < steps.length - 1 && (
+                  <div className="absolute left-[52px] top-10 w-0.5 h-8 bg-accent/30" />
+                )}
+              </motion.div>
+            ))}
+          </div>
+          {/* 桌面端：横向布局 */}
+          <div className="hidden md:flex items-center justify-center gap-0 relative">
             {steps.map((step, index) => (
               <motion.div
                 key={step.num}
@@ -168,19 +195,25 @@ export default function HowItWorksPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.15 }}
-                className={`flex flex-col items-center text-center gap-2.5 flex-1 relative ${step.isFinal ? '' : 'hidden md:block'}`}
+                className="flex flex-col items-center text-center gap-2.5 flex-1 min-w-[120px] relative z-10"
               >
-                <span className="font-number text-[10px] font-bold text-text-muted tracking-[0.1em]">{step.num}</span>
-                <div className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-sm relative z-10 ${step.isFinal ? 'bg-primary border-2 border-primary shadow-md' : 'bg-white border-2 border-border'}`}>
+                <span className="font-number text-xl font-bold text-text-muted tracking-[0.1em]">{step.num}</span>
+                <div className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-sm relative z-10 mx-auto ${step.isFinal ? 'bg-primary border-2 border-primary shadow-md' : 'bg-white border-2 border-border'}`}>
                   {step.icon}
                 </div>
-                <span className={`font-bold text-base ${step.isFinal ? 'text-primary' : 'text-text-primary'}`}>{step.title}</span>
-                <span className="text-xs text-text-muted leading-relaxed" dangerouslySetInnerHTML={{ __html: step.desc }} />
-                {index < steps.length - 1 && (
-                  <div className="absolute top-[calc(10px+28px)] left-[calc(50%+28px)] right-[calc(-50%+28px)] h-0.5 hidden md:block" style={{ background: 'repeating-linear-gradient(to right, #C9963A 0, #C9963A 4px, transparent 4px, transparent 10px)' }} />
-                )}
+                <div className={`font-bold text-base whitespace-nowrap ${step.isFinal ? 'text-primary' : 'text-text-primary'}`}>{step.title}</div>
+                <div className="text-xs text-text-muted leading-relaxed max-w-[120px]">{step.desc}</div>
               </motion.div>
             ))}
+            {/* 连接线 - 从左侧延伸动画 */}
+            <motion.div
+              initial={{ scaleX: 0, opacity: 0 }}
+              whileInView={{ scaleX: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+              className="absolute top-[68px] left-[80px] right-[80px] h-0.5 z-0 origin-left"
+              style={{ background: 'repeating-linear-gradient(to right, #C9963A 0, #C9963A 4px, transparent 4px, transparent 10px)' }}
+            />
           </div>
         </div>
       </section>

@@ -82,7 +82,7 @@ export default function VsPage() {
                 <motion.div key={competitor.slug} variants={cardVariants}>
                   <Link
                     href={`/vs/${competitor.slug}`}
-                    className="group bg-white rounded-xl border border-border p-5 hover:border-accent hover:shadow-md transition-all"
+                    className="group bg-white rounded-xl border border-border p-5 hover:border-accent hover:shadow-md transition-all block h-full"
                   >
                     <div className="font-heading text-lg font-bold text-text-primary group-hover:text-accent transition-colors mb-1">
                       {competitor.nameJa}
@@ -117,7 +117,7 @@ export default function VsPage() {
                 <motion.div key={competitor.slug} variants={cardVariants}>
                   <Link
                     href={`/vs/${competitor.slug}`}
-                    className="group bg-white rounded-xl border border-border p-5 hover:border-accent hover:shadow-md transition-all"
+                    className="group bg-white rounded-xl border border-border p-5 hover:border-accent hover:shadow-md transition-all block h-full"
                   >
                     <div className="font-heading text-lg font-bold text-text-primary group-hover:text-accent transition-colors mb-1">
                       {competitor.nameJa}
@@ -152,7 +152,7 @@ export default function VsPage() {
                 <motion.div key={competitor.slug} variants={cardVariants}>
                   <Link
                     href={`/vs/${competitor.slug}`}
-                    className="group bg-white rounded-xl border border-border p-5 hover:border-accent hover:shadow-md transition-all"
+                    className="group bg-white rounded-xl border border-border p-5 hover:border-accent hover:shadow-md transition-all block h-full"
                   >
                     <div className="font-heading text-lg font-bold text-text-primary group-hover:text-accent transition-colors mb-1">
                       {competitor.nameJa}
@@ -187,7 +187,7 @@ export default function VsPage() {
                 <motion.div key={competitor.slug} variants={cardVariants}>
                   <Link
                     href={`/vs/${competitor.slug}`}
-                    className="group bg-white rounded-xl border border-border p-5 hover:border-accent hover:shadow-md transition-all"
+                    className="group bg-white rounded-xl border border-border p-5 hover:border-accent hover:shadow-md transition-all block h-full"
                   >
                     <div className="font-heading text-lg font-bold text-text-primary group-hover:text-accent transition-colors mb-1">
                       {competitor.nameJa}
