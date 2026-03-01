@@ -478,12 +478,12 @@ export default function CreateResultPage() {
                       >
                         {favorites.includes(logo.id) ? '♥' : '♡'}
                       </button>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); openModal(logo) }}
+                      <Link
+                        href={`/logo/${logo.id}`}
                         className="px-3 py-1.5 bg-[#1A3A2A] text-white rounded-full text-[0.65rem] font-bold hover:bg-[#2D5A3D] transition-all"
                       >
                         詳細を見る →
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </motion.div>
