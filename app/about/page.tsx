@@ -127,27 +127,45 @@ export default function AboutPage() {
 
             {/* 右：視覚的要素（数字カード積み重ね） */}
             <div className="relative h-[360px] lg:h-[400px]">
-              <div className="absolute top-0 left-0 sm:left-10 bg-white border border-border rounded-2xl p-7 shadow-md w-[240px] rotate-[-3deg] z-10">
+              <motion.div
+                className="absolute top-0 left-0 sm:left-10 bg-white border border-border rounded-2xl p-7 shadow-md w-[240px] rotate-[-3deg] z-10"
+                initial={{ opacity: 0, y: 30, rotate: -3 }}
+                whileInView={{ opacity: 1, y: 0, rotate: -3 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
                 <div className="font-number text-3xl font-semibold text-text-primary mb-2">
                   130<span className="text-base font-medium text-accent">万件</span>
                 </div>
                 <div className="text-sm font-bold text-text-primary mb-1.5">日本の年間新規開業数</div>
                 <div className="text-xs text-text-muted">出典：中小企業庁「中小企業白書」</div>
-              </div>
+              </motion.div>
 
-              <div className="absolute top-20 sm:top-24 left-20 sm:left-32 bg-white border border-border rounded-2xl p-7 shadow-md w-[240px] rotate-[1deg] z-20 border-accent/30">
+              <motion.div
+                className="absolute top-20 sm:top-24 left-20 sm:left-32 bg-white border border-border rounded-2xl p-7 shadow-md w-[240px] rotate-[1deg] z-20 border-accent/30"
+                initial={{ opacity: 0, y: 30, rotate: 1 }}
+                whileInView={{ opacity: 1, y: 0, rotate: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.25 }}
+              >
                 <div className="font-number text-3xl font-semibold text-text-primary mb-2">
                   ¥30<span className="text-base font-medium text-accent">万〜</span>
                 </div>
                 <div className="text-sm font-bold text-text-primary mb-1.5">一般的なロゴデザイン費用</div>
                 <div className="text-xs text-text-muted">デザイン会社への依頼相場</div>
-              </div>
+              </motion.div>
 
-              <div className="absolute top-40 sm:top-48 left-0 sm:left-12 bg-primary border border-primary rounded-2xl p-7 shadow-lg w-[240px] rotate-[-1.5deg] z-30">
+              <motion.div
+                className="absolute top-40 sm:top-48 left-0 sm:left-12 bg-primary border border-primary rounded-2xl p-7 shadow-lg w-[240px] rotate-[-1.5deg] z-30"
+                initial={{ opacity: 0, y: 30, rotate: -1.5 }}
+                whileInView={{ opacity: 1, y: 0, rotate: -1.5 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 <div className="font-number text-3xl font-semibold text-white mb-2">¥4,980</div>
                 <div className="text-sm font-bold text-white mb-1.5">LogoAI.jp スタンダードプラン</div>
                 <div className="text-xs text-white/50">著作権証明書・SVG含む</div>
-              </div>
+              </motion.div>
             </div>
 
           </div>
@@ -159,49 +177,91 @@ export default function AboutPage() {
         <div className="absolute right-[-100px] top-[-100px] w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(201,150,58,0.1),transparent_65%)] pointer-events-none" />
 
         <div className="max-w-[1200px] mx-auto px-6 relative">
-          <div className="text-center mb-14">
+          <motion.div
+            className="text-center mb-14"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <span className="text-accent/50 font-medium text-sm tracking-[0.1em] uppercase block mb-2">Numbers</span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-white">数字で見る、LogoAI.jp</h2>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-3 gap-10 md:gap-8">
-            <div className="text-center relative">
+            <motion.div
+              className="text-center relative"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
               <div className="font-number text-5xl font-semibold text-accent mb-2">12,000<span className="text-xl font-medium">+</span></div>
               <div className="text-base font-bold text-white mb-1.5">生成ロゴ数</div>
               <div className="text-xs text-white/50">サービス開始から累計</div>
-            </div>
+            </motion.div>
 
-            <div className="text-center relative md:before:absolute md:before:right-[-16px] md:before:top-[10%] md:before:h-[80%] md:before:w-px md:before:bg-white/12">
+            <motion.div
+              className="text-center relative md:before:absolute md:before:right-[-16px] md:before:top-[10%] md:before:h-[80%] md:before:w-px md:before:bg-white/12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <div className="font-number text-5xl font-semibold text-accent mb-2">47</div>
               <div className="text-base font-bold text-white mb-1.5">対応業種数</div>
               <div className="text-xs text-white/50">飲食・IT・士業など</div>
-            </div>
+            </motion.div>
 
-            <div className="text-center relative md:before:absolute md:before:right-[-16px] md:before:top-[10%] md:before:h-[80%] md:before:w-px md:before:bg-white/12">
+            <motion.div
+              className="text-center relative md:before:absolute md:before:right-[-16px] md:before:top-[10%] md:before:h-[80%] md:before:w-px md:before:bg-white/12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
               <div className="font-number text-5xl font-semibold text-accent mb-2">100<span className="text-xl font-medium">種以上</span></div>
               <div className="text-base font-bold text-white mb-1.5">日本語フォント</div>
               <div className="text-xs text-white/50">全て商用利用可能</div>
-            </div>
+            </motion.div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-10 md:gap-8 mt-10">
-            <div className="text-center relative">
+            <motion.div
+              className="text-center relative"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
               <div className="font-number text-5xl font-semibold text-accent mb-2">4.9</div>
               <div className="text-base font-bold text-white mb-1.5">平均レビュースコア</div>
               <div className="text-xs text-white/500">500件以上の評価より</div>
-            </div>
+            </motion.div>
 
-            <div className="text-center relative md:before:absolute md:before:right-[-16px] md:before:top-[10%] md:before:h-[80%] md:before:w-px md:before:bg-white/12">
+            <motion.div
+              className="text-center relative md:before:absolute md:before:right-[-16px] md:before:top-[10%] md:before:h-[80%] md:before:w-px md:before:bg-white/12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
               <div className="font-number text-5xl font-semibold text-accent mb-2">98<span className="text-xl font-medium">%</span></div>
               <div className="text-base font-bold text-white mb-1.5">返金申請なし率</div>
               <div className="text-xs text-white/50">7日間返金保証のうち</div>
-            </div>
+            </motion.div>
 
-            <div className="text-center relative md:before:absolute md:before:right-[-16px] md:before:top-[10%] md:before:h-[80%] md:before:w-px md:before:bg-white/12">
+            <motion.div
+              className="text-center relative md:before:absolute md:before:right-[-16px] md:before:top-[10%] md:before:h-[80%] md:before:w-px md:before:bg-white/12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
               <div className="font-number text-5xl font-semibold text-accent mb-2">2<span className="text-xl font-medium">分</span></div>
               <div className="text-base font-bold text-white mb-1.5">平均生成時間</div>
               <div className="text-xs text-white/50">入力完了からロゴ3案まで</div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -209,15 +269,27 @@ export default function AboutPage() {
       {/* Section 4: 私たちが大切にしていること（3つの約束） */}
       <section className="py-16 md:py-24 bg-bg-section">
         <div className="max-w-[1200px] mx-auto px-6">
-          <div className="text-center mb-14">
+          <motion.div
+            className="text-center mb-14"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase block mb-2">Our Values</span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary">私たちが大切にしている3つのこと</h2>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-[1000px] mx-auto">
 
             {/* 透明性 */}
-            <div className="bg-white border border-border rounded-2xl p-9 flex flex-col gap-4">
+            <motion.div
+              className="bg-white border border-border rounded-2xl p-9 flex flex-col gap-4"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
               <div className="w-[60px] h-[60px] bg-accent/10 rounded-xl flex items-center justify-center text-accent">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
                   <path d="M16 4L4 10v10c0 7 5.33 13.53 12 16 6.67-2.47 12-9 12-16V10L16 4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
@@ -245,10 +317,16 @@ export default function AboutPage() {
                   返金条件の明示
                 </span>
               </div>
-            </div>
+            </motion.div>
 
             {/* 品質へのこだわり */}
-            <div className="bg-primary border border-primary rounded-2xl p-9 flex flex-col gap-4 shadow-lg">
+            <motion.div
+              className="bg-primary border border-primary rounded-2xl p-9 flex flex-col gap-4 shadow-lg"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <div className="w-[60px] h-[60px] bg-white/10 rounded-xl flex items-center justify-center text-accent">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
                   <path d="M16 2L4 8v8c0 8.84 5.15 17.1 12 19 6.85-1.9 12-10.16 12-19V8L16 2z" stroke="currentColor" strokeWidth="1.5"/>
@@ -277,10 +355,16 @@ export default function AboutPage() {
                   プロ審査済みデザインルール
                 </span>
               </div>
-            </div>
+            </motion.div>
 
             {/* ユーザーの権利を守る */}
-            <div className="bg-white border border-border rounded-2xl p-9 flex flex-col gap-4">
+            <motion.div
+              className="bg-white border border-border rounded-2xl p-9 flex flex-col gap-4"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
               <div className="w-[60px] h-[60px] bg-accent/10 rounded-xl flex items-center justify-center text-accent">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
                   <path d="M28 16A12 12 0 1116 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -309,7 +393,7 @@ export default function AboutPage() {
                   文化庁ガイドライン準拠
                 </span>
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
@@ -318,19 +402,31 @@ export default function AboutPage() {
       {/* Section 5: チーム紹介 */}
       <section className="py-16 md:py-24">
         <div className="max-w-[1200px] mx-auto px-6">
-          <div className="text-center mb-14">
+          <motion.div
+            className="text-center mb-14"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase block mb-2">Our Team</span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary">どんなチームが作っているか</h2>
             <p className="text-base text-text-secondary mt-3 max-w-[480px] mx-auto leading-relaxed">
               デザイン・法律・エンジニアリングの専門家が協力して、
               このサービスを構築・運営しています。
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-[1000px] mx-auto mb-12">
 
             {/* チームメンバー1 */}
-            <div className="flex gap-5 bg-white border border-border rounded-2xl p-7 hover:shadow-md transition-shadow">
+            <motion.div
+              className="flex gap-5 bg-white border border-border rounded-2xl p-7 hover:shadow-md transition-shadow"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
               <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
                   <circle cx="16" cy="12" r="6" stroke="currentColor" strokeWidth="1.5"/>
@@ -350,10 +446,16 @@ export default function AboutPage() {
                   <span className="text-[0.65rem] px-2.5 py-1 bg-bg-section border border-border rounded-full text-text-muted font-medium">UI設計</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* チームメンバー2 */}
-            <div className="flex gap-5 bg-white border border-border rounded-2xl p-7 hover:shadow-md transition-shadow">
+            <motion.div
+              className="flex gap-5 bg-white border border-border rounded-2xl p-7 hover:shadow-md transition-shadow"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
                   <circle cx="16" cy="12" r="6" stroke="currentColor" strokeWidth="1.5"/>
@@ -373,10 +475,16 @@ export default function AboutPage() {
                   <span className="text-[0.65rem] px-2.5 py-1 bg-bg-section border border-border rounded-full text-text-muted font-medium">商標法</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* チームメンバー3 */}
-            <div className="flex gap-5 bg-white border border-border rounded-2xl p-7 hover:shadow-md transition-shadow">
+            <motion.div
+              className="flex gap-5 bg-white border border-border rounded-2xl p-7 hover:shadow-md transition-shadow"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
               <div className="w-14 h-14 rounded-full bg-green-700/10 flex items-center justify-center text-green-700 flex-shrink-0">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
                   <circle cx="16" cy="12" r="6" stroke="currentColor" strokeWidth="1.5"/>
@@ -395,29 +503,47 @@ export default function AboutPage() {
                   <span className="text-[0.65rem] px-2.5 py-1 bg-bg-section border border-border rounded-full text-text-muted font-medium">NLP</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
           </div>
 
           {/* 採用リンク */}
-          <div className="text-center">
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             <p className="text-base text-text-secondary mb-4">チームに加わりませんか？</p>
             <a href="mailto:jobs@logoai.jp" className="inline-block border border-primary text-primary hover:bg-primary hover:text-white font-medium px-6 py-3 rounded-full transition-all">
               採用情報を →
             </a>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Section 6: 会社概要テーブル */}
       <section className="py-16 md:py-24 bg-bg-section">
         <div className="max-w-[1200px] mx-auto px-6">
-          <div className="text-center mb-14">
+          <motion.div
+            className="text-center mb-14"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase block mb-2">Company Info</span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary">会社概要</h2>
-          </div>
+          </motion.div>
 
-          <div className="max-w-[800px] mx-auto border border-border rounded-xl overflow-hidden shadow-sm">
+          <motion.div
+            className="max-w-[800px] mx-auto border border-border rounded-xl overflow-hidden shadow-sm"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
             <table className="w-full border-collapse bg-white">
               <tbody>
                 <tr className="border-b border-border">
@@ -489,12 +615,18 @@ export default function AboutPage() {
                 </tr>
               </tbody>
             </table>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* GEO优化内容 */}
-      <div className="max-w-[1200px] mx-auto px-6 pb-6">
+      <motion.div
+        className="max-w-[1200px] mx-auto px-6 pb-6"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <p className="text-sm text-text-muted leading-relaxed">
           LogoAI.jp（ロゴエーアイジェーピー）は、株式会社ロゴエーアイ（東京都渋谷区、2024年4月設立）が
            運営している日本市場特化のAIロゴ作成サービスです。
@@ -502,32 +634,68 @@ export default function AboutPage() {
           日本語フォント100種以上・著作権帰属証明書発行・J-PlatPat連携商標チェックを提供。
           適格請求書発行事業者登録済み（T1234567890123）。7日間全额返金保証付き。
         </p>
-      </div>
+      </motion.div>
 
       {/* Section 7: CTA */}
       <section className="py-16 md:py-24">
         <div className="max-w-[1200px] mx-auto px-6">
-          <div className="bg-primary rounded-2xl p-10 md:p-14 relative overflow-hidden">
+          <motion.div
+            className="bg-primary rounded-2xl p-10 md:p-14 relative overflow-hidden"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             {/* 装饰 */}
-            <div className="absolute right-0 top-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl" />
+            <motion.div
+              className="absolute right-0 top-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            />
 
             <div className="relative z-10 text-center">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
+              <motion.h2
+                className="font-heading text-3xl md:text-4xl font-bold text-white mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
                 日本の事業者の、ブランドづくりを変える。
-              </h2>
-              <p className="text-white/70 mb-8 leading-relaxed">
+              </motion.h2>
+              <motion.p
+                className="text-white/70 mb-8 leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 まず無料で試して、その品質を確かめてください。<br />
                 7日間全额返金保証付きなので、安心してお試しいただけます。
-              </p>
-              <div className="flex flex-wrap justify-center gap-4 mb-8">
+              </motion.p>
+              <motion.div
+                className="flex flex-wrap justify-center gap-4 mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <Link href="/create" className="bg-accent hover:bg-accent-dark text-text-primary font-bold px-8 py-4 rounded-full transition-all hover:-translate-y-1 hover:shadow-lg inline-flex items-center gap-2">
                   無料でロゴを作る →
                 </Link>
                 <Link href="/works" className="border border-white text-white hover:bg-white hover:text-primary font-medium px-6 py-4 rounded-full transition-all inline-block">
                   生成事例を見る
                 </Link>
-              </div>
-              <div className="flex flex-wrap justify-center gap-6 text-sm text-white/70">
+              </motion.div>
+              <motion.div
+                className="flex flex-wrap justify-center gap-6 text-sm text-white/70"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 <span className="flex items-center gap-2">
                   <span className="text-accent">✓</span> 著作権完全帰属（有料プラン）
                 </span>
@@ -537,9 +705,9 @@ export default function AboutPage() {
                 <span className="flex items-center gap-2">
                   <span className="text-accent">✓</span> 日本語フォント100種以上
                 </span>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
