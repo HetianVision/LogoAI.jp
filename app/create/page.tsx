@@ -297,7 +297,7 @@ function CreatePageContent() {
   return (
     <div className="min-h-screen bg-bg-base">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-border">
+      <header className="sticky top-0 z-50 bg-white">
         <div className="max-w-6xl mx-auto h-16 px-4 flex items-center gap-10">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
@@ -309,7 +309,7 @@ function CreatePageContent() {
             <div className="flex items-center justify-center gap-0 relative">
               {/* Step 1 */}
               <div className={`flex flex-col items-center gap-1 relative z-10 ${step >= 1 ? 'pns-active' : ''}`}>
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-number text-sm font-bold transition-all duration-300
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-number text-xl font-bold leading-tight transition-all duration-300
                   ${step > 1 ? 'bg-green-600 border-green-600 text-white' : step >= 1 ? 'bg-primary border-primary text-white shadow-[0_0_0_4px_rgba(26,58,42,0.12)]' : 'bg-bg-section border border-border text-text-muted'}`}>
                   {step > 1 ? '✓' : '1'}
                 </div>
@@ -324,7 +324,7 @@ function CreatePageContent() {
 
               {/* Step 2 */}
               <div className={`flex flex-col items-center gap-1 relative z-10 ${step >= 2 ? 'pns-active' : ''}`}>
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-number text-sm font-bold transition-all duration-300
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-number text-xl font-bold leading-tight transition-all duration-300
                   ${step > 2 ? 'bg-green-600 border-green-600 text-white' : step >= 2 ? 'bg-primary border-primary text-white shadow-[0_0_0_4px_rgba(26,58,42,0.12)]' : 'bg-bg-section border border-border text-text-muted'}`}>
                   {step > 2 ? '✓' : '2'}
                 </div>
@@ -339,7 +339,7 @@ function CreatePageContent() {
 
               {/* Step 3 */}
               <div className={`flex flex-col items-center gap-1 relative z-10 ${step >= 3 ? 'pns-active' : ''}`}>
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-number text-sm font-bold transition-all duration-300
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-number text-xl font-bold leading-tight transition-all duration-300
                   ${step > 3 ? 'bg-green-600 border-green-600 text-white' : step >= 3 ? 'bg-primary border-primary text-white shadow-[0_0_0_4px_rgba(26,58,42,0.12)]' : 'bg-bg-section border border-border text-text-muted'}`}>
                   {step > 3 ? '✓' : '3'}
                 </div>
@@ -354,7 +354,7 @@ function CreatePageContent() {
 
               {/* Step 4 */}
               <div className={`flex flex-col items-center gap-1 relative z-10 ${step >= 4 ? 'pns-active' : ''}`}>
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-number text-sm font-bold transition-all duration-300
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-number text-xl font-bold leading-tight transition-all duration-300
                   ${step >= 4 ? 'bg-primary border-primary text-white shadow-[0_0_0_4px_rgba(26,58,42,0.12)]' : 'bg-bg-section border border-border text-text-muted'}`}>
                   4
                 </div>
@@ -365,16 +365,6 @@ function CreatePageContent() {
               </div>
             </div>
 
-            {/* Progress Fill Bar */}
-            <div className="h-0.5 bg-border rounded-full mt-2 overflow-hidden">
-              <div
-                className="h-full rounded-full transition-all duration-500 ease-out"
-                style={{
-                  width: `${((step - 1) / 3) * 100}%`,
-                  background: 'linear-gradient(to right, #1A3A2A, #C9963A)'
-                }}
-              />
-            </div>
           </nav>
 
           {/* Help Link */}
@@ -382,9 +372,22 @@ function CreatePageContent() {
             <Link href="/faq" className="text-sm text-text-muted hover:text-primary transition-colors">
               ❓ ヘルプ
             </Link>
-          </div>
+          </div> 
+
+        </div> 
+
+        {/* Progress Fill Bar - Full Width */}
+        <div className="h-0.5 bg-border">
+          <div
+            className="h-full rounded-full transition-all duration-500 ease-out"
+            style={{
+              width: `${((step - 1) / 3) * 100}%`,
+              background: 'linear-gradient(to right, #1A3A2A, #C9963A)'
+            }}
+          />
         </div>
       </header>
+
 
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 py-12">
@@ -416,7 +419,7 @@ function CreatePageContent() {
                     </p>
                   </motion.div>
 
-                  <form className="flex flex-col gap-7" onSubmit={(e) => { e.preventDefault(); if (canProceedStep1) setStep(2) }}>
+                  <form className="flex flex-col gap-8" onSubmit={(e) => { e.preventDefault(); if (canProceedStep1) setStep(2) }}>
                     {/* Brand Name */}
                     <motion.div 
                       className="flex flex-col gap-2"
@@ -427,7 +430,7 @@ function CreatePageContent() {
                     >
                       <label htmlFor="brand-name" className="flex items-center gap-2 text-sm font-bold text-text-primary">
                         ブランド名
-                        <span className="text-[0.6rem] font-bold text-white bg-red-700 px-1.5 py-0.5 rounded-full">必須</span>
+                        <span className="text-[0.8rem] font-bold text-white bg-red-700 px-2 py-0.5 rounded-full">必須</span>
                       </label>
                       <input
                         type="text"
@@ -459,7 +462,7 @@ function CreatePageContent() {
                     >
                       <label htmlFor="brand-yomi" className="flex items-center gap-2 text-sm font-bold text-text-primary">
                         ふりがな
-                        <span className="text-[0.6rem] font-medium text-text-muted bg-bg-section border border-border px-1.5 py-0.5 rounded-full">任意</span>
+                        <span className="text-[0.8rem] font-medium text-text-muted bg-bg-section border border-border px-2 py-0.5 rounded-full">任意</span>
                       </label>
                       <input
                         type="text"
@@ -485,7 +488,7 @@ function CreatePageContent() {
                     >
                       <label htmlFor="brand-en" className="flex items-center gap-2 text-sm font-bold text-text-primary">
                         英語・ローマ字表記
-                        <span className="text-[0.6rem] font-medium text-text-muted bg-bg-section border border-border px-1.5 py-0.5 rounded-full">任意</span>
+                        <span className="text-[0.8rem] font-medium text-text-muted bg-bg-section border border-border px-2 py-0.5 rounded-full">任意</span>
                       </label>
                       <input
                         type="text"
