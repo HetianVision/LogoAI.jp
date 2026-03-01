@@ -299,7 +299,7 @@ function CreatePageContent() {
     <div className="min-h-screen bg-bg-base">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white">
-        <div className="max-w-6xl mx-auto h-16 px-4 flex items-center gap-10">
+        <div className="max-w-[1200px] mx-auto h-16 px-4 flex items-center gap-10">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <span className="font-heading text-lg font-bold text-primary">LogoAI.jp</span>
@@ -391,7 +391,7 @@ function CreatePageContent() {
 
 
       {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-4 py-12">
+      <main className="max-w-[1200px] mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-10">
           {/* Step Content */}
           <div className="step-container">

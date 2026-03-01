@@ -174,7 +174,7 @@ export default function CreateResultPage() {
     <div className="result-page min-h-screen bg-[#FAFAF7]">
       {/* 顶部安心条 */}
       <div className="trust-bar bg-[#F2F0EB] border-b border-[#E0DDD6] py-2 px-4">
-        <div className="max-w-5xl mx-auto flex items-center justify-center gap-4 flex-wrap text-xs font-semibold text-[#5A5A5A]">
+        <div className="max-w-[1200px] mx-auto flex items-center justify-center gap-4 flex-wrap text-xs font-semibold text-[#5A5A5A]">
           <span className="flex items-center gap-1">
             <span className="text-[#2D5A3D]">✔</span>
             商用利用可能
@@ -199,7 +199,7 @@ export default function CreateResultPage() {
 
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white border-b border-[#E0DDD6] px-4 h-[60px]">
-        <div className="max-w-5xl mx-auto h-full flex items-center gap-6">
+        <div className="max-w-[1200px] mx-auto h-full flex items-center gap-6">
           <Link href="/" className="font-serif font-bold text-base text-[#1A3A2A]">
             LogoAI.jp
           </Link>
@@ -224,7 +224,7 @@ export default function CreateResultPage() {
       </header>
 
       {/* 主内容 */}
-      <main className="max-w-5xl mx-auto px-4 py-6">
+      <main className="max-w-[1200px] mx-auto px-4 py-6">
         {/* 条件摘要区 */}
         <div className="mb-4 pb-4 border-b border-[#E0DDD6]">
           <div className="flex flex-wrap items-center justify-between gap-4">
