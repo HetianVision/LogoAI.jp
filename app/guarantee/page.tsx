@@ -5,6 +5,20 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import BottomCTA from '@/components/BottomCTA'
 
+// Animation variants
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 }
+}
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+}
+
 // Section 1: Page Hero
 function PageHero() {
   return (
@@ -47,34 +61,77 @@ function PageHero() {
             </svg>
           </motion.div>
 
-          <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">返金保証</span>
-          <h1 className="font-heading text-4xl font-bold text-text-primary leading-tight mt-3 mb-5">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-accent font-medium text-sm tracking-[0.1em] uppercase"
+          >
+            返金保証
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="font-heading text-4xl font-bold text-text-primary leading-tight mt-3 mb-5"
+          >
             7日間全额返金保証。<br />理由は問いません。
-          </h1>
-          <p className="text-text-secondary leading-relaxed mb-9">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-text-secondary leading-relaxed mb-9"
+          >
             ロゴの 퀄리티に満足できなかった場合、
             購入から7日以内であれば、理由を問わず全额返金します。
             返金申請はメール1通だけ。複雑な手続きは一切ありません。
-          </p>
+          </motion.p>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <div className="flex flex-col items-center gap-1 bg-white border border-border rounded-xl px-6 py-4 min-w-[100px]">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex flex-wrap justify-center gap-4 mb-8"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.5 }}
+              className="flex flex-col items-center gap-1 bg-white border border-border rounded-xl px-6 py-4 min-w-[100px]"
+            >
               <span className="font-number text-2xl font-bold text-primary">7日間</span>
               <span className="text-xs text-text-muted">保証期間</span>
-            </div>
-            <div className="flex flex-col items-center gap-1 bg-accent/5 border border-accent rounded-xl px-6 py-4 min-w-[100px]">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.6 }}
+              className="flex flex-col items-center gap-1 bg-accent/5 border border-accent rounded-xl px-6 py-4 min-w-[100px]"
+            >
               <span className="font-number text-2xl font-bold text-accent">100%</span>
               <span className="text-xs text-text-muted">全额返金</span>
-            </div>
-            <div className="flex flex-col items-center gap-1 bg-white border border-border rounded-xl px-6 py-4 min-w-[100px]">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.7 }}
+              className="flex flex-col items-center gap-1 bg-white border border-border rounded-xl px-6 py-4 min-w-[100px]"
+            >
               <span className="font-number text-2xl font-bold text-primary">理由不問</span>
               <span className="text-xs text-text-muted">申請条件</span>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <Link href="/pricing" className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-text-primary font-bold text-lg px-8 py-4 rounded-full transition-all hover:-translate-y-1 hover:shadow-lg">
-            安心して購入する →
-          </Link>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+          >
+            <Link href="/pricing" className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-text-primary font-bold text-lg px-8 py-4 rounded-full transition-all hover:-translate-y-1 hover:shadow-lg">
+              安心して購入する →
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -91,7 +148,13 @@ function GuaranteePrinciples() {
 
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center gap-0 max-w-[1000px] mx-auto">
-          <div className="flex-1 text-center px-10 py-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="flex-1 text-center px-10 py-6"
+          >
             <div className="text-4xl mb-4">📅</div>
             <h3 className="font-heading text-xl font-bold text-white mb-3">購入から7日以内</h3>
             <p className="text-white/65 text-sm leading-relaxed">
@@ -99,11 +162,23 @@ function GuaranteePrinciples() {
               7日以内であれば返金申請が可能です。
               土日祝日も期間に含まれます。
             </p>
-          </div>
+          </motion.div>
 
-          <div className="w-px h-[120px] bg-white/15 hidden md:block" />
+          <motion.div
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="w-px h-[120px] bg-white/15 hidden md:block origin-top"
+          />
 
-          <div className="flex-1 text-center px-10 py-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="flex-1 text-center px-10 py-6"
+          >
             <div className="text-4xl mb-4">💬</div>
             <h3 className="font-heading text-xl font-bold text-white mb-3">理由は問いません</h3>
             <p className="text-white/65 text-sm leading-relaxed">
@@ -111,11 +186,23 @@ function GuaranteePrinciples() {
               どんな理由でも申請を受け付けます。
               理由の説明は不要です。
             </p>
-          </div>
+          </motion.div>
 
-          <div className="w-px h-[120px] bg-white/15 hidden md:block" />
+          <motion.div
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.4 }}
+            className="w-px h-[120px] bg-white/15 hidden md:block origin-top"
+          />
 
-          <div className="flex-1 text-center px-10 py-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex-1 text-center px-10 py-6"
+          >
             <div className="text-4xl mb-4">💳</div>
             <h3 className="font-heading text-xl font-bold text-white mb-3">3〜5営業日以内に返金</h3>
             <p className="text-white/65 text-sm leading-relaxed">
@@ -123,7 +210,7 @@ function GuaranteePrinciples() {
               ご購入時の決済方法（クレジットカード等）へ返金処理します。
               返金手数料は一切かかりません。
             </p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -132,79 +219,109 @@ function GuaranteePrinciples() {
 
 // Section 3: 返金申請の手順
 function RefundSteps() {
+  const steps = [
+    {
+      num: 1,
+      title: 'お問い合わせページからメールを送る',
+      desc: <><Link href="/contact" className="text-primary underline">お問い合わせページ</Link>から「返金希望」と記載してメールを送信します。件名・本文の形式は自由です。購入時のメールアドレスから送信してください。</>,
+      note: <><strong className="text-text-primary">記載する情報（任意）：</strong>注文番号、購入日時、返金希望の理由（不要ですが記載いただけると参考になります）</>
+    },
+    {
+      num: 2,
+      title: '当社から受理確認メールが届く',
+      desc: <>申請受領から<strong className="text-text-primary">24時間以内</strong>に返金受理確認メールをお送りします。土日祝日は翌営業日対応となります。確認メールが届かない場合は迷惑メールフォルダをご確認ください。</>,
+      isHighlight: false
+    },
+    {
+      num: '✓',
+      title: '3〜5営業日以内に返金',
+      desc: <>受理後3〜5営業日以内に、ご購入時の決済方法へ返金処理を行います。クレジットカードへの返金はカード会社の処理日程により明細への反映に追加で数日かかる場合があります。</>,
+      note: <><strong className="text-text-primary">返金後の注意：</strong>返金後はロゴデータのダウンロード・著作権行使ができなくなります。ダウンロード済みのロゴデータは削除してください。</>,
+      isHighlight: true
+    }
+  ]
+
   return (
     <section className="py-16 md:py-20 bg-bg-section">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="text-center mb-12">
-          <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">申請方法</span>
-          <h2 className="font-heading text-3xl font-bold text-text-primary mt-3">返金申請はメール1通で完了</h2>
-          <p className="text-text-secondary mt-3">複雑な手続きは一切ありません。3ステップで完了します。</p>
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-accent font-medium text-sm tracking-[0.1em] uppercase"
+          >
+            申請方法
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-heading text-3xl font-bold text-text-primary mt-3"
+          >
+            返金申請はメール1通で完了
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-text-secondary mt-3"
+          >
+            複雑な手続きは一切ありません。3ステップで完了します。
+          </motion.p>
         </div>
 
         <div className="max-w-[680px] mx-auto mb-12 flex flex-col gap-0">
-          <div className="flex gap-6 p-7 bg-white border border-border rounded-xl">
-            <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-number text-lg font-bold flex-shrink-0">
-              1
-            </div>
-            <div className="flex-1">
-              <h3 className="font-heading text-lg font-bold text-text-primary mb-2.5">お問い合わせページからメールを送る</h3>
-              <p className="text-text-secondary text-sm leading-relaxed mb-3">
-                <Link href="/contact" className="text-primary underline">お問い合わせページ</Link>から
-                「返金希望」と記載してメールを送信します。
-                件名・本文の形式は自由です。
-                購入時のメールアドレスから送信してください。
-              </p>
-              <div className="text-xs text-text-secondary bg-bg-section rounded-md p-2.5 leading-relaxed">
-                <strong className="text-text-primary">記載する情報（任意）：</strong>
-                注文番号、購入日時、返金希望の理由（不要ですが記載いただけると参考になります）
+          {steps.map((step, index) => (
+            <motion.div
+              key={step.num}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+            >
+              <div className={`flex gap-6 p-7 bg-white border rounded-xl ${step.isHighlight ? 'border-accent bg-accent/5' : 'border-border'}`}>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-number text-lg font-bold flex-shrink-0 ${step.isHighlight ? 'bg-accent text-text-primary' : 'bg-primary text-white'}`}>
+                  {step.num}
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-heading text-lg font-bold text-text-primary mb-2.5">{step.title}</h3>
+                  <p className="text-text-secondary text-sm leading-relaxed mb-3">
+                    {step.desc}
+                  </p>
+                  {step.note && (
+                    <div className="text-xs text-text-secondary bg-bg-section rounded-md p-2.5 leading-relaxed">
+                      {step.note}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          </div>
-
-          <div className="w-0.5 h-6 bg-border mx-auto" style={{
-            backgroundImage: 'repeating-linear-gradient(to bottom, #C9963A 0, #C9963A 4px, transparent 4px, transparent 10px)'
-          }} />
-
-          <div className="flex gap-6 p-7 bg-white border border-border rounded-xl">
-            <div className="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-number text-lg font-bold flex-shrink-0">
-              2
-            </div>
-            <div className="flex-1">
-              <h3 className="font-heading text-lg font-bold text-text-primary mb-2.5">当社から受理確認メールが届く</h3>
-              <p className="text-text-secondary text-sm leading-relaxed">
-                申請受領から<strong className="text-text-primary">24時間以内</strong>に
-                返金受理確認メールをお送りします。
-                土日祝日は翌営業日対応となります。
-                確認メールが届かない場合は迷惑メールフォルダをご確認ください。
-              </p>
-            </div>
-          </div>
-
-          <div className="w-0.5 h-6 bg-border mx-auto" style={{
-            backgroundImage: 'repeating-linear-gradient(to bottom, #C9963A 0, #C9963A 4px, transparent 4px, transparent 10px)'
-          }} />
-
-          <div className="flex gap-6 p-7 border rounded-xl border-accent bg-accent/5">
-            <div className="w-10 h-10 bg-accent text-text-primary rounded-full flex items-center justify-center font-bold flex-shrink-0">
-              ✓
-            </div>
-            <div className="flex-1">
-              <h3 className="font-heading text-lg font-bold text-text-primary mb-2.5">3〜5営業日以内に返金</h3>
-              <p className="text-text-secondary text-sm leading-relaxed mb-3">
-                受理後3〜5営業日以内に、ご購入時の決済方法へ返金処理を行います。
-                クレジットカードへの返金はカード会社の処理日程により
-                明細への反映に追加で数日かかる場合があります。
-              </p>
-              <div className="text-xs bg-accent/10 border-l-3 border-accent p-3 rounded leading-relaxed">
-                <strong className="text-text-primary">返金後の注意：</strong>
-                返金後はロゴデータのダウンロード・著作権行使ができなくなります。
-                ダウンロード済みのロゴデータは削除してください。
-              </div>
-            </div>
-          </div>
+              {index < steps.length - 1 && (
+                <motion.div
+                  initial={{ scaleY: 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
+                  className="w-0.5 h-6 bg-border mx-auto origin-top"
+                  style={{
+                    backgroundImage: 'repeating-linear-gradient(to bottom, #C9963A 0, #C9963A 4px, transparent 4px, transparent 10px)'
+                  }}
+                />
+              )}
+            </motion.div>
+          ))}
         </div>
 
-        <div className="text-center flex flex-col items-center gap-3">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center flex flex-col items-center gap-3"
+        >
           <Link href="/contact" className="inline-block border border-primary text-primary hover:bg-primary hover:text-text-inverse font-medium px-6 py-3 rounded-full transition-all">
             返金を申請する →
           </Link>
@@ -212,7 +329,7 @@ function RefundSteps() {
             ※ 返金申請は購入から7日以内のみ受け付けています。
             詳細は<Link href="/terms#refund" className="text-primary">利用規約 返金ポリシー</Link>をご確認ください。
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -249,13 +366,36 @@ function GuaranteeFAQ() {
     <section className="py-16 md:py-20 bg-bg-base">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="text-center mb-10">
-          <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">よくある疑問</span>
-          <h2 className="font-heading text-3xl font-bold text-text-primary mt-3">返金保証についての疑問</h2>
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-accent font-medium text-sm tracking-[0.1em] uppercase"
+          >
+            よくある疑問
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-heading text-3xl font-bold text-text-primary mt-3"
+          >
+            返金保証についての疑問
+          </motion.h2>
         </div>
 
         <div className="max-w-[760px] mx-auto mb-8">
           {faqs.map((faq, index) => (
-            <div key={index} className="bg-white rounded-xl border border-border mb-3 overflow-hidden">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+              className="bg-white rounded-xl border border-border mb-3 overflow-hidden"
+            >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full px-6 py-4 cursor-pointer font-medium text-text-primary flex justify-between items-center text-left"
@@ -266,19 +406,30 @@ function GuaranteeFAQ() {
                 </svg>
               </button>
               {openIndex === index && (
-                <div className="px-6 pb-4 text-text-secondary leading-relaxed">
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  transition={{ duration: 0.3 }}
+                  className="px-6 pb-4 text-text-secondary leading-relaxed"
+                >
                   <p>{faq.a}</p>
-                </div>
+                </motion.div>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        <div className="text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center"
+        >
           <Link href="/terms#refund" className="inline-block border border-primary text-primary hover:bg-primary hover:text-text-inverse font-medium px-6 py-3 rounded-full transition-all">
             返金ポリシー全文を読む →
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -290,50 +441,67 @@ function GuaranteeConfidence() {
     <section className="py-16 md:py-20 bg-bg-section">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="text-center mb-12">
-          <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">品質への自信</span>
-          <h2 className="font-heading text-3xl font-bold text-text-primary mt-3">98%のユーザーが返金申請をしない理由</h2>
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-accent font-medium text-sm tracking-[0.1em] uppercase"
+          >
+            品質への自信
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-heading text-3xl font-bold text-text-primary mt-3"
+          >
+            98%のユーザーが返金申請をしない理由
+          </motion.h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-[1000px] mx-auto mb-12">
-          <div className="bg-white border border-border rounded-2xl p-9 text-center">
-            <div className="font-number text-[48px] font-semibold text-primary leading-none mb-2.5">98%</div>
-            <div className="font-bold text-text-primary mb-3">返金申請なし率</div>
-            <p className="text-text-secondary text-sm leading-relaxed">
-              購入した有料プランユーザーのうち98%が
-              7日間の保証期間中に返金申請をしていません。
-            </p>
-          </div>
-
-          <div className="bg-white border border-border rounded-2xl p-9 text-center">
-            <div className="font-number text-[48px] font-semibold text-primary leading-none mb-2.5">4.9</div>
-            <div className="font-bold text-text-primary mb-3">平均満足度スコア</div>
-            <p className="text-text-secondary text-sm leading-relaxed">
-              500件以上のユーザーレビューの平均スコア。
-              5段階評価でほぼ満点を維持しています。
-            </p>
-          </div>
-
-          <div className="bg-white border border-border rounded-2xl p-9 text-center">
-            <div className="font-number text-[48px] font-semibold text-primary leading-none mb-2.5">無制限</div>
-            <div className="font-bold text-text-primary mb-3">再生成・カスタマイズ</div>
-            <p className="text-text-secondary text-sm leading-relaxed">
-              有料プランでは気に入るまで何度でも再生成・編集可能。
-              納得してからダウンロードできます。
-            </p>
-          </div>
+          {[
+            { num: '98%', title: '返金申請なし率', desc: '購入した有料プランユーザーのうち98%が7日間の保証期間中に返金申請をしていません。' },
+            { num: '4.9', title: '平均満足度スコア', desc: '500件以上のユーザーレビューの平均スコア。5段階評価でほぼ満点を維持しています。' },
+            { num: '無制限', title: '再生成・カスタマイズ', desc: '有料プランでは気に入るまで何度でも再生成・編集可能。納得してからダウンロードできます。' }
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              className="bg-white border border-border rounded-2xl p-9 text-center"
+            >
+              <div className="font-number text-[48px] font-semibold text-primary leading-none mb-2.5">{item.num}</div>
+              <div className="font-bold text-text-primary mb-3">{item.title}</div>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                {item.desc}
+              </p>
+            </motion.div>
+          ))}
         </div>
 
-        <div className="max-w-[680px] mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="max-w-[680px] mx-auto"
+        >
           <blockquote className="bg-white border border-border border-l-4 border-l-accent rounded-r-xl p-7">
             <p className="font-heading text-lg text-text-primary leading-relaxed mb-3">
-              「返金することも考えましたが、生成したロゴが想像以上の 퀄리티で驚きました。
+              「返金することも考えましたが、生成したロゴが想像以上の 퀄リティで驚きました。
               デザイン会社に頼むより断然良いものができました」
             </p>
             <footer className="text-sm text-text-muted">
               — スタートアップ代表・東京 / スタンダードプラン
             </footer>
           </blockquote>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -344,31 +512,71 @@ function FinalCTA() {
   return (
     <section className="py-16 md:py-20 bg-bg-base">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="bg-primary rounded-2xl p-10 md:p-14 text-center relative overflow-hidden">
-          <div className="absolute right-[-100px] top-[-100px] w-[300px] h-[300px] rounded-full opacity-10 bg-accent" />
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-primary rounded-2xl p-10 md:p-14 text-center relative overflow-hidden"
+        >
+          <motion.div
+            initial={{ scale: 0.8 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="absolute right-[-100px] top-[-100px] w-[300px] h-[300px] rounded-full opacity-10 bg-accent"
+          />
           <div className="relative z-10">
-            <h2 className="font-heading text-3xl font-bold text-white mb-4">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="font-heading text-3xl font-bold text-white mb-4"
+            >
               リスクゼロで、まず試してみてください。
-            </h2>
-            <p className="text-white/80 mb-8 max-w-[500px] mx-auto">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-white/80 mb-8 max-w-[500px] mx-auto"
+            >
               7日間全额返金保証があるので、「気に入らなかったら返金」という<br />
               安心感を持ちながらロゴを作り始められます。
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Link href="/pricing" className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-text-primary font-bold text-lg px-8 py-4 rounded-full transition-all hover:-translate-y-1 hover:shadow-lg">
-                料金プランを見る →
-              </Link>
-              <Link href="/create" className="inline-flex items-center gap-2 border-2 border-white text-white hover:bg-white hover:text-primary font-bold text-lg px-8 py-4 rounded-full transition-all">
-                まず無料で試す
-              </Link>
-            </div>
-            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-white/60">
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
+            >
+              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                <Link href="/pricing" className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-text-primary font-bold text-lg px-8 py-4 rounded-full transition-all hover:-translate-y-1 hover:shadow-lg">
+                  料金プランを見る →
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+                <Link href="/create" className="inline-flex items-center gap-2 border-2 border-white text-white hover:bg-white hover:text-primary font-bold text-lg px-8 py-4 rounded-full transition-all">
+                  まず無料で試す
+                </Link>
+              </motion.div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-white/60"
+            >
               <span>・理由不問・全额返金✓ 7日間</span>
               <span>✓ 返金手数料ゼロ</span>
               <span>✓ 申請はメール1通だけ</span>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
