@@ -24,6 +24,7 @@ export default function Footer() {
               <li><Link href="/features" className="hover:text-accent transition-colors">機能</Link></li>
               <li><Link href="/pricing" className="hover:text-accent transition-colors">料金</Link></li>
               <li><Link href="/works" className="hover:text-accent transition-colors">事例</Link></li>
+              <li><Link href="/about" className="hover:text-accent transition-colors">会社概要</Link></li>
             </ul>
           </div>
 
