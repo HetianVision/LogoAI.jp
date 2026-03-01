@@ -4,10 +4,11 @@
 > **依赖文档**：`homepage-spec.md`（设计系统）、`create-spec.md`（状态管理・WizardState）
 > **页面类型**：生成結果表示・コンバージョン
 > **核心设计原则**：
->   1. 生成結果を最大限に見せてコンバージョンを促す
->   2. 「微調整→再生成」のループを結果ページ内で完結させる
->   3. 日本ユーザーの「用途で確認したい」ニーズに応える用途プレビュー
+>   1. 日本ユーザーは「安全性」を先に確認してから「デザイン」を見る → 顶部安心条を最優先
+>   2. 「ランダム生成ではなく条件に基づいた生成」を明示 → 条件摘要区で信頼感を演出
+>   3. 列表页の役割は「1つ気に入ったものをクリックさせること」のみ → シンプルに徹する
 >   4. 付費墙は「品質層」方式 — 無料でも全案確認可・高品質データのみ有料
+>   5. Mockup・価格・複雑な修正機能は列表页に置かない
 
 ---
 
@@ -26,12 +27,16 @@
 ```html
 <div class="result-page">
   <header class="result-header">          ← ロゴ + 簡易ステータス
+  <!-- ① 顶部安心条（新增） -->
+  <div class="trust-bar">                 ← 商用可・著作権・追加費用なし
   <main class="result-main">
+    <!-- ② 条件摘要区（新增） -->
+    <div class="condition-summary">       ← 印象・用途・業種 + 条件変更ボタン
     <div class="result-layout">
       <div class="result-content">        ← 左：メイン結果エリア
         <!-- 用途プレビュータブ -->
         <!-- ロゴグリッド（8〜12案） -->
-        <!-- 無料制限バナー -->
+        <!-- ③ 底部再生成引导区（新增・旧バナーを置き換え） -->
       </div>
       <aside class="result-aside">        ← 右：調整パネル（PC固定）
         <!-- 調整して再生成パネル -->
@@ -148,7 +153,229 @@
 
 ---
 
-## 3. 用途プレビュータブ
+## 3. 顶部安心条（新增）
+
+ページ最上部に固定表示。日本ユーザーがデザインを見る前に「安全か」を確認する心理に対応する。
+
+```html
+<div class="trust-bar" role="note" aria-label="サービス品質保証">
+  <div class="tb-inner">
+    <span class="tb-item">
+      <span class="tb-check" aria-hidden="true">✔</span>
+      商用利用可能
+    </span>
+    <span class="tb-divider" aria-hidden="true">|</span>
+    <span class="tb-item">
+      <span class="tb-check" aria-hidden="true">✔</span>
+      著作権はお客様に帰属
+    </span>
+    <span class="tb-divider" aria-hidden="true">|</span>
+    <span class="tb-item">
+      <span class="tb-check" aria-hidden="true">✔</span>
+      追加費用なし
+    </span>
+    <span class="tb-divider" aria-hidden="true">|</span>
+    <span class="tb-item">
+      <span class="tb-check" aria-hidden="true">✔</span>
+      印刷・SNS対応済み
+    </span>
+  </div>
+</div>
+```
+
+```css
+.trust-bar {
+  background: var(--color-bg-section);
+  border-bottom: 1px solid var(--color-border);
+  padding: 8px var(--container-px);
+}
+
+.tb-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.tb-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.tb-check {
+  color: var(--color-success);
+  font-size: var(--text-sm);
+}
+
+.tb-divider {
+  color: var(--color-border);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 640px) {
+  .tb-divider { display: none; }
+  .tb-inner { gap: 10px; justify-content: flex-start; }
+}
+```
+
+---
+
+## 4. 条件摘要区（新増）
+
+グリッドの直上に配置。ユーザーに「これはあなたの条件に基づいた生成結果です」と伝える最重要エリア。
+
+```html
+<div class="condition-summary" aria-label="生成条件">
+  <div class="cs-inner">
+    <div class="cs-left">
+      <div class="cs-title">ご希望条件に基づきロゴを生成しました</div>
+      <div class="cs-tags" id="cs-tags">
+        <!-- 動的生成 -->
+        <!-- 印象 -->
+        <span class="cs-tag cs-tag-impression">
+          <span class="cs-tag-label">印象</span>
+          <span id="cs-impression"></span>
+        </span>
+        <!-- 用途 -->
+        <span class="cs-tag cs-tag-usage">
+          <span class="cs-tag-label">用途</span>
+          <span id="cs-usage"></span>
+        </span>
+        <!-- 業種 -->
+        <span class="cs-tag cs-tag-industry">
+          <span class="cs-tag-label">業種</span>
+          <span id="cs-industry"></span>
+        </span>
+      </div>
+    </div>
+    <button class="cs-change-btn" type="button" id="btn-change-conditions">
+      🔁 条件を変更する
+    </button>
+  </div>
+</div>
+```
+
+```css
+.condition-summary {
+  padding: 16px 0 20px;
+  margin-bottom: 4px;
+}
+
+.cs-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cs-title {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 10px;
+}
+
+.cs-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cs-tag {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  color: var(--color-text-primary);
+}
+
+.cs-tag-label {
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.cs-tag-impression { border-color: rgba(26,58,42,0.2); background: rgba(26,58,42,0.03); }
+.cs-tag-usage      { border-color: rgba(201,150,58,0.3); background: rgba(201,150,58,0.04); }
+.cs-tag-industry   { border-color: var(--color-border); }
+
+.cs-change-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  background: white;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cs-change-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+@media (max-width: 640px) {
+  .cs-change-btn { width: 100%; justify-content: center; }
+}
+```
+
+### 4.1 条件摘要区の動的レンダリング
+
+```typescript
+function renderConditionSummary(state: WizardState) {
+  const IMP_LABELS: Record<string, string> = {
+    trustworthy: '信頼感', friendly: '親しみやすい', luxury: '高級感',
+    japanese: '和風', simple: 'シンプル', cute: '可愛い',
+    powerful: '力強い', modern: 'モダン', natural: 'ナチュラル',
+    stylish: 'スタイリッシュ', pop: 'ポップ', cool: 'クール',
+  }
+  const USAGE_LABELS: Record<string, string> = {
+    card: '名刺', signage: '看板', sns: 'SNS',
+    package: 'パッケージ', web: 'Webサイト',
+  }
+
+  document.getElementById('cs-impression')!.textContent =
+    state.impression.map(i => IMP_LABELS[i] || i).join(' × ')
+
+  document.getElementById('cs-usage')!.textContent =
+    state.usage.map(u => USAGE_LABELS[u] || u).join('・')
+
+  document.getElementById('cs-industry')!.textContent =
+    state.industryLabel
+}
+
+// 「条件を変更する」ボタン → 右サイドパネルにスクロール（PCの場合）
+// SP の場合は調整ドロワーを開く
+document.getElementById('btn-change-conditions')?.addEventListener('click', () => {
+  if (window.innerWidth >= 1024) {
+    document.querySelector('.result-aside')?.scrollIntoView({ behavior: 'smooth' })
+  } else {
+    document.getElementById('sp-adjust-drawer')!.hidden = false
+  }
+})
+```
+
+---
 
 ユーザーがStep 2で選択した用途のみタブとして表示。未選択の場合は「通常」タブのみ。
 
@@ -273,7 +500,11 @@
 
 ---
 
-## 4. ロゴグリッド（8〜12案）
+## 5. 用途プレビュータブ
+
+---
+
+## 6. ロゴグリッド（8〜12案）
 
 ```html
 <div class="logo-grid" id="logo-grid"
@@ -382,17 +613,20 @@
         ◑
       </button>
 
-      <!-- 無料ユーザー：低解像度オーバーレイ（ダウンロード時のみ） -->
-      <!-- 表示自体はフルで見せる。ダウンロードボタンにのみ制限表示 -->
-
     </div>
 
     <!-- カード下部 -->
     <div class="lc-footer">
 
-      <!-- スタイル説明 -->
+      <!-- 印象タグ + カラー -->
       <div class="lc-style">
-        <span class="lc-style-tag">{{ logo.fontFamily }}</span>
+        <!-- 印象タグ（最大2つ） -->
+        <div class="lc-impression-tags" aria-label="印象">
+          {% for tag in logo.impressionTags %}
+          <span class="lc-imp-tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        <!-- カラードット -->
         <div class="lc-colors" aria-label="使用カラー">
           {% for color in logo.colors %}
           <span class="lc-color-dot"
@@ -403,7 +637,7 @@
         </div>
       </div>
 
-      <!-- アクションボタン群 -->
+      <!-- アクションボタン：収藏 + 詳細のみ（列表页はシンプルに） -->
       <div class="lc-actions">
 
         <!-- お気に入り -->
@@ -412,17 +646,10 @@
           ♡
         </button>
 
-        <!-- 拡大プレビュー -->
-        <button class="lca-expand" type="button"
-                aria-label="拡大して確認">
-          ⤢
-        </button>
-
-        <!-- ダウンロードボタン（無料・低解像度PNG） -->
-        <button class="lca-download lca-download-free" type="button"
-                data-logo-id="{{ logo.id }}"
-                aria-label="低解像度PNGをダウンロード（無料・著作権は当社帰属）">
-          ↓ 無料DL
+        <!-- 詳細を見る（= 拡大モーダルを開く） -->
+        <button class="lca-detail" type="button"
+                aria-label="詳細を見る">
+          詳細を見る →
         </button>
 
       </div>
@@ -450,12 +677,13 @@
   border-radius: var(--radius-2xl);
   overflow: hidden;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .logo-card:hover {
   border-color: var(--color-primary);
   box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.01); /* 轻微放大，高级感 */
 }
 
 /* プレビューエリア */
@@ -798,26 +1026,34 @@
 
 .lc-style {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  gap: 6px;
   flex: 1;
   min-width: 0;
 }
 
-.lc-style-tag {
-  font-size: 0.65rem;
+/* 印象タグ（新增） */
+.lc-impression-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.lc-imp-tag {
+  font-size: 0.6rem;
   font-weight: 600;
-  color: var(--color-text-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  padding: 2px 8px;
+  background: var(--color-bg-section);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
 }
 
 .lc-colors { display: flex; gap: 3px; flex-shrink: 0; }
 
 .lc-color-dot {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   border: 1px solid rgba(0,0,0,0.08);
   display: block;
@@ -831,7 +1067,7 @@
   flex-shrink: 0;
 }
 
-.lca-fav, .lca-expand {
+.lca-fav {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -848,25 +1084,24 @@
 
 .lca-fav:hover { border-color: #C41E3A; color: #C41E3A; }
 .lca-fav[aria-pressed="true"] { background: #C41E3A; border-color: #C41E3A; color: white; }
-.lca-expand:hover { border-color: var(--color-primary); color: var(--color-primary); }
 
-.lca-download-free {
-  padding: 6px 12px;
-  background: var(--color-bg-section);
-  border: 1px solid var(--color-border);
+/* 詳細を見るボタン（旧:無料DLボタンを置き換え） */
+.lca-detail {
+  padding: 7px 14px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
   border-radius: var(--radius-full);
   font-size: 0.65rem;
-  font-weight: 600;
-  color: var(--color-text-secondary);
+  font-weight: 700;
   cursor: pointer;
   font-family: var(--font-body);
   transition: all 0.2s;
   white-space: nowrap;
 }
 
-.lca-download-free:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+.lca-detail:hover {
+  background: var(--color-primary-hover);
 }
 
 /* グリッドレスポンシブ */
@@ -876,170 +1111,146 @@
 
 ---
 
-## 5. 無料制限バナー（グリッド下部）
+## 7. 底部再生成引导区（新增）
+
+グリッド下部に配置。「気に入ったロゴが見つからなかった」ユーザーへの受け皿。日本ユーザーは「もう一度試す」の選択肢があると安心する。価格はここには載せない。
 
 ```html
 <!-- ロゴグリッドの直下に配置 -->
-<div class="free-limit-banner" role="region" aria-label="有料プランのご案内">
-  <div class="flb-inner">
-    <div class="flb-left">
-      <div class="flb-title">
-        ✨ 高品質データと著作権証明書を取得する
+<div class="regen-guide" role="region" aria-label="再生成の案内">
+  <div class="rg-inner">
+    <div class="rg-text">
+      <div class="rg-title">気に入ったロゴが見つかりませんか？</div>
+      <div class="rg-desc">
+        条件を変えて再生成できます。印象・業種・用途を調整してみましょう。
       </div>
-      <ul class="flb-benefits">
-        <li>
-          <span class="flb-check">✓</span>
-          高解像度SVG・PDF・PNG（印刷・看板対応）
-        </li>
-        <li>
-          <span class="flb-check">✓</span>
-          著作権帰属証明書（商標登録申請に使用可）
-        </li>
-        <li>
-          <span class="flb-check">✓</span>
-          商用利用フル解禁・再編集無制限
-        </li>
-        <li>
-          <span class="flb-check">✓</span>
-          7日間全額返金保証
-        </li>
-      </ul>
     </div>
-    <div class="flb-right">
-      <div class="flb-price">
-        <span class="flb-price-from">スタンダードプラン</span>
-        <span class="flb-price-num">¥4,980</span>
-        <span class="flb-price-unit">買い切り</span>
-      </div>
-      <a href="/checkout" class="btn-purchase" id="btn-purchase-banner">
-        このロゴを購入する →
-      </a>
-      <div class="flb-trust">
-        <span>🔒 7日間全額返金保証</span>
-      </div>
+    <div class="rg-actions">
+      <button class="rg-btn rg-btn-primary" type="button"
+              id="btn-regen-guide">
+        🔄 条件を変更して再生成
+      </button>
+      <button class="rg-btn rg-btn-secondary" type="button"
+              id="btn-change-impression">
+        🎨 印象を変えて試す
+      </button>
     </div>
   </div>
 </div>
 ```
 
 ```css
-.free-limit-banner {
-  margin-top: 24px;
-  background: linear-gradient(135deg,
-    rgba(26,58,42,0.04) 0%,
-    rgba(201,150,58,0.06) 100%);
-  border: 1.5px solid rgba(201,150,58,0.3);
-  border-radius: var(--radius-2xl);
-  overflow: hidden;
-}
-
-.flb-inner {
-  display: flex;
-  align-items: center;
-  gap: 32px;
+.regen-guide {
+  margin-top: 32px;
   padding: 28px 32px;
+  background: var(--color-bg-section);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  text-align: center;
 }
 
-.flb-left { flex: 1; }
+.rg-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
 
-.flb-title {
+.rg-title {
   font-family: var(--font-heading);
   font-size: var(--text-lg);
   font-weight: 700;
   color: var(--color-text-primary);
-  margin-bottom: 14px;
+  margin-bottom: 6px;
 }
 
-.flb-benefits {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.flb-benefits li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.rg-desc {
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
 }
 
-.flb-check { color: var(--color-success); font-weight: 700; flex-shrink: 0; }
-
-.flb-right {
+.rg-actions {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 12px;
-  flex-shrink: 0;
-  text-align: center;
-  min-width: 200px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.flb-price {
+.rg-btn {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 2px;
-}
-
-.flb-price-from {
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
-  font-weight: 500;
-}
-
-.flb-price-num {
-  font-family: var(--font-number);
-  font-size: 2rem;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
   font-weight: 700;
-  color: var(--color-primary);
-  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
 }
 
-.flb-price-unit {
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
-}
-
-.btn-purchase {
-  display: block;
-  width: 100%;
-  padding: 14px 24px;
+.rg-btn-primary {
   background: var(--color-primary);
   color: white;
-  font-size: var(--text-base);
-  font-weight: 700;
-  border-radius: var(--radius-full);
-  text-decoration: none;
-  text-align: center;
-  transition: all 0.2s;
+  border: none;
   box-shadow: 0 4px 12px rgba(26,58,42,0.2);
 }
 
-.btn-purchase:hover {
+.rg-btn-primary:hover {
   background: var(--color-primary-hover);
   transform: translateY(-1px);
 }
 
-.flb-trust {
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
+.rg-btn-secondary {
+  background: white;
+  color: var(--color-text-secondary);
+  border: 1.5px solid var(--color-border);
 }
 
-@media (max-width: 768px) {
-  .flb-inner { flex-direction: column; gap: 20px; padding: 20px; }
-  .flb-right { width: 100%; }
-  .btn-purchase { width: 100%; }
+.rg-btn-secondary:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
+
+@media (max-width: 640px) {
+  .regen-guide { padding: 20px 16px; }
+  .rg-btn { width: 100%; justify-content: center; }
+}
+```
+
+### 7.1 ボタン動作
+
+```typescript
+// 「条件を変更して再生成」→ 調整パネルを開いて再生成ボタンにフォーカス
+document.getElementById('btn-regen-guide')?.addEventListener('click', () => {
+  if (window.innerWidth >= 1024) {
+    document.querySelector('.result-aside')?.scrollIntoView({ behavior: 'smooth' })
+    setTimeout(() => {
+      document.getElementById('btn-regen')?.focus()
+    }, 400)
+  } else {
+    document.getElementById('sp-adjust-drawer')!.hidden = false
+  }
+})
+
+// 「印象を変えて試す」→ 調整パネルの印象セクションにフォーカス
+document.getElementById('btn-change-impression')?.addEventListener('click', () => {
+  if (window.innerWidth >= 1024) {
+    document.querySelector('.ap-impression-section')?.scrollIntoView({ behavior: 'smooth' })
+  } else {
+    document.getElementById('sp-adjust-drawer')!.hidden = false
+    setTimeout(() => {
+      document.querySelector('.ap-impression-section')?.scrollIntoView({ behavior: 'smooth' })
+    }, 300)
+  }
+})
 ```
 
 ---
 
-## 6. 調整して再生成パネル（PC右サイドバー）
+## 8. 調整して再生成パネル（PC右サイドバー）
 
 ```html
 <aside class="result-aside" aria-label="調整して再生成">
@@ -1486,7 +1697,7 @@
 
 ---
 
-## 7. SP用：調整パネルドロワー
+## 9. SP用：調整パネルドロワー
 
 ```html
 <!-- SP専用：画面下部に固定表示 -->
@@ -1618,7 +1829,7 @@
 
 ---
 
-## 8. 拡大プレビューモーダル
+## 10. 拡大プレビューモーダル
 
 ```html
 <div class="logo-modal" id="logo-modal"
@@ -1796,7 +2007,7 @@
 
 ---
 
-## 9. JavaScript（結果ページ状態管理）
+## 11. JavaScript（結果ページ状態管理）
 
 ```typescript
 // result-page.ts
@@ -1980,7 +2191,7 @@ document.addEventListener('keydown', (e) => {
 
 ---
 
-## 10. 無料DLボタンの動作仕様
+## 12. 無料DLボタンの動作仕様
 
 ```
 無料ダウンロード（lca-download-free）クリック時：
@@ -2007,7 +2218,7 @@ document.addEventListener('keydown', (e) => {
 
 ---
 
-## 11. SEO・メタデータ
+## 13. SEO・メタデータ
 
 ```html
 <title>ロゴが生成されました | LogoAI.jp</title>
@@ -2017,7 +2228,7 @@ document.addEventListener('keydown', (e) => {
 
 ---
 
-## 12. アクセシビリティ要件
+## 14. アクセシビリティ要件
 
 | 要件 | 実装 |
 |---|---|
@@ -2030,7 +2241,7 @@ document.addEventListener('keydown', (e) => {
 
 ---
 
-## 13. レスポンシブ断点
+## 15. レスポンシブ断点
 
 | 断点 | 変更内容 |
 |---|---|
@@ -2041,20 +2252,22 @@ document.addEventListener('keydown', (e) => {
 
 ---
 
-## 14. コンポーネント構成
+## 16. コンポーネント構成
 
 ```
 app/create/result/page.tsx
 
 components/create/result/
 ├── ResultHeader.tsx          ← ロゴ + 生成完了ステータス
+├── TrustBar.tsx              ← 顶部安心条（新增）
+├── ConditionSummary.tsx      ← 条件摘要区（新增）
 ├── PreviewTabs.tsx           ← 用途別プレビュータブ
 ├── LogoGrid.tsx              ← 8〜12案グリッド
-├── LogoCard.tsx              ← 個別カード（全プレビュータイプ含む）
-├── FreeLimitBanner.tsx       ← 無料制限→購入CTA
+├── LogoCard.tsx              ← 個別カード（印象タグ・詳細ボタン含む）
+├── RegenGuide.tsx            ← 底部再生成引导区（新增・旧FreeLimitBanner差替）
 ├── AdjustPanel.tsx           ← 右サイドバー調整パネル（PC）
 ├── SpAdjustDrawer.tsx        ← 底部ドロワー（SP）
-├── LogoModal.tsx             ← 拡大プレビューモーダル
+├── LogoModal.tsx             ← 拡大プレビューモーダル（= 詳細を見る）
 ├── FreeDownloadModal.tsx     ← 無料DL確認モーダル
 └── result-page.ts            ← 状態管理・インタラクション
 
@@ -2064,4 +2277,4 @@ lib/
 
 ---
 
-*文档版本：v1.0 | 最終更新：2025年2月 | 次規格：/checkout 決済フロー*
+*文档版本：v2.0 | 最終更新：2025年3月（日本ユーザー心理に基づきUI大幅更新）| 次規格：/checkout 決済フロー*

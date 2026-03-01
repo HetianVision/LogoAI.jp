@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 interface NavbarProps {
   transparent?: boolean
@@ -26,7 +27,12 @@ export default function Navbar({ transparent = false }: NavbarProps) {
         ? 'bg-bg-base border-b border-border shadow-sm'
         : 'bg-transparent'
     }`}>
-      <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+      <motion.div 
+      className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      >
         <Link href="/" className="flex items-center gap-2">
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
             <span className="text-accent font-heading font-bold text-lg">L</span>
@@ -50,7 +56,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
             無料で始める
           </Link>
         </div>
-      </div>
+      </motion.div>
     </nav>
   )
 }

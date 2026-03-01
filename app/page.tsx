@@ -193,7 +193,13 @@ function Hero() {
 // Trust Bar 组件
 function TrustBar() {
   return (
-    <section className="bg-primary py-5 overflow-hidden">
+    <motion.section 
+      className="bg-primary py-5 overflow-hidden"
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: 0 }}
+    >
       <div className="max-w-[1200px] mx-auto px-6 flex flex-wrap justify-center items-center gap-8 md:gap-12">
         <motion.div
           className="flex flex-col items-center gap-1"
@@ -249,7 +255,7 @@ function TrustBar() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }
 
