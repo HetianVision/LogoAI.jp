@@ -143,48 +143,79 @@ function JapaneseFonts() {
     <section id="japanese-fonts" className="py-20 md:py-28 bg-bg-base">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">日本語フォント</span>
-            <h2 className="font-heading text-4xl font-bold text-text-primary mt-4 mb-6">
+          <div>
+            <motion.span
+              className="text-accent font-medium text-sm tracking-[0.1em] uppercase"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >日本語フォント</motion.span>
+            <motion.h2
+              className="font-heading text-4xl font-bold text-text-primary mt-4 mb-6"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
               日本、ビジネスに<br />最適化されたフォント
-            </h2>
-            <p className="text-text-secondary leading-relaxed mb-6">
+            </motion.h2>
+            <motion.p
+              className="text-text-secondary leading-relaxed mb-6"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               100種類以上の日本語フォントを搭載。明朝体・ゴシック体・丸ゴシック・手書き風など、
               業種やブランドイメージに合わせた選択が可能です。海外ツールでは味わえない、
               日本のビジネスシーンに最適化されたフォント陣容をお届けします。
-            </p>
+            </motion.p>
             <ul className="space-y-3 mb-8">
-              <li className="flex items-center gap-3 text-text-secondary">
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 游明朝体・ヒラギノ角ゴ・A1ゴシックなど充実
-              </li>
-              <li className="flex items-center gap-3 text-text-secondary">
+              </motion.li>
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 商用利用OKのライセンス済みフォント
-              </li>
-              <li className="flex items-center gap-3 text-text-secondary">
+              </motion.li>
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 フォント太さや文字間も調整可能
-              </li>
+              </motion.li>
             </ul>
-          </motion.div>
+          </div>
           <div className="grid grid-cols-2 gap-4">
             {fonts.map((font, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 whileHover={{ scale: 1.02 }}
@@ -208,7 +239,13 @@ function AIGeneration() {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1">
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
+            <motion.div
+              className="bg-white rounded-2xl p-6 shadow-lg"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center text-accent">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -228,36 +265,74 @@ function AIGeneration() {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
           <div className="order-1 lg:order-2">
-            <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">AI自動生成</span>
-            <h2 className="font-heading text-4xl font-bold text-text-primary mt-4 mb-6">
+            <motion.span
+              className="text-accent font-medium text-sm tracking-[0.1em] uppercase"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              AI自動生成
+            </motion.span>
+            <motion.h2
+              className="font-heading text-4xl font-bold text-text-primary mt-4 mb-6"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
               業種・スタイルから、<br />自動でデザイン提案
-            </h2>
-            <p className="text-text-secondary leading-relaxed mb-6">
+            </motion.h2>
+            <motion.p
+              className="text-text-secondary leading-relaxed mb-6"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               業種（飲食・IT・美容・士業など）を選択すると、AIがビジネスにあったスタイルを提案。
               「モダン」「クラシック」「可愛らしい」「プロフェッショナル」など多彩なデザインから、罪名を選ぶだけで適切なLogo为您生成。
-            </p>
+            </motion.p>
             <ul className="space-y-3 mb-8">
-              <li className="flex items-center gap-3 text-text-secondary">
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 業種選択でビジネスにあったスタイルを提案
-              </li>
-              <li className="flex items-center gap-3 text-text-secondary">
+              </motion.li>
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 1回の生成で3案同時提案
-              </li>
-              <li className="flex items-center gap-3 text-text-secondary">
+              </motion.li>
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 約2分でプロ品質のLogoが完成
-              </li>
+              </motion.li>
             </ul>
           </div>
         </div>
@@ -273,36 +348,78 @@ function Copyright() {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">著作権帰属</span>
-            <h2 className="font-heading text-4xl font-bold text-text-primary mt-4 mb-6">
+            <motion.span
+              className="text-accent font-medium text-sm tracking-[0.1em] uppercase"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >著作権帰属</motion.span>
+            <motion.h2
+              className="font-heading text-4xl font-bold text-text-primary mt-4 mb-6"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
               著作権は<br />お客様に100%帰属
-            </h2>
-            <p className="text-text-secondary leading-relaxed mb-6">
+            </motion.h2>
+            <motion.p
+              className="text-text-secondary leading-relaxed mb-6"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               生成されたLogoの著作権はお客様に完全帰属。商用利用・広告・商品パッケージ・WEB掲載など、
               自由的に使用できます。万一のために、著作権帰属証明書PDFを発行。
-            </p>
+            </motion.p>
             <ul className="space-y-3 mb-8">
-              <li className="flex items-center gap-3 text-text-secondary">
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 著作権帰属証明書PDFを発行
-              </li>
-              <li className="flex items-center gap-3 text-text-secondary">
+              </motion.li>
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                商用利用OK、広告・商品・サービス 何でもOK
-              </li>
-              <li className="flex items-center gap-3 text-text-secondary">
+                商用利用OK、广告・商品・サービス 何でもOK
+              </motion.li>
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                商標登録申請のサポートも可能
-              </li>
+                商標登録申請のサポート也可能
+              </motion.li>
             </ul>
           </div>
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-border">
+          <motion.div
+            className="bg-white rounded-2xl p-8 shadow-lg border border-border"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
                 <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -340,7 +457,7 @@ function Copyright() {
                 PDFをダウンロード
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -354,7 +471,13 @@ function Trademark() {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1">
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <motion.div
+              className="bg-white rounded-2xl p-8 shadow-lg"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-700">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -375,36 +498,72 @@ function Trademark() {
               <div className="text-xs text-text-muted text-center">
                 ※ This is a demonstration result.
               </div>
-            </div>
+            </motion.div>
           </div>
           <div className="order-1 lg:order-2">
-            <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">商標類似チェック</span>
-            <h2 className="font-heading text-4xl font-bold text-text-primary mt-4 mb-6">
+            <motion.span
+              className="text-accent font-medium text-sm tracking-[0.1em] uppercase"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >商標類似チェック</motion.span>
+            <motion.h2
+              className="font-heading text-4xl font-bold text-text-primary mt-4 mb-6"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
               商標登録前に、<br />類似を自動チェック
-            </h2>
-            <p className="text-text-secondary leading-relaxed mb-6">
+            </motion.h2>
+            <motion.p
+              className="text-text-secondary leading-relaxed mb-6"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               生成したLogoが既存の登録商標と類似していないか、J-PlatPat（特許情報プラットフォーム）と照合して自動チェック。
               商標登録申請前のリスク確認で、リスクを排除できます。
-            </p>
+            </motion.p>
             <ul className="space-y-3 mb-8">
-              <li className="flex items-center gap-3 text-text-secondary">
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 J-PlatPat特許情報プラットフォーム連携
-              </li>
-              <li className="flex items-center gap-3 text-text-secondary">
+              </motion.li>
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 商標登録申請前のリスク確認
-              </li>
-              <li className="flex items-center gap-3 text-text-secondary">
+              </motion.li>
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 問題が検出されると別の案を提案
-              </li>
+              </motion.li>
             </ul>
           </div>
         </div>
@@ -420,36 +579,78 @@ function BrandGuideline() {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">ブランドガイドライン</span>
-            <h2 className="font-heading text-4xl font-bold text-text-primary mt-4 mb-6">
+            <motion.span
+              className="text-accent font-medium text-sm tracking-[0.1em] uppercase"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >ブランドガイドライン</motion.span>
+            <motion.h2
+              className="font-heading text-4xl font-bold text-text-primary mt-4 mb-6"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
               Logoだけでなく、<br />ブランドルールも自動作成
-            </h2>
-            <p className="text-text-secondary leading-relaxed mb-6">
+            </motion.h2>
+            <motion.p
+              className="text-text-secondary leading-relaxed mb-6"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               Logoの使用規則、カラーコード、フォント仕様などをブランドガイドラインとしてPDFにまとめます。
               初めてブランドを作成の方でも、一貫性のあるブランドイメージを簡単に維持できます。
-            </p>
+            </motion.p>
             <ul className="space-y-3 mb-8">
-              <li className="flex items-center gap-3 text-text-secondary">
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 Logo使用規則（間隔・最小サイズ等）
-              </li>
-              <li className="flex items-center gap-3 text-text-secondary">
+              </motion.li>
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 配色コード（CMYK・RGB・HEX）
-              </li>
-              <li className="flex items-center gap-3 text-text-secondary">
+              </motion.li>
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 推奨フォントと使用方法
-              </li>
+              </motion.li>
             </ul>
           </div>
-          <div className="bg-white rounded-2xl p-8 shadow-lg">
+          <motion.div
+            className="bg-white rounded-2xl p-8 shadow-lg"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <div className="flex items-center justify-between mb-6">
               <div className="font-bold text-text-primary">ブランドガイドライン</div>
               <span className="text-xs bg-accent/10 text-accent px-2 py-1 rounded">PDF</span>
@@ -479,7 +680,7 @@ function BrandGuideline() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -548,7 +749,13 @@ function BusinessCard() {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1">
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <motion.div
+              className="bg-white rounded-2xl p-8 shadow-lg"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
               <div className="aspect-[1.7/1] bg-primary rounded-lg p-6 flex flex-col justify-between relative overflow-hidden">
                 <div className="absolute top-4 right-4 w-16 h-16 rounded-full bg-accent/20"></div>
                 <div className="text-[#FAFAF7] font-heading text-2xl">田中製菓</div>
@@ -562,36 +769,72 @@ function BusinessCard() {
                 <div className="w-8 h-8 bg-primary rounded"></div>
                 <div className="w-8 h-8 bg-accent rounded"></div>
               </div>
-            </div>
+            </motion.div>
           </div>
           <div className="order-1 lg:order-2">
-            <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">名刺レイアウト</span>
-            <h2 className="font-heading text-4xl font-bold text-text-primary mt-4 mb-6">
+            <motion.span
+              className="text-accent font-medium text-sm tracking-[0.1em] uppercase"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >名刺レイアウト</motion.span>
+            <motion.h2
+              className="font-heading text-4xl font-bold text-text-primary mt-4 mb-6"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
               Logoだけでない、<br />名刺も自動作成
-            </h2>
-            <p className="text-text-secondary leading-relaxed mb-6">
+            </motion.h2>
+            <motion.p
+              className="text-text-secondary leading-relaxed mb-6"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               Logoに合わせて、名刺・封筒・レターキットも自動生成。
               封筒やレターキットも一緒に作れるので、ブランド作成を一括で完了できます。
-            </p>
+            </motion.p>
             <ul className="space-y-3 mb-8">
-              <li className="flex items-center gap-3 text-text-secondary">
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 名刺・封筒・レターキット
-              </li>
-              <li className="flex items-center gap-3 text-text-secondary">
+              </motion.li>
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 Logoと同一スタイルで統一
-              </li>
-              <li className="flex items-center gap-3 text-text-secondary">
+              </motion.li>
+              <motion.li
+                className="flex items-center gap-3 text-text-secondary"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
                 <svg className="w-5 h-5 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 PDF・PNGで出力可能
-              </li>
+              </motion.li>
             </ul>
           </div>
         </div>
@@ -617,15 +860,27 @@ function ComparisonTable() {
   return (
     <section className="py-20 md:py-28 bg-bg-section">
       <div className="max-w-[1000px] mx-auto px-6">
-        <div className="text-center mb-12">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase">サービス比較</span>
           <h2 className="font-heading text-4xl font-bold text-text-primary mt-4 mb-6">
             他のサービスと何が違うのか
           </h2>
           <p className="text-text-secondary">主要なロゴ作成サービスとの機能比較です。数字は2025年2月時点の情報です。</p>
-        </div>
+        </motion.div>
 
-        <div className="overflow-x-auto">
+        <motion.div
+          className="overflow-x-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <table className="w-full bg-white rounded-2xl border border-border overflow-hidden">
             <thead>
               <tr className="bg-bg-section">
@@ -648,7 +903,7 @@ function ComparisonTable() {
               ))}
             </tbody>
           </table>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

@@ -88,7 +88,12 @@ function Hero() {
             </motion.p>
 
             {/* CTA按钮 */}
-            <div className="flex flex-wrap gap-4 mb-7">
+            <motion.div 
+            className="flex flex-wrap gap-4 mb-7"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            >
               <Link href="/create" className="bg-accent hover:bg-accent-dark text-text-primary font-bold text-lg px-8 py-4 rounded-full transition-all hover:-translate-y-1 hover:shadow-lg flex items-center gap-2">
                 無料でロゴを作る
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -98,10 +103,15 @@ function Hero() {
               <Link href="/pricing" className="border border-primary text-primary hover:bg-primary hover:text-text-inverse font-medium px-6 py-4 rounded-full transition-all">
                 料金を見る
               </Link>
-            </div>
+            </motion.div>
 
             {/* 信任标签 */}
-            <div className="flex flex-wrap gap-6">
+            <motion.div 
+              className="flex flex-wrap gap-6" 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
               <div className="flex items-center gap-2 text-sm text-text-secondary">
                 <svg className="w-4 h-4 text-green-700" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -120,11 +130,16 @@ function Hero() {
                 </svg>
                 著作権100%帰属
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* 右侧演示区 */}
-          <div className="lg:col-span-2">
+          <motion.div 
+            className="lg:col-span-2"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
             <div className="bg-white rounded-2xl p-6 shadow-xl border border-border animate-float">
               {/* 输入阶段 */}
               <div className={`transition-all duration-500 ${demoStage >= 1 ? 'opacity-100' : 'opacity-100'}`}>
@@ -168,7 +183,7 @@ function Hero() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -280,7 +295,7 @@ function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-          >なぜ選ばれるのか</motion.span>
+          >FEATURES</motion.span>
           <motion.h2
             className="font-heading text-4xl md:text-5xl font-bold text-text-primary"
             initial={{ opacity: 0, y: 20 }}
@@ -424,15 +439,35 @@ function LogoShowcase() {
     <section className="py-16 md:py-24 bg-bg-base">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="text-center mb-14">
-          <span className="text-accent font-medium text-sm tracking-[0.1em] uppercase mb-4 block">Logo Gallery</span>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-text-primary">
+          <motion.span 
+            className="text-accent font-medium text-sm tracking-[0.1em] uppercase mb-4 block"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Logo Gallery
+          </motion.span>
+          <motion.h2 
+            className="font-heading text-4xl md:text-5xl font-bold text-text-primary"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             実際に生成された<br className="md:hidden" />
             ロゴ事例
-          </h2>
+          </motion.h2>
         </div>
 
         {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        <motion.div 
+          className="flex flex-wrap justify-center gap-2 mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}  
+        >
           {categories.map((cat, index) => (
             <button
               key={index}
@@ -446,26 +481,40 @@ function LogoShowcase() {
               {cat}
             </button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Logo Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {logos.map((logo, index) => (
-            <div key={index} className="aspect-square bg-white rounded-xl border border-border p-6 flex flex-col items-center justify-center hover:shadow-lg transition-shadow group">
+            <motion.div 
+              key={index} 
+              className="aspect-square bg-white rounded-xl border border-border p-6 flex flex-col items-center justify-center hover:shadow-lg transition-shadow group"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
               <div className="font-heading text-2xl md:text-3xl text-primary mb-2">{logo.name}</div>
               <div className="text-xs text-text-muted">{logo.industry}</div>
               <div className="text-[10px] text-accent mt-2 opacity-0 group-hover:opacity-100 transition-opacity">{logo.font}</div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         <div className="text-center mt-10">
-          <Link href="/works" className="inline-flex items-center gap-2 text-primary font-medium hover:text-accent transition-colors">
+          <motion.a
+            href="/works"
+            className="inline-flex items-center gap-2 text-primary font-medium hover:text-accent transition-colors"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
             もっと見る
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-          </Link>
+          </motion.a>
         </div>
       </div>
     </section>
