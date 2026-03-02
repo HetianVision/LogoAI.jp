@@ -126,29 +126,74 @@ export default function LogoDetailPage() {
   return (
     <div className="logo-detail-page min-h-screen bg-[#FAFAF7]">
       {/* ① 顶部安心条（固定） */}
-      <div className="trust-bar fixed top-0 left-0 right-0 z-50 bg-[#F2F0EB] border-b border-[#E0DDD6] py-2 px-4">
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="trust-bar fixed top-0 left-0 right-0 z-50 bg-[#F2F0EB] border-b border-[#E0DDD6] py-2 px-4"
+      >
         <div className="max-w-[1200px] mx-auto flex items-center justify-center gap-4 flex-wrap text-xs font-semibold text-[#5A5A5A]">
-          <span className="flex items-center gap-1">
-            <span className="text-[#2D5A3D]">✔</span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className="flex items-center gap-1"
+          >
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: 'spring' }}
+              className="text-[#2D5A3D]"
+            >✔</motion.span>
             商用利用可能
-          </span>
+          </motion.span>
           <span className="text-[#E0DDD6]">|</span>
-          <span className="flex items-center gap-1">
-            <span className="text-[#2D5A3D]">✔</span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.15 }}
+            className="flex items-center gap-1"
+          >
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.25, type: 'spring' }}
+              className="text-[#2D5A3D]"
+            >✔</motion.span>
             著作権はお客様に帰属
-          </span>
+          </motion.span>
           <span className="text-[#E0DDD6]">|</span>
-          <span className="flex items-center gap-1">
-            <span className="text-[#2D5A3D]">✔</span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="flex items-center gap-1"
+          >
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.3, type: 'spring' }}
+              className="text-[#2D5A3D]"
+            >✔</motion.span>
             追加費用なし
-          </span>
+          </motion.span>
           <span className="text-[#E0DDD6]">|</span>
-          <span className="flex items-center gap-1">
-            <span className="text-[#2D5A3D]">✔</span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.25 }}
+            className="flex items-center gap-1"
+          >
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.35, type: 'spring' }}
+              className="text-[#2D5A3D]"
+            >✔</motion.span>
             印刷・SNS対応済み
-          </span>
+          </motion.span>
         </div>
-      </div>
+      </motion.div>
 
       {/* ② 生成完了ヘッダー */}
       <motion.header
@@ -232,10 +277,15 @@ export default function LogoDetailPage() {
 
               {/* 背景切换按钮 */}
               <div className="flex items-center justify-center gap-2">
-                {BG_OPTIONS.map(bg => (
-                  <button
+                {BG_OPTIONS.map((bg, idx) => (
+                  <motion.button
                     key={bg.id}
                     onClick={() => setBgType(bg.id)}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + idx * 0.05 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
                       bgType === bg.id
                         ? 'bg-[#1A3A2A] text-white'
@@ -243,31 +293,56 @@ export default function LogoDetailPage() {
                     }`}
                   >
                     {bg.label}
-                  </button>
+                  </motion.button>
                 ))}
               </div>
             </div>
 
             {/* 右侧：小尺寸验证 */}
             <div className="space-y-6">
-              <h3 className="font-serif text-lg font-bold text-[#1A1A1A]">サイズ別プレビュー</h3>
+              <motion.h3
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.15 }}
+                className="font-serif text-lg font-bold text-[#1A1A1A]"
+              >
+                サイズ別プレビュー
+              </motion.h3>
 
-              {/* SNS图标 */}
-              <div className="bg-white border border-[#E0DDD6] rounded-xl p-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                whileHover={{ y: -3, boxShadow: '0 8px 30px rgba(0,0,0,0.1)' }}
+                className="bg-white border border-[#E0DDD6] rounded-xl p-4"
+              >
                 <span className="text-[0.65rem] font-bold text-[#9A9A9A] uppercase tracking-wider">SNSプロフィール</span>
                 <div className="mt-3 flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-full border-2 border-[#E0DDD6] flex items-center justify-center overflow-hidden" style={{ background: '#F2F0EB' }}>
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    className="w-16 h-16 rounded-full border-2 border-[#E0DDD6] flex items-center justify-center overflow-hidden cursor-pointer"
+                    style={{ background: '#F2F0EB' }}
+                  >
                     <span className="text-xl font-bold" style={{ color: logo.colors[0] }}>{state.brandName.slice(0,1)}</span>
-                  </div>
-                  <div className="w-16 h-16 rounded-full border-2 border-[#E0DDD6] flex items-center justify-center overflow-hidden" style={{ background: '#1A3A2A' }}>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    className="w-16 h-16 rounded-full border-2 border-[#E0DDD6] flex items-center justify-center overflow-hidden cursor-pointer"
+                    style={{ background: '#1A3A2A' }}
+                  >
                     <span className="text-xl font-bold text-white">{state.brandName.slice(0,1)}</span>
-                  </div>
+                  </motion.div>
                 </div>
                 <p className="mt-2 text-[0.65rem] text-[#9A9A9A]">Instagram・X プロフィール画像</p>
-              </div>
+              </motion.div>
 
-              {/* 24px验证 */}
-              <div className="bg-white border border-[#E0DDD6] rounded-xl p-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 }}
+                whileHover={{ y: -3, boxShadow: '0 8px 30px rgba(0,0,0,0.1)' }}
+                className="bg-white border border-[#E0DDD6] rounded-xl p-4"
+              >
                 <span className="text-[0.65rem] font-bold text-[#9A9A9A] uppercase tracking-wider">最小サイズ (24px)</span>
                 <div className="mt-3 flex items-center gap-4">
                   <div className="w-8 h-8 flex items-center justify-center">
@@ -278,10 +353,15 @@ export default function LogoDetailPage() {
                   </div>
                 </div>
                 <p className="mt-2 text-[0.65rem] text-[#9A9A9A]">小さいサイズでも視認性を確認</p>
-              </div>
+              </motion.div>
 
-              {/* 名片尺寸 */}
-              <div className="bg-white border border-[#E0DDD6] rounded-xl p-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                whileHover={{ y: -3, boxShadow: '0 8px 30px rgba(0,0,0,0.1)' }}
+                className="bg-white border border-[#E0DDD6] rounded-xl p-4"
+              >
                 <span className="text-[0.65rem] font-bold text-[#9A9A9A] uppercase tracking-wider">名刺サイズ</span>
                 <div className="mt-3 aspect-[1.58/1] bg-white border border-[#E0DDD6] rounded flex items-center justify-center p-3">
                   <div className="flex items-center gap-2">
@@ -289,37 +369,62 @@ export default function LogoDetailPage() {
                   </div>
                 </div>
                 <p className="mt-2 text-[0.65rem] text-[#9A9A9A]">名刺（91×55mm）での表示</p>
-              </div>
+              </motion.div>
 
-              {/* favicon */}
-              <div className="bg-white border border-[#E0DDD6] rounded-xl p-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35 }}
+                whileHover={{ y: -3, boxShadow: '0 8px 30px rgba(0,0,0,0.1)' }}
+                className="bg-white border border-[#E0DDD6] rounded-xl p-4"
+              >
                 <span className="text-[0.65rem] font-bold text-[#9A9A9A] uppercase tracking-wider">Favicon</span>
                 <div className="mt-3 flex items-center gap-4">
-                  <div className="w-6 h-6 rounded flex items-center justify-center" style={{ background: logo.colors[0] }}>
+                  <motion.div
+                    whileHover={{ scale: 1.2 }}
+                    className="w-6 h-6 rounded flex items-center justify-center cursor-pointer"
+                    style={{ background: logo.colors[0] }}
+                  >
                     <span className="text-[8px] font-bold text-white">{state.brandName.slice(0,1)}</span>
-                  </div>
-                  <div className="w-6 h-6 rounded flex items-center justify-center" style={{ background: logo.colors[1] }}>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.2 }}
+                    className="w-6 h-6 rounded flex items-center justify-center cursor-pointer"
+                    style={{ background: logo.colors[1] }}
+                  >
                     <span className="text-[8px] font-bold" style={{ color: logo.colors[0] }}>{state.brandName.slice(0,1)}</span>
-                  </div>
+                  </motion.div>
                 </div>
                 <p className="mt-2 text-[0.65rem] text-[#9A9A9A]">ブラウザタブ・ブックマーク</p>
-              </div>
+              </motion.div>
 
-              {/* 颜色信息 */}
-              <div className="bg-white border border-[#E0DDD6] rounded-xl p-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                whileHover={{ y: -3, boxShadow: '0 8px 30px rgba(0,0,0,0.1)' }}
+                className="bg-white border border-[#E0DDD6] rounded-xl p-4"
+              >
                 <span className="text-[0.65rem] font-bold text-[#9A9A9A] uppercase tracking-wider">使用カラー</span>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {logo.colors.map((color, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                      <div
-                        className="w-8 h-8 rounded-full border border-[#E0DDD6] shadow-sm"
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.45 + idx * 0.05 }}
+                      className="flex items-center gap-2"
+                    >
+                      <motion.div
+                        whileHover={{ scale: 1.2 }}
+                        className="w-8 h-8 rounded-full border border-[#E0DDD6] shadow-sm cursor-pointer"
                         style={{ background: color }}
                       />
                       <span className="text-xs font-mono text-[#5A5A5A]">{color}</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </motion.section>
@@ -335,10 +440,15 @@ export default function LogoDetailPage() {
 
           {/* Mockup类型切换 */}
           <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
-            {MOCKUP_TYPES.map(type => (
-              <button
+            {MOCKUP_TYPES.map((type, idx) => (
+              <motion.button
                 key={type.id}
                 onClick={() => setActiveMockup(type.id)}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 + idx * 0.05 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all ${
                   activeMockup === type.id
                     ? 'bg-[#1A3A2A] text-white'
@@ -347,7 +457,7 @@ export default function LogoDetailPage() {
               >
                 <span>{type.icon}</span>
                 {type.label}
-              </button>
+              </motion.button>
             ))}
           </div>
 
@@ -425,29 +535,69 @@ export default function LogoDetailPage() {
           <h2 className="font-serif text-xl font-bold text-[#1A1A1A] mb-6">ロゴを調整する</h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <button className="bg-white border border-[#E0DDD6] rounded-xl p-4 text-center hover:border-[#1A3A2A] hover:shadow-lg transition-all group">
-              <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">🎨</div>
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="bg-white border border-[#E0DDD6] rounded-xl p-4 text-center hover:border-[#1A3A2A] hover:shadow-lg transition-all group"
+            >
+              <motion.div
+                className="text-2xl mb-2 group-hover:scale-110 transition-transform"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+              >🎨</motion.div>
               <div className="font-bold text-[#1A1A1A] text-sm">印象変更</div>
               <div className="text-xs text-[#9A9A9A] mt-1">印象を変える</div>
-            </button>
+            </motion.button>
 
-            <button className="bg-white border border-[#E0DDD6] rounded-xl p-4 text-center hover:border-[#1A3A2A] hover:shadow-lg transition-all group">
-              <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">🖌️</div>
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="bg-white border border-[#E0DDD6] rounded-xl p-4 text-center hover:border-[#1A3A2A] hover:shadow-lg transition-all group"
+            >
+              <motion.div
+                className="text-2xl mb-2 group-hover:scale-110 transition-transform"
+                whileHover={{ scale: 1.1, rotate: -5 }}
+              >🖌️</motion.div>
               <div className="font-bold text-[#1A1A1A] text-sm">カラー変更</div>
               <div className="text-xs text-[#9A9A9A] mt-1">色进行调整</div>
-            </button>
+            </motion.button>
 
-            <button className="bg-white border border-[#E0DDD6] rounded-xl p-4 text-center hover:border-[#1A3A2A] hover:shadow-lg transition-all group">
-              <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">🔤</div>
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45 }}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="bg-white border border-[#E0DDD6] rounded-xl p-4 text-center hover:border-[#1A3A2A] hover:shadow-lg transition-all group"
+            >
+              <motion.div
+                className="text-2xl mb-2 group-hover:scale-110 transition-transform"
+                whileHover={{ scale: 1.1 }}
+              >🔤</motion.div>
               <div className="font-bold text-[#1A1A1A] text-sm">フォント変更</div>
               <div className="text-xs text-[#9A9A9A] mt-1">字体を変える</div>
-            </button>
+            </motion.button>
 
-            <button className="bg-white border border-[#E0DDD6] rounded-xl p-4 text-center hover:border-[#1A3A2A] hover:shadow-lg transition-all group">
-              <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">🔄</div>
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="bg-white border border-[#E0DDD6] rounded-xl p-4 text-center hover:border-[#1A3A2A] hover:shadow-lg transition-all group"
+            >
+              <motion.div
+                className="text-2xl mb-2 group-hover:scale-110 transition-transform"
+                whileHover={{ rotate: 180 }}
+              >🔄</motion.div>
               <div className="font-bold text-[#1A1A1A] text-sm">再生成</div>
               <div className="text-xs text-[#9A9A9A] mt-1">他のパターンを生成</div>
-            </button>
+            </motion.button>
           </div>
         </motion.section>
 
@@ -462,57 +612,113 @@ export default function LogoDetailPage() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {/* 免费预览 */}
-            <div className="bg-white border border-[#E0DDD6] rounded-2xl p-6 text-center">
-              <div className="text-3xl mb-3">👁️</div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              whileHover={{ y: -5, boxShadow: '0 12px 40px rgba(0,0,0,0.12)' }}
+              className="bg-white border border-[#E0DDD6] rounded-2xl p-6 text-center"
+            >
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className="text-3xl mb-3"
+              >👁️</motion.div>
               <h3 className="font-bold text-[#1A1A1A] text-lg mb-2">無料プレビュー</h3>
               <p className="text-sm text-[#5A5A5A] mb-4">低解像度PNG</p>
               <div className="text-2xl font-bold text-[#1A1A1A] mb-4">¥0</div>
-              <button className="w-full py-3 border border-[#E0DDD6] text-[#5A5A5A] rounded-full font-bold hover:border-[#1A3A2A] hover:text-[#1A3A2A] transition-all">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full py-3 border border-[#E0DDD6] text-[#5A5A5A] rounded-full font-bold hover:border-[#1A3A2A] hover:text-[#1A3A2A] transition-all"
+              >
                 ダウンロード
-              </button>
+              </motion.button>
               <p className="text-[0.65rem] text-[#9A9A9A] mt-3">粗い解像度でのみ無料</p>
-            </div>
+            </motion.div>
 
             {/* スタンダードプラン */}
-            <div className="bg-white border-2 border-[#C9963A] rounded-2xl p-6 text-center relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#C9963A] text-white text-xs font-bold rounded-full">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55 }}
+              whileHover={{ y: -5, boxShadow: '0 12px 40px rgba(0,0,0,0.12)' }}
+              className="bg-white border-2 border-[#C9963A] rounded-2xl p-6 text-center relative"
+            >
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.6, type: 'spring' }}
+                className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#C9963A] text-white text-xs font-bold rounded-full"
+              >
                 おすすめ
-              </div>
-              <div className="text-3xl mb-3">⭐</div>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 10 }}
+                className="text-3xl mb-3"
+              >⭐</motion.div>
               <h3 className="font-bold text-[#1A1A1A] text-lg mb-2">スタンダードプラン</h3>
               <p className="text-sm text-[#5A5A5A] mb-4">高解像度PNG・SVG</p>
-              <div className="text-3xl font-bold text-[#C9963A] mb-4">¥4,980</div>
-              <Link
-                href="/checkout"
-                className="block w-full py-3 bg-[#C9963A] text-white rounded-full font-bold hover:bg-[#E8B85A] transition-all"
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.65 }}
+                className="text-3xl font-bold text-[#C9963A] mb-4"
+              >¥4,980</motion.div>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                購入手続き →
-              </Link>
+                <Link
+                  href="/checkout"
+                  className="block w-full py-3 bg-[#C9963A] text-white rounded-full font-bold hover:bg-[#E8B85A] transition-all"
+                >
+                  購入手続き →
+                </Link>
+              </motion.div>
               <ul className="text-[0.65rem] text-[#5A5A5A] mt-4 space-y-1">
                 <li>✓ 商用利用OK</li>
                 <li>✓ 著作権转让</li>
                 <li>✓ 各種サイズ出力</li>
               </ul>
-            </div>
+            </motion.div>
 
             {/* プレミアムプラン */}
-            <div className="bg-white border border-[#E0DDD6] rounded-2xl p-6 text-center">
-              <div className="text-3xl mb-3">💎</div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              whileHover={{ y: -5, boxShadow: '0 12px 40px rgba(0,0,0,0.12)' }}
+              className="bg-white border border-[#E0DDD6] rounded-2xl p-6 text-center"
+            >
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: -10 }}
+                className="text-3xl mb-3"
+              >💎</motion.div>
               <h3 className="font-bold text-[#1A1A1A] text-lg mb-2">プレミアムプラン</h3>
               <p className="text-sm text-[#5A5A5A] mb-4">全データ+\alpha</p>
-              <div className="text-3xl font-bold text-[#1A3A2A] mb-4">¥9,800</div>
-              <Link
-                href="/checkout"
-                className="block w-full py-3 bg-[#1A3A2A] text-white rounded-full font-bold hover:bg-[#2D5A3D] transition-all"
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.7 }}
+                className="text-3xl font-bold text-[#1A3A2A] mb-4"
+              >¥9,800</motion.div>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                購入手続き →
-              </Link>
+                <Link
+                  href="/checkout"
+                  className="block w-full py-3 bg-[#1A3A2A] text-white rounded-full font-bold hover:bg-[#2D5A3D] transition-all"
+                >
+                  購入手続き →
+                </Link>
+              </motion.div>
               <ul className="text-[0.65rem] text-[#5A5A5A] mt-4 space-y-1">
                 <li>✓ スタンダード含む</li>
                 <li>✓ AI編集機能</li>
                 <li>✓ 優先サポート</li>
               </ul>
-            </div>
+            </motion.div>
           </div>
         </motion.section>
 
@@ -523,20 +729,41 @@ export default function LogoDetailPage() {
           transition={{ delay: 0.5 }}
           className="ld-regen"
         >
-          <div className="regen-guide p-7 bg-[#F2F0EB] border border-[#E0DDD6] rounded-2xl text-center">
-            <h3 className="font-serif text-lg font-bold text-[#1A1A1A] mb-1.5">
-              気に入ったロゴが見つかりませんか？
-            </h3>
-            <p className="text-sm text-[#5A5A5A] mb-5">
-              条件を変えて再生成できます。印象・業種・用途を調整してみましょう。
-            </p>
-            <Link
-              href="/create/result"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#1A3A2A] text-white rounded-full text-sm font-bold shadow-lg hover:bg-[#2D5A3D] hover:-translate-y-0.5 transition-all"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.55 }}
+            className="regen-guide p-7 bg-[#F2F0EB] border border-[#E0DDD6] rounded-2xl text-center"
+          >
+            <motion.h3
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="font-serif text-lg font-bold text-[#1A1A1A] mb-1.5"
             >
-              🔄 他のロゴを見る
-            </Link>
-          </div>
+              気に入ったロゴが見つかりませんか？
+            </motion.h3>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.65 }}
+              className="text-sm text-[#5A5A5A] mb-5"
+            >
+              条件を変えて再生成できます。印象・業種・用途を調整してみましょう。
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+            >
+              <Link
+                href="/create/result"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#1A3A2A] text-white rounded-full text-sm font-bold shadow-lg hover:bg-[#2D5A3D] hover:-translate-y-0.5 transition-all"
+              >
+                🔄 他のロゴを見る
+              </Link>
+            </motion.div>
+          </motion.div>
         </motion.section>
       </main>
     </div>
