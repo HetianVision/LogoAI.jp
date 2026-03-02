@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
@@ -85,6 +85,13 @@ export default function LogoDetailPage() {
   const [bgType, setBgType] = useState('white')
   const [activeMockup, setActiveMockup] = useState('card')
 
+  // 吸顶相关状态
+  const [isSticky, setIsSticky] = useState(false)
+  const [stickyTop, setStickyTop] = useState(0)
+  const headerRef = useRef<HTMLElement>(null)
+  const leftImageRef = useRef<HTMLDivElement>(null)
+  const rightContentRef = useRef<HTMLDivElement>(null)
+
   // 从 sessionStorage 加载状态
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -112,6 +119,52 @@ export default function LogoDetailPage() {
       }
     }
   }, [logoId])
+
+  // 吸顶滚动效果
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const handleScroll = () => {
+      // 固定头部高度约为 80px (trust-bar 36px + header pt-20 pb-6)
+      const headerHeight = 80
+      const offset = headerHeight + 20 // header下方20px
+
+      // 获取各个元素的位置
+      const headerEl = headerRef.current
+      const leftImageEl = leftImageRef.current
+      const rightContentEl = rightContentRef.current
+
+      if (!headerEl || !leftImageEl || !rightContentEl) return
+
+      const scrollY = window.scrollY
+      const headerBottom = headerEl.offsetTop + headerEl.offsetHeight
+      const leftImageBottom = leftImageEl.offsetTop + leftImageEl.offsetHeight
+      const rightContentBottom = rightContentEl.offsetTop + rightContentEl.offsetHeight
+
+      // 判断是否应该吸顶
+      // 当header滚动出视窗时触发吸顶
+      if (scrollY > headerBottom - offset) {
+        setIsSticky(true)
+        setStickyTop(offset)
+      } else {
+        setIsSticky(false)
+      }
+
+      // 当右侧内容底部与左侧大图底部对齐时，释放吸顶
+      // 右侧内容滚动到底部时（背景切换按钮区域），让左侧也跟随滚动
+      const rightContentBottomAtView = rightContentBottom - scrollY + offset
+      const leftImageTopAtView = leftImageEl.offsetTop - scrollY + offset
+
+      if (rightContentBottomAtView <= leftImageTopAtView + leftImageEl.offsetHeight) {
+        setIsSticky(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // 初始化
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   if (!logo || !state) {
     return (
@@ -197,6 +250,7 @@ export default function LogoDetailPage() {
 
       {/* ② 生成完了ヘッダー */}
       <motion.header
+        ref={headerRef}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -211,40 +265,45 @@ export default function LogoDetailPage() {
             ← 他のロゴを見る
           </Link>
 
-          {/* 标题 */}
-          <h1 className="font-serif text-2xl md:text-3xl font-bold text-[#1A1A1A] mb-3">
-            ロゴが生成されました
-          </h1>
+          {/* 头部主体：flex布局，桌面端左侧标题+标签，右侧购买按钮，垂直居中 */}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            {/* 左侧：标题 + 条件信息 */}
+            <div>
+              <h1 className="font-serif text-2xl md:text-3xl font-bold text-[#1A1A1A] mb-3">
+                ロゴが生成されました
+              </h1>
 
-          {/* 条件信息 */}
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            <span className="text-lg font-bold text-[#1A3A2A]">{state.brandName}</span>
-            <span className="text-[#E0DDD6]">|</span>
-            <div className="flex flex-wrap gap-1.5">
-              {logo.impression.map(imp => (
-                <span key={imp} className="px-2 py-0.5 bg-[rgba(26,58,42,0.08)] text-[#1A3A2A] rounded-full text-xs font-semibold">
-                  {IMP_LABELS[imp] || imp}
-                </span>
-              ))}
+              {/* 条件信息 */}
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="text-lg font-bold text-[#1A3A2A]">{state.brandName}</span>
+                <span className="text-[#E0DDD6]">|</span>
+                <div className="flex flex-wrap gap-1.5">
+                  {logo.impression.map(imp => (
+                    <span key={imp} className="px-2 py-0.5 bg-[rgba(26,58,42,0.08)] text-[#1A3A2A] rounded-full text-xs font-semibold">
+                      {IMP_LABELS[imp] || imp}
+                    </span>
+                  ))}
+                </div>
+                <span className="text-[#E0DDD6]">|</span>
+                <div className="flex flex-wrap gap-1.5">
+                  {logo.usage.map(usage => (
+                    <span key={usage} className="px-2 py-0.5 bg-[rgba(201,150,58,0.1)] text-[#C9963A] rounded-full text-xs font-semibold">
+                      {USAGE_LABELS[usage] || usage}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
-            <span className="text-[#E0DDD6]">|</span>
-            <div className="flex flex-wrap gap-1.5">
-              {logo.usage.map(usage => (
-                <span key={usage} className="px-2 py-0.5 bg-[rgba(201,150,58,0.1)] text-[#C9963A] rounded-full text-xs font-semibold">
-                  {USAGE_LABELS[usage] || usage}
-                </span>
-              ))}
-            </div>
-          </div>
 
-          {/* 购买按钮（固定头部区域） */}
-          <div className="flex items-center gap-3">
-            <Link
-              href="/checkout"
-              className="px-6 py-3 bg-[#C9963A] text-white rounded-full text-sm font-bold shadow-lg hover:bg-[#E8B85A] hover:-translate-y-0.5 transition-all"
-            >
-              ¥4,980 で購入 →
-            </Link>
+            {/* 右侧：购买按钮 */}
+            <div className="flex items-center gap-3">
+              <Link
+                href="/checkout"
+                className="px-6 py-3 bg-[#C9963A] text-white rounded-full text-sm font-bold shadow-lg hover:bg-[#E8B85A] hover:-translate-y-0.5 transition-all"
+              >
+                ¥4,980 で購入 →
+              </Link>
+            </div>
           </div>
         </div>
       </motion.header>
@@ -258,8 +317,11 @@ export default function LogoDetailPage() {
           className="ld-showcase mb-12"
         >
           <div className="grid md:grid-cols-2 gap-8">
-            {/* 左侧：大图展示 */}
-            <div className="space-y-4">
+            {/* 左侧：大图展示 - 桌面端吸顶 */}
+            <div
+              ref={leftImageRef}
+              className={`space-y-4 ${isSticky ? 'md:fixed md:top-[100px] md:left-1/2 md:-translate-x-1/2 md:w-[calc(50%-2rem)] md:max-w-[584px] z-40' : ''}`}
+            >
               <div
                 className="relative aspect-square rounded-2xl overflow-hidden border border-[#E0DDD6] shadow-lg flex items-center justify-center"
                 style={{ background: currentBg.bg }}
@@ -299,7 +361,7 @@ export default function LogoDetailPage() {
             </div>
 
             {/* 右侧：小尺寸验证 */}
-            <div className="space-y-6">
+            <div ref={rightContentRef} className="space-y-6">
               <motion.h3
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
