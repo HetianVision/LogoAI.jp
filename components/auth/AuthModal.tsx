@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, FormEvent, useEffect, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useAuthStore } from './auth-modal'
 
 // Password strength calculator
@@ -119,33 +119,13 @@ export default function AuthModal() {
     }
   }
 
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          className="auth-modal"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          hidden={false}
-        >
-          <motion.div
-            className="am-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={closeModal}
-          />
+  if (!isOpen) return null
 
-          <motion.div
-            className="am-content"
-            initial={{ opacity: 0, scale: 0.95, y: '-48%', x: '-50%' }}
-            animate={{ opacity: 1, scale: 1, y: '-50%', x: '-50%' }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
-            style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-          >
+  return (
+    <>
+      <div className="auth-modal">
+        <div className="am-overlay" onClick={closeModal} />
+        <div className="am-content">
             {/* Close button */}
             <button
               type="button"
@@ -156,37 +136,13 @@ export default function AuthModal() {
               ✕
             </button>
 
-            {/* Tabs */}
-            <div className="am-tabs" role="tablist" aria-label="ログイン・新規登録">
-              <button
-                type="button"
-                className={`am-tab ${mode === 'login' ? 'am-tab-active' : ''}`}
-                role="tab"
-                aria-selected={mode === 'login'}
-                aria-controls="am-panel-login"
-                id="tab-login"
-                onClick={() => setMode('login')}
-              >
-                ログイン
-              </button>
-              <button
-                type="button"
-                className={`am-tab ${mode === 'register' ? 'am-tab-active' : ''}`}
-                role="tab"
-                aria-selected={mode === 'register'}
-                aria-controls="am-panel-register"
-                id="tab-register"
-                onClick={() => setMode('register')}
-              >
-                新規登録
-              </button>
-            </div>
+            
 
             {/* Login Panel */}
             {mode === 'login' && (
                 <motion.div
                   key="login-panel"
-                  className="am-panel"
+                  className="am-panel p-6 sm:p-8 px-6 sm:px-12"
                   role="tabpanel"
                   aria-labelledby="tab-login"
                   initial={{ opacity: 0, x: -20 }}
@@ -291,7 +247,7 @@ export default function AuthModal() {
               {mode === 'register' && (
                 <motion.div
                   key="register-panel"
-                  className="am-panel"
+                  className="am-panel p-6 sm:p-8 px-6 sm:px-12"
                   role="tabpanel"
                   aria-labelledby="tab-register"
                   initial={{ opacity: 0, x: 20 }}
@@ -408,7 +364,7 @@ export default function AuthModal() {
               {mode === 'reset-password' && (
                 <motion.div
                   key="reset-panel"
-                  className="am-panel"
+                  className="am-panel p-6 sm:p-8 px-6 sm:px-12"
                   role="tabpanel"
                   aria-labelledby="tab-login"
                   initial={{ opacity: 0, x: 20 }}
@@ -481,7 +437,7 @@ export default function AuthModal() {
                   </form>
                 </motion.div>
               )}
-          </motion.div>
+          </div>
 
           <style jsx>{`
             .auth-modal {
@@ -495,14 +451,19 @@ export default function AuthModal() {
             }
 
             .am-overlay {
-              position: absolute;
+              position: fixed;
               inset: 0;
+              z-index: 500;
               background: rgba(0, 0, 0, 0.6);
               backdrop-filter: blur(4px);
             }
 
             .am-content {
-              position: absolute;
+              position: fixed;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              z-index: 501;
               background: white;
               border-radius: 1rem;
               width: min(92vw, 440px);
@@ -541,7 +502,6 @@ export default function AuthModal() {
 
             .am-tabs {
               display: flex;
-              border-bottom: 2px solid #E0DDD6;
             }
 
             .am-tab {
@@ -612,6 +572,7 @@ export default function AuthModal() {
             }
 
             .field-input {
+              width: 100%;
               padding: 12px 16px;
               font-size: 1rem;
               border: 1.5px solid #E0DDD6;
@@ -620,6 +581,7 @@ export default function AuthModal() {
               color: #1A1A1A;
               font-family: inherit;
               transition: all 0.2s;
+              box-sizing: border-box;
             }
 
             .field-input:focus {
@@ -646,6 +608,8 @@ export default function AuthModal() {
 
             .password-wrap {
               position: relative;
+              width: 100%;
+              box-sizing: border-box;
             }
 
             .password-wrap .field-input {
@@ -852,8 +816,7 @@ export default function AuthModal() {
               text-decoration: underline;
             }
           `}</style>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        </div>
+      </>
   )
 }
