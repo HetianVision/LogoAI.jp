@@ -364,7 +364,7 @@ export default function CreateResultPage() {
                   {/* 预览区 */}
                   <div className="lc-preview relative bg-[#F2F0EB] aspect-[4/3] overflow-hidden">
                     {/* 标准预览 */}
-                    <div className={`absolute inset-0 flex items-center justify-center p-5 transition-opacity duration-300 ${previewType === 'standard' ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                    <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${previewType === 'standard' ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                       <div className="w-full h-full bg-white flex items-center justify-center">
                         <div className="text-2xl font-bold text-[#1A3A2A]">{state.brandName}</div>
                       </div>
@@ -521,7 +521,7 @@ export default function CreateResultPage() {
           </div>
 
           {/* 右侧调整面板（PC） */}
-          <aside className="result-aside hidden lg:block sticky top-[88px]">
+          <aside className="result-aside hidden lg:block sticky self-start top-[80px] h-fit">
             <div className="bg-white border border-[#E0DDD6] rounded-2xl overflow-hidden">
               {/* Header */}
               <div className="p-4 border-b border-[#E0DDD6] bg-[#F2F0EB] flex items-center justify-between">
